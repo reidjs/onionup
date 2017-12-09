@@ -1,35 +1,42 @@
 class Api::SitesController < ApplicationController
     before_action :authenticate_user!
 
-  # def show_ping
-  #   site = Site.find_by(id: params[:id])
-  #   render json:[@site]
-  # end
+  def show_ping
+    @site = Site.find_by(id: params[:id])
+    @ping = Ping.new(site_id: @site.id)
+    if (@site.ping)
+        @ping.status = true;
+      else
+        @ping.status = false;
+    end
+    @ping.save! ############################## remove
+    render json:[[@site], [@ping]]
+  end
 
-  # def index_ping
-  #   @sites = current_user.sites
-  #   @sites.each do |site|
-  #     ping = Ping.new(site_id: site.id)
-  #     if (site.ping)
-  #       ping.status = true;
-  #     else
-  #       ping.status = false;
-  #     end
-  #     ping.save!  ######################### take out ! 
-  #   end
-  #     @pings = Ping.all
-  #     render json:[[@sites],[@pings]]
-  # end
+  def index_ping
+    @sites = current_user.sites
+    @sites.each do |site|
+      ping = Ping.new(site_id: site.id)
+      if (site.ping)
+        ping.status = true;
+      else
+        ping.status = false;
+      end
+      ping.save!  ######################### take out ! 
+    end
+      @pings = @sites.map{|site| site.pings}
+      render json:[[@sites],[@pings]]
+  end
 
   def index
     @sites = current_user.sites
-    @pings = Ping.all
+    @pings = @sites.map{|site| site.pings}
       render json:[[@sites],[@pings]]
   end
 
   def show
     @site = Site.find_by(id: params[:id])
-    render json:[@site]
+    render json:[[@site],[@site.pings]]
   end
 
   # def create
