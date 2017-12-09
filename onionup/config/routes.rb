@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
     namespace :api, defaults: {format: :json} do
       resources :sites
+      match 'sites/ping/:id', to: 'sites#show_ping', via: [:get]
+      match 'sites/ping', to: 'sites#index_ping', via: [:get]
     end
 
   devise_for :users
