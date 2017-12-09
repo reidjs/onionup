@@ -3,14 +3,14 @@ class Api::SitesController < ApplicationController
 
   def show_ping
     @site = Site.find_by(id: params[:id])
-    @ping = Ping.new(site_id: @site.id)
+    ping = Ping.new(site_id: @site.id)
     if (@site.ping)
-        @ping.status = true;
+        ping.status = true;
       else
-        @ping.status = false;
+        ping.status = false;
     end
-    @ping.save! ############################## remove
-    render json:[[@site], [@ping]]
+    ping.save! ############################## remove
+    render json:[[@site], [@site.pings]]
   end
 
   def index_ping
