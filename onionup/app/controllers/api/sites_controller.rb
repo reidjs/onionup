@@ -16,8 +16,10 @@ class Api::SitesController < ApplicationController
   end
 
   def index_ping
+
     # get current users sites
     @sites = current_user.sites
+
     #make threadsafe pings queue and finished pings queu. Multithreads didnt like me instantiating Ping.new() inside a thread
     pings = Queue.new
     finished_ping = Queue.new
@@ -44,14 +46,14 @@ class Api::SitesController < ApplicationController
     while (!finished_ping.empty?)
       finished_ping.pop(true).save!
     end
-    ######### save finishe pings into array or hash
+    ######### save finished pings into array or hash instead of refinding them through site.pigss
     #render 
     @pings = @sites.map{|site| site.pings}
     render json:[[@sites],[@pings]]
   end
 
   def index
-    @sites = current_user.sites
+    @sites = current_user.sites.includes(:pings);
     @pings = @sites.map{|site| site.pings}
       render json:[[@sites],[@pings]]
   end
@@ -61,32 +63,32 @@ class Api::SitesController < ApplicationController
     render json:[[@site],[@site.pings]]
   end
 
-  # def create
-  #   @site = Site.new(site_params)
-  #   @site.user_id = current_user.id
-  #   if @site.save
-  #     render json: @site
-  #   #  render "api/events/show"
-  #   else
-  #     render json: @site.errors.full_messages
-  #     return
-  #   end
-  #   # fail
-  # end
+  def create
+    @site = Site.new(site_params)
+    @site.user_id = current_user.id
+    if @site.save
+      render json: @site
+    #  render "api/events/show"
+    else
+      render json: @site.errors.full_messages
+      return
+    end
+    # fail
+  end
 
-  # def destroy
-  #   @site = Site.find_by(id: params[:id])
-  #   if !@site
-  #     render
-  #     return
-  #   elsif @site.destroy
-  #     redirect_to sites_url
-  #     return
-  #   else
-  #     flash.now[:errors] = @site.errors.full_messages
-  #     return
-  #   end
-  # end
+  def destroy
+    @site = Site.find_by(id: params[:id])
+    if !@site
+      render
+      return
+    elsif @site.destroy
+      redirect_to sites_url
+      return
+    else
+      flash.now[:errors] = @site.errors.full_messages
+      return
+    end
+  end
   private
 
   def site_params
