@@ -5,7 +5,8 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'application'%>
+    <%= javascript_pack_tag 'hello_vue' %>
   </head>
 
   <body>
@@ -29,5 +30,10 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+
+    <div id='hello'>
+      {{message}}
+    <app></app>
+   </div>
   </body>
 </html>
