@@ -2,9 +2,14 @@ class TestjobJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    puts "I AM A ACTIVE:JOB. I HAVE BEEN SHARPENING MY SKILLS"
+    puts "I AM A ACTIVE:JOB."
+    a=Ping.new(site_id:1, status:false)
+    a.save!
     puts args
   end
 
-  TestjobJob.perform_now("world")
+
+
 end
+  TestjobJob.new.perform("hi")
+  TestjobJob.perform_async('bob', 5)

@@ -25,6 +25,7 @@ class Api::SitesController < ApplicationController
       pings << Ping.new
     end
     #make new thread for every site: get a new ping, ping the site, apply attributes to ping and put it in finished_ping queue
+    #pretty sure the threadsafe queues are what made this work. 
     threads = @sites.map do |site|
       Thread.new do
           ping = pings.pop
