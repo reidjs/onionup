@@ -72,11 +72,11 @@ class Api::SitesController < ApplicationController
     # @sites.each do |site|
     #   ping = Ping.new(site_id: site.id)
     #   if (site.ping)
-    #     ping.assign_attributes(status:true)
+    #     ping.assign_attributes(status:true);
     #     puts "here"
     #     puts ping.status
     #   else
-    #     ping.assign_attributes(status:false)
+    #     ping.assign_attributes(status:false);
     #     puts "here1"
     #     puts ping.status
     #   end
