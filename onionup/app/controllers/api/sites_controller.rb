@@ -1,3 +1,5 @@
+require 'thread'
+
 class Api::SitesController < ApplicationController
     before_action :authenticate_user!
 
@@ -15,17 +17,62 @@ class Api::SitesController < ApplicationController
 
   def index_ping
     @sites = current_user.sites
-    @sites.each do |site|
-      ping = Ping.new(site_id: site.id)
-      if (site.ping)
-        ping.status = true;
-      else
-        ping.status = false;
-      end
-      ping.save!  ######################### take out ! 
+
+    queue = Queue.new
+    pings = Queue.new
+    finished_ping = Queue.new
+
+    @sites.each do |site| 
+      queue << site 
+      pings << Ping.new
     end
-      @pings = @sites.map{|site| site.pings}
-      render json:[[@sites],[@pings]]
+    num_threads = 5;
+
+    threads = @sites.map do |site|
+      Thread.new do
+        puts "new thread"
+        puts "here1"
+          puts "here2"
+          puts 'here3'
+          ping = pings.pop
+          ping.site_id = site.id
+          puts "here4"
+          if (site.ping)
+            ping.status = true;
+          else
+            ping.status = false;
+          end
+          puts Thread.current
+          puts site
+
+          finished_ping.push(ping)
+                    puts "here5"
+          # Thread.current.exit
+      end
+    end
+    puts "after thread start"
+    puts threads.count
+    threads.each{|thr| thr.join}
+    puts "after thread join"
+    
+    while (!finished_ping.empty?)
+      finished_ping.pop(true).save!
+    end
+    @pings = @sites.map{|site| site.pings}
+    render json:[[@sites],[@pings]]
+
+    # @sites = current_user.sites
+    # @sites.each do |site|
+    #   ping = Ping.new(site_id: site.id)
+    #   if (site.ping)
+    #     ping.status = true;
+    #   else
+    #     ping.status = false;
+    #   end
+    #   ping.save!  ######################### take out ! 
+    # end
+    #   @pings = @sites.map{|site| site.pings}
+    #   render json:[[@sites],[@pings]]
   end
 
   def index
