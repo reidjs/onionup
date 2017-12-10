@@ -4,7 +4,7 @@
 
 ### Background
 
-Onion services are websites that are accessible through the Tor anonymitic network. These services are gaining popularity among journalists and people in repressive countries, for examlpe the New York Times recently launched an Onion service, "https://www.nytimes3xbfgragh.onion/." By going through Tor, users gain superior encryption relative to unencrypted, or "clearnet," websites. In order to maintain anonymity, there are many tradeoffs Tor users are accustomed to. Onion services are much slower than their clearnet counterparts and they go offline frequently. Thus, Tor users would benefit from a utility to check which sites are online before they devote a substantial amount of time connecting. OnionUp is a Pingdom-inspired uptime checker that displays the health of both Onion services and clearnet websites. As an added feature, OnionUp will allow users to easily keep track of their favorite Onion services.
+Onion services are websites that are accessible through the Tor anonymitic network. These services are gaining popularity among journalists and people in repressive countries, for example the New York Times recently launched an Onion service, "https://www.nytimes3xbfgragh.onion/." By going through Tor, users gain superior encryption relative to unencrypted, or "clearnet," websites. In order to maintain anonymity, there are certain tradeoffs Tor users are accustomed to. Onion services are much slower than their clearnet counterparts and they go offline frequently. Thus, Tor users would benefit from a utility to check which sites are online before they devote a substantial amount of time and effort connecting. OnionUp is a Pingdom-inspired uptime checker that displays the health of both Onion services and clearnet websites. As an added feature, OnionUp will allow users to easily keep track of their favorite Onion services.
 
 
 ### Functionality & MVP 
@@ -19,8 +19,16 @@ Users can
 
 ### Wireframes
 
+Index of sites 
+
 ![Index](https://github.com/reidjs/onionup/blob/master/wireframes/index_view.png)
+
+Log in modal 
+
 ![Session Modal](https://github.com/reidjs/onionup/blob/master/wireframes/session_modal.png)
+
+Site view 
+
 ![Site View](https://github.com/reidjs/onionup/blob/master/wireframes/site_view.png)
 
 ### Technologies and Technical Challenges
@@ -30,8 +38,10 @@ This will be implemented using a Ruby on Rails backend with a vue frontend.
 Primary technical challenges:
 
 * Pinging Tor sites from an Amazon EC2 Instance
+* Deploying to heroku (heroku uses dynamic ips which will cause issues with the tor proxy)
 * Linking Vue with the Ruby on Rails backend
-* Building live graphs with Vue
+* Building live graphs with D3
+* User authentication 
 
 ### Things we accomplished this weekend.
 
