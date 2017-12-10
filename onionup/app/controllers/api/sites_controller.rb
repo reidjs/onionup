@@ -12,7 +12,7 @@ class Api::SitesController < ApplicationController
         ping.status = false;
     end
     ping.save! ############################## remove
-    render json:[[@site], [@site.pings]]
+    '/api/sites/show.json.jbuilder'
   end
 
   def index_ping
@@ -46,21 +46,16 @@ class Api::SitesController < ApplicationController
     while (!finished_ping.empty?)
       finished_ping.pop(true).save!
     end
-    ######### save finished pings into array or hash instead of refinding them through site.pigss
-    #render 
-    @pings = @sites.map{|site| site.pings}
-    render json:[[@sites],[@pings]]
+    render '/api/sites/index.json.jbuilder'
   end
 
   def index
     @sites = current_user.sites.includes(:pings);
-    @pings = @sites.map{|site| site.pings}
-      render json:[[@sites],[@pings]]
+
   end
 
   def show
     @site = Site.find_by(id: params[:id])
-    render json:[[@site],[@site.pings]]
   end
 
   def create
