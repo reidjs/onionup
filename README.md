@@ -1,15 +1,6 @@
 # onionup
 ## Uptime Checking Service for Tor Hidden Services
 
-Description of project, including goals
-Link to live demo and/or instructions on how to use and run code
-List of techs/languages/plugins/APIs used
-Technical ipmplementation details for anything worth mentioning (basically anything you had to stop and think about before building)
-Include links to the neatest parts of the code, or embed snippets
-Include screenshots of anything that looks pretty
-A few example READMEs are linked from this page
-To-dos and future features
-
 ## This Weekend 
 
 **Reid**
