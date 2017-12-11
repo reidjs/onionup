@@ -7,7 +7,9 @@ class Site < ApplicationRecord
     uri = URI.parse(self.url)
     # if !uri.host.nil? && uri.path
       begin
-        Net::HTTP.SOCKSProxy('127.0.0.1', 9050).start(uri.host, uri.port) do |http|
+        puts uri.host
+        puts uri.port
+        Net::HTTP.SOCKSProxy('54.172.67.164', 9050).start(uri.host, uri.port) do |http|
           return true
         end
           p http.get(uri.path)
