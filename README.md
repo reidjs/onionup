@@ -1,6 +1,12 @@
 # onionup
 ## Uptime Checking Service for Tor Hidden Services
 
+## Development Notes
+Run vue webpacker in background: 
+
+`bin/webpack-dev-server`
+
+
 ## This Weekend 
 
 **Reid**
