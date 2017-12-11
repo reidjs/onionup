@@ -1,234 +1,81 @@
-# onionup
+# OnionUp
+
 ## Uptime Checking Service for Tor Hidden Services
 
-Description of project, including goals
-Link to live demo and/or instructions on how to use and run code
-List of techs/languages/plugins/APIs used
-Technical implementation details for anything worth mentioning (basically anything you had to stop and think about before building)
-Include links to the neatest parts of the code, or embed snippets
-Include screenshots of anything that looks pretty
-A few example READMEs are linked from this page
-To-dos and future features
+### Background
 
-## This Weekend 
+Onion services are websites that are accessible through the Tor anonymity network. These services are gaining popularity among journalists and people in repressive countries. In fact, major companies like the [New York Times](https://www.nytimes3xbfgragh.onion/) and [Facebook](https://facebookcorewwi.onion/) recently launched Onion services for their content. By going through Tor, users gain superior encryption relative to unencrypted, or "clearnet," websites. In order to maintain anonymity, there are certain tradeoffs Tor users are accustomed to. Onion services are much slower than their clearnet counterparts and they go offline frequently. Thus, Tor users would benefit from a utility to check which sites are online before they devote a substantial amount of time and effort connecting. OnionUp is a Pingdom-inspired uptime checker that displays the health of both Onion services and clearnet websites. As an added feature, OnionUp will allow users to easily keep track of their favorite Onion services.
 
-**Reid**
 
-- [ ] Vue tutorial/toyapp in vue
-- [ ] Build frontend API for user auth 
+### Functionality & MVP 
 
-**Jay**
+Users can 
 
-- [ ] Vue tutorial/toyapp in vue
-- [ ] Install Tor
-- [ ] Modals (login), layout
+- [ ] Sign in/Sign out 
+- [ ] Add sites to track
+- [ ] View index of sites. Each site will show the health (up or down), ping time, and a live graph
+- [ ] View specific site details and remove site from their tracker.
+- [ ] Edit site specifics such as a site alias and descriptions.
 
-**Chris** 
+### Wireframes
 
-- [ ] Vue tutorial/toyapp in vue
-- [ ] AWS & Tor Client testing/scripting (Proof of concept for live version with traffic)
+Index of sites 
 
-**Artem**
+![Index](https://github.com/reidjs/onionup/blob/master/wireframes/index_view.png)
 
-- [ ] Vue tutorial/toyapp in vue
-- [ ] Install Tor
-- [ ] Workers (sidekiq) concurrent processes, gathering ping information, load time, component interactions on hidden services (stretch)
+Log in modal 
 
-## Monday
+![Session Modal](https://github.com/reidjs/onionup/blob/master/wireframes/session_modal.png)
 
-**Reid**
+Site view 
 
-- [ ] Site show page 
-- [ ] User show page
-- [ ] Settings show page 
+![Site View](https://github.com/reidjs/onionup/blob/master/wireframes/site_view.png)
 
-**Jay**
+### Technologies and Technical Challenges
 
-- [ ] Index Component 
-- [ ] Sidebar/page styling, navigation
+This will be implemented using a Ruby on Rails backend with a vue frontend. 
 
-**Chris** 
-- [ ] Have rails server running concurrently with onion proxy able to make ping requests
-- [ ] Bootup tor and rails with one command 
+Primary technical challenges:
 
-**Artem**
+* Pinging Tor sites from an Amazon EC2 Instance
+* Deploying to heroku (heroku uses dynamic ips which will cause issues with the tor proxy)
+* Linking Vue with the Ruby on Rails backend
+* Building live graphs with D3
+* User authentication 
 
-- [ ] Making APIs for frontend to get information 
-- [ ] Timestamped data for graphs
+### Things we accomplished this weekend.
 
-## Tuesday
+1. Opened Amazon ec2 port successfully 
+2. Set up multi-threaded pinger
+3. (Hopefully) integrated vue frontend with rails backend
 
-**Reid**
+### Group Members and Work Breakdown
 
-- [ ] Graphing ping data in d3
+Our group consists of four members, Chris Bigelow, Jay Park, Artem Kharshan, Reid Sherman
 
-**Jay**
+Primary Responsibilities
 
-- [ ] Create site card component for index 
+Chris:
 
-**Chris** 
+* Amazon server setup
+* Heroku deployment
+* Tor port setup
 
-- [ ] Store ping data in database and requesting data 
+Jay: 
 
-**Artem**
+* Wireframes
+* Vue frontend components 
+* Devise auth 
 
-- [ ] Look into websockets (Application Cable) connecting front and backend
+Artem: 
 
-## Wednesday
+* Running multiple threads to ping many sites at once
+* Setting up sidekiq/jobs
+* Sending data from backend to frontend 
 
-**Reid**
+Reid:
 
-- [ ] Display historical data from backend to frontend
-
-**Jay**
-
-- [ ] 
-
-**Chris** 
-
-- [ ] Display historical data from backend to frontend 
-
-**Artem**
-
-- [ ]
-
-## Thursday
-
-**Reid**
-
-- [ ] 
-
-**Jay**
-
-- [ ] 
-
-**Chris** 
-
-- [ ] 
-
-**Artem**
-
-- [ ]
-
-## Friday
-
-**Reid**
-
-- [ ] 
-
-**Jay**
-
-- [ ] 
-
-**Chris** 
-
-- [ ] 
-
-**Artem**
-
-- [ ]
-
-
-### Project Description
-
-Pingdom inspired Tor uptime checker that displays the health of hidden services and clearnet websites
-
-User authentication
-* Username (null: false)
-* Password (null: false)
-* Optional email
-* Modal popup
-* Recover account with email
-* Devise gem
-* Explanation of why we chose devise encryption (how it adds to functionality)
-
-User Settings
-* Change password
-* Add or edit email
-* Autogenerated Profile picture
-
-View index of saved URLs. Each site card has
-* Health (up or down)
-* Ping Time
-* Live graph (d3)
-* URL
-* Add new site button
-* Tab different windows of time e.g., seconds, minutes, days, months
-* Render time?
-
-New URL
-* Allow ip address
-* Allow any format of URL
-
-Site show page
-* Delete button
-* Larger graph
-* Edit alias (customize)
-* Edit description
-* ip address
-* Download PDF?
-* Download CSV?
-
-Settings section?
-* Change color scheme?
-* Edit units (e.g. ms vs s)?
-
-
-Stretch Goals
-* Ping sites even while offline and store information in DB
-* Fullscreen or presentation dev mode 
-
-
-### Technologies
-* Ruby on Rails
-* VueJS
-* D3 for graphs
-* Tor
-* Sidekiq
-* Devise
-
-Stretch Goals
-* Ping sites even while offline and store information in DB
-* Fullscreen or presentation dev mode
-
-Health: How long site is up vs how long site is down
-Pingtime: Ping response time
-Successful load/loadtime
-Click component on page
-
-
-### TO DO:
-
-* Wireframe the different components
-* Plan frontend/backend routes
-* Users should be allowed to log in with JUST a username, optionally an email as well
-* Ping sites on user's account at a fixed interval (e.g. every 5 seconds)
-* Run tor from the server
-* Distinguish between a downed website/service and our server being down
-* Live graph on sites page
-* Vue frontend to make single page app
-* Ping from multiple locations?
-* SMS option?
-* Email when sites are down?
-
-## Development
-
-## Feature Branch Workflow - Steps to take if you want to add a feature
-1. Navigate to master branch and pull the latest code.
-2. Create a new brach off of master. Name it as the feature you are implementing.
-3. As you work on the feature, add and commit as you would normally.
-4. Push you branch to your remote repo (Github) and push your changes every so often. (Do not merge to master yet)
-5. If there are issues with your commits as you are working on your feature, teammates can comment on these commits and help you with your feature (check the branch out themselves if need be).
-6. Upon feature completion, create a Pull Request on Github, after this is approved by teammates the feature branch is merged into master.
-
-
-### For local development:
-
-1. run tor from terminal
-2. rails s
-3. open localhost:3000 in browser
-
-## Backup ideas
-
-* Onion site crawler
-* Peer to peer distributed pingdom clone  
+* Writing Readme 
+* D3 for graphs 
+* Integrating rails with vue 
+* Vue frontend components

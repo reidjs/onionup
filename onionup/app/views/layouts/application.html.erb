@@ -5,7 +5,8 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'application'%>
+    <%= javascript_pack_tag 'hello_vue' %>
   </head>
 
   <body>
@@ -14,20 +15,21 @@
         <%= link_to "OnionUp", root_url %>
       </div>
       <div id="login_user_status">
-        <% if user_signed_in? %>
-            <%= current_user.email  %>
+        <% if logged_in? %>
+            <%= current_user.username %>
             |
-            <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+            <%= link_to "Sign out", "/api/session", method: :delete %>
         <% else %>
             <em>Not Signed in.</em>
-            <%= link_to 'Sign in', new_user_session_path%>
+            <%#= link_to 'Sign in', new_user_session_path%>
             or
-            <%= link_to 'Sign up', new_user_registration_path%>
+            <%#= link_to 'Sign up', new_user_registration_path%>
         <% end %>
       </div>
     </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+
   </body>
 </html>
