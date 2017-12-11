@@ -1,7 +1,7 @@
-class PingWorker
-  include Sidekiq::Worker
+# class PingWorker
+#   include Sidekiq::Worker
 
-  def perform(site, count)
-    p "hello"
-  end
-end
+#   def perform(site, count)
+#     p "hello"
+#   end
+# end
