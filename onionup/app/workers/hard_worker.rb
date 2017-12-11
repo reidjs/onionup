@@ -15,5 +15,5 @@ class HardWorker
 end
 
 puts "here"
-  HardWorker.perform_async('bob', 5)
-  HardWorker.new.perform("hi")
+  # HardWorker.perform_async('bob', 5)
+  # HardWorker.new.perform("hi")
