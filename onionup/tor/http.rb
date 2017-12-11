@@ -1,6 +1,6 @@
 require 'net/http'
 require 'socksify/http'
-require 'byebug'
+
 module Tor
 
   class HTTP
