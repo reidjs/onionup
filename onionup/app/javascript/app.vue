@@ -1,17 +1,32 @@
 <template>
   <div id="app">
+    <h1>inner!</h1>
+
     <SessionForm></SessionForm>
+  <OtherThing></OtherThing>
+  </div>
+
+
   </div>
 </template>
 
 <script>
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+
+Vue.use(VueRouter);
 import SessionForm from './components/session_form'
+import OtherThing from './components/otherThing'
+
 export default {
   name: 'app',
   components:{
-    SessionForm
+    SessionForm,
+    OtherThing
   }
 }
+
+
 </script>
 
 <style scoped>

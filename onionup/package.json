@@ -8,6 +8,7 @@
     "jshint": "^2.9.5",
     "vue": "^2.5.9",
     "vue-loader": "^13.5.0",
+    "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.5.9"
   },
   "devDependencies": {
