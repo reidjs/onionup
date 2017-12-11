@@ -1,22 +1,23 @@
 <template>
   <div id="app">
-    <p>{{ message }}</p>
+    <SessionForm></SessionForm>
   </div>
 </template>
 
 <script>
+import SessionForm from './components/session_form'
 export default {
-  data: function () {
-    return {
-      message: new Date
-    }
+  name: 'app',
+  components:{
+    SessionForm
   }
 }
 </script>
 
 <style scoped>
+
 p {
-  font-size: 2em;
+  font-size: 3em;
   text-align: center;
 }
 </style>
