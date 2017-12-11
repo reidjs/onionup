@@ -11,5 +11,5 @@ class TestjobJob < ApplicationJob
 
 
 end
-  TestjobJob.new.perform("hi")
-  TestjobJob.perform_async('bob', 5)
+  # TestjobJob.new.perform("hi")
+  # TestjobJob.perform_async('bob', 5)
