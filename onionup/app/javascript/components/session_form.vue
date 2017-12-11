@@ -11,7 +11,8 @@
 
     <br />
     <br />
-    
+    <hr/>
+    <h1> User session form below:</h1>
     <label>Username: </label><input type="text" v-model="user.username"><br />
     <label>Password: </label><input type="text" v-model="user.password"><br />
     
@@ -37,18 +38,10 @@
         {{error.message}}
       </li>
     </ul>
-    <hr/>
+
     <br />
 
 
-    <input type="text" v-model="postBody"/>
-    <ul v-if="errors && errors.length">
-      <li v-for="error of errors">
-        {{error.message}}
-      </li>
-    </ul>
-    <button v-on:click="post">post Post</button>
-    <h3>{{success}}</h3>
   </div>
   
 
@@ -70,7 +63,7 @@
         user: {
           firstName: 'jay',
           lastName: 'park',
-          username: 'Username',
+          username: 'username',
           password: 'password'
 
         },
@@ -85,19 +78,6 @@
         ]
       }
     },
-    //created method executes when the component is created
-    created(){
-      
-      axios.get(`http://jsonplaceholder.typicode.com/posts`)
-      .then(res => {
-        
-        this.posts = res.data.splice(90)
-      })
-      .catch(e => {
-        console.log(e);
-        this.errors.push(e)
-      })
-    },
 
    
 
@@ -105,16 +85,26 @@
       greet: function(){
         alert('hello');
       },
-      login: function(){
-        console.log(this.user.username+" "+this.user.password);
-      },
-      post: function(){
 
-        console.log(this.postBody)
-        axios.post(`http://jsonplaceholder.typicode.com/posts`, {
-          body: this.postBody
-        }).then(res => this.success.push(res.data));
+
+
+      login: function(){
+          axios.post(`http://localhost:3000/api/session`,{
+            user: {
+              username: this.user.username,
+              password: this.user.password
+            }
+          })
+      .then(res => {
+        
+        alert(`logged in as ${res.data.username}`)
+      })
+      .catch(e => {
+        console.log(e);
+        this.errors.push(e)
+      })
       },
+
 
       
     
