@@ -3,6 +3,7 @@
   <div id="otherThing">
       <h1>I am otherThing</h1>
       {{stat}}
+
       <h1>I am otherThing</h1>
   </div>
 
@@ -14,8 +15,11 @@
 
   export default {
     name: 'otherThing',
-    data:{
-      stat: "statyy"
+    data(){
+        console.log(this)
+        return{
+            stat: "statyy"
+        }
     }
   }
 
