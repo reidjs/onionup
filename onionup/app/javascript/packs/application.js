@@ -9,4 +9,4 @@
 import GoRails from 'gorails'
 
 console.log(GoRails)
-console.log('Hello World from Webpacker')
+console.log('Hello World')
