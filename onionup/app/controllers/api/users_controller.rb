@@ -12,10 +12,7 @@ class Api::UsersController < ApplicationController
       render json: @user.errors.full_messages, status: 422
     end
   end
-
-  def index 
-    render json: ["Please fill in the username"], status: 405
-  end 
+  
 
   private
 
