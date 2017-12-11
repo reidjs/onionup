@@ -17,7 +17,7 @@ export default {
 <style scoped>
 
 p {
-  font-size: 2em;
+  font-size: 3em;
   text-align: center;
 }
 </style>
