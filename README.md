@@ -79,3 +79,98 @@ Reid:
 * D3 for graphs 
 * Integrating rails with vue 
 * Vue frontend components
+
+## Monday
+
+**Reid**
+
+- [ ] Site show page 
+- [ ] User show page
+- [ ] Settings show page 
+
+**Jay**
+
+- [ ] Index Component 
+- [ ] Sidebar/page styling, navigation
+
+**Chris** 
+- [ ] Have rails server running concurrently with onion proxy able to make ping requests
+- [ ] Bootup tor and rails with one command 
+
+**Artem**
+
+- [ ] Making APIs for frontend to get information 
+- [ ] Timestamped data for graphs
+
+## Tuesday
+
+**Reid**
+
+- [ ] Graphing ping data in d3
+
+**Jay**
+
+- [ ] Create site card component for index 
+
+**Chris** 
+
+- [ ] Store ping data in database and requesting data 
+
+**Artem**
+
+- [ ] Look into websockets (Application Cable) connecting front and backend
+
+## Wednesday
+
+**Reid**
+
+- [ ] Display historical data from backend to frontend
+
+**Jay**
+
+- [ ] Create site cards in vue
+
+**Chris** 
+
+- [ ] Display historical data from backend to frontend 
+
+**Artem**
+
+- [ ] Work on concurrency in backend
+
+## Thursday
+
+**Reid**
+
+- [ ] Polish frontend user accounts
+
+**Jay**
+
+- [ ] Polish frontend sites page
+
+**Chris** 
+
+- [ ] Launch to Heroku
+
+**Artem**
+
+- [ ] Optimize pinging algorithm
+
+## Friday
+
+**Reid**
+
+- [ ] Write production readme
+
+**Jay**
+
+- [ ] Ensure frontend is responsive for different screen sizes
+
+**Chris** 
+
+- [ ] Deploy to heroku
+
+**Artem**
+
+- [ ] Deploy to heroku
+
