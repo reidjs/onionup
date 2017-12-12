@@ -1,17 +1,25 @@
 <template>
   <div class="auth-form">
-    <h1> Sign up to start checking the status of your favorite Onion sites.</h1>
-    <ul id="error-list">
-      <li v-for="(error) in errors" :key="error[0]">
-        {{error}}
-      </li>
-    </ul>
-    <div class="form-name">
-      <label>Username </label><input type="text" placeholder="What's your name?" v-model="user.username">
-    </div>
-    <div class="form-password">
-      <label>Password </label><input type="password" v-model="user.password">
-      <button v-on:click="login">Log in</button>
+    <div class="auth-inner-wrapper">
+      <h1> Sign up to start checking the status of your favorite Onion sites.</h1>
+      <ul id="error-list">
+        <li class="error-msg"v-for="(error) in errors" :key="error[0]" >
+          {{error}}
+        </li>
+      </ul>
+      <div class="form-name form">
+        <label class="label-username">Username </label><input type="text" placeholder="What's your name?" v-model="user.username">
+      </div>
+      <div class="form-password form">
+        <label class="label-password">Password </label>
+        <div class="pw-submit">
+          <input type="password" v-model="user.password">
+          <button v-on:click="login">SIGN UP</button>
+        </div>
+      </div>
+       <p class="account-prompt">Already have account?
+        <router-link to="/login">Click Here</router-link> log in!
+      </p>
     </div>
   </div>
 </template>
@@ -19,7 +27,7 @@
 <script>
   import axios from 'axios';
   export default {
-    name: 'login-form',
+    name: 'signup-form',
     data() {
       return{
         user: {
@@ -49,15 +57,6 @@
           this.errors.push(e.response.data[0])
         })
       },
-    },
-    computed: {
-      info: function(){
-        return this.user.username+" "+this.user.password; 
-      }
     }
   }
 </script>
-
-<style scoped>
-  
-</style>

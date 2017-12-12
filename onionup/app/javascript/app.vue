@@ -16,21 +16,21 @@
 <script>
   import Vue from 'vue';
   import VueRouter from 'vue-router';
-
-Vue.use(VueRouter);
-import SessionForm from './components/session_form'
-import Sidebar from './components/sidebar'
+  import SessionForm from './components/session_form'
+  import Sidebar from './components/sidebar'
   import IndexComponent from './components/index_component'
   import SiteShowComponent from './components/site_show_component';
   import LoginForm from './components/login_form'
   import SignupForm from './components/signup_form'
+  Vue.use(VueRouter);
 
-const routes = [
-  { path: '/', 
-    component: IndexComponent,
-    meta: { 
-      requiresAuth: true
-    }
+  const routes = [
+    { path: '/', 
+      component: IndexComponent,
+      meta: { 
+        requiresAuth: true
+      }
+
 
   },
     { path: '/site', component: SiteShowComponent ,meta: { requiresAuth: true} },
@@ -38,10 +38,10 @@ const routes = [
     { path: '/signup', component: SignupForm, meta: { requiresUnAuth: true} },
 ]
 
-
   const router = new VueRouter({
     routes // short for `routes: routes`
   })
+
 router.beforeEach((to, from, next) => {
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
@@ -80,9 +80,5 @@ router.beforeEach((to, from, next) => {
   },
 }
 
-
 </script>
 
-<style scoped>
-
-</style>
