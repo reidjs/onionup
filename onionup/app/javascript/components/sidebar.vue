@@ -19,7 +19,7 @@
     name: 'sidebar',
     data(){
       return {
-          currentUser: Boolean(window.currentUser.username)
+          currentUser: Boolean(window.currentUser)
         }
     }
   }
