@@ -8,6 +8,7 @@
     <router-link to="/">Go to /</router-link>
     <router-link to="/ot">Go to /ot</router-link>
     <router-link to="/login">login</router-link>
+    <router-link to="/signup">signup</router-link>
   </p>
   <!-- route outlet -->
   <!-- component matched by the route will render here -->
@@ -26,11 +27,13 @@ Vue.use(VueRouter);
 import SessionForm from './components/session_form'
 import OtherThing from './components/otherThing'
 import LoginForm from './components/login_form'
+import SignupForm from './components/signup_form'
 
 const routes = [
   { path: '/', component: SessionForm },
   { path: '/ot', component: OtherThing },
   { path: '/login', component: LoginForm },
+  { path: '/signup', component: SignupForm },
 ]
 
 const router = new VueRouter({
@@ -43,7 +46,8 @@ export default {
   components:{
     SessionForm,
     OtherThing,
-    LoginForm
+    LoginForm,
+    SignupForm
   },
   router
 }

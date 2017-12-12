@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1> User login form below:</h1>
+    <h1> Welcome!, Sign up to start checking the status of your favorite Onion sites.</h1>
     <label>Username: </label><input type="text" v-model="user.username"><br />
     <label>Password: </label><input type="text" v-model="user.password"><br />
     <button v-on:click="login">Log in</button>
@@ -28,7 +28,7 @@
             "password": this.user.password
           } 
         }
-        axios.post(`http://localhost:3000/api/session`,
+        axios.post(`http://localhost:3000/api/users`,
           user
         )
         .then(res => { 
