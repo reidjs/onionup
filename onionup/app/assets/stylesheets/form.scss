@@ -1,0 +1,50 @@
+@import "variables";
+div.auth-form {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  // align-items:center;
+  & h1 {
+    align-self: center;
+    margin: 20px;
+  }
+  & div {
+    width: 500px;
+    margin: 5px auto;
+    // padding: 10px 0;
+    & label {
+      width: 80px;
+      display: inline-block;
+      margin-right: 10px;
+      // margin-right: 10px;
+    }
+    & input {
+      // padding-left: 30px;
+      background: $grey;
+      padding: 10px;
+    }
+    // username
+    & input[type="text"] {
+      width: 300px;
+      padding-left: 8px;
+    }
+    // password
+    & input[type="password"] {
+      width: 200px;
+      padding-left: 10px;
+    }
+    & button {
+      text-align: center;
+      width: 100px;
+      background: $orange;
+      color: white;
+      height: 37px;
+    }
+    & ul {
+      align-self:center;
+      margin: 20px;
+    }
+
+  }
+}
+
