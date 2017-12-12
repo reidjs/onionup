@@ -1,6 +1,7 @@
 
 <template >
 
+
       <div v-if="currentUser" class="sidebar">
         <h1>sidebar</h1>
         <router-link to="/">Go to /</router-link>
@@ -18,9 +19,14 @@
 
   export default {
     name: 'sidebar',
+    computed: {
+      currentUser () {
+        return this.$store.state.session.currentUser
+      } 
+    },
     data(){
       return {
-          currentUser: Boolean(window.currentUser)
+          // currentUser: Boolean(window.currentUser)
         }
     }
   }
