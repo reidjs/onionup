@@ -6,7 +6,8 @@
     
     <ul v-if="siteKeys && siteKeys.length">
       <li v-for="key in siteKeys">
-        <router-link to="/site">
+        <router-link to='/site'>
+
           <Site v-bind:siteProp='sites[key]'></Site>
         </router-link>
       </li>
@@ -19,18 +20,9 @@
 
 
 <script>
-  import Vue from 'vue';
-  import VueRouter from 'vue-router';
   import axios from 'axios';
   import Site from './site_component';
 
-  // Vue.use(VueRouter);
-
-  // const routes = [
-  //   { path: '/', component: IndexComponent },
-  //   { path: '/session', component: SessionForm }
-    
-  // ]
 
   export default {
     name: 'IndexComponent',

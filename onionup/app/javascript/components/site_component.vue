@@ -2,6 +2,8 @@
   <div class="site">
     <p><strong>{{site.url}}</strong></p>
     <p>{{site.ping_ids.length}}</p>
+    <p> Site ID: {{site.id}}</p>
+
   </div>
 </template>
 
