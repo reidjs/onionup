@@ -20,32 +20,34 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+  import Vue from 'vue';
+  import VueRouter from 'vue-router';
 
-Vue.use(VueRouter);
-import SessionForm from './components/session_form'
-import OtherThing from './components/otherThing'
-import LoginForm from './components/login_form'
-import SignupForm from './components/signup_form'
+  Vue.use(VueRouter);
 
-const routes = [
-  { path: '/', component: SessionForm },
-  { path: '/ot', component: OtherThing },
-  { path: '/login', component: LoginForm },
-  { path: '/signup', component: SignupForm },
-]
+  import IndexComponent from './components/index_component'
+  import SiteShowComponent from './components/site_show_component';
+  import LoginForm from './components/login_form'
+  import SignupForm from './components/signup_form'
 
-const router = new VueRouter({
-  routes // short for `routes: routes`
-})
+  const routes = [
+    { path: '/', component: IndexComponent },
+    { path: '/site', component: SiteShowComponent },
+    { path: '/login', component: LoginForm },
+    { path: '/signup', component: SignupForm },
+    
+  ]
+
+  const router = new VueRouter({
+    routes // short for `routes: routes`
+  })
 
 
-export default {
+ export default {
   name: 'app',
   components:{
-    SessionForm,
-    OtherThing,
+    IndexComponent,
+    SiteShowComponent,
     LoginForm,
     SignupForm
   },
