@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+
     <main class='main-content'>
       <Sidebar></Sidebar>
       <transition name="fade" mode="out-in">
@@ -13,39 +14,34 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+  import Vue from 'vue';
+  import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 import SessionForm from './components/session_form'
-import OtherThing from './components/otherThing'
 import Sidebar from './components/sidebar'
-
+  import IndexComponent from './components/index_component'
+  import SiteShowComponent from './components/site_show_component';
+  import LoginForm from './components/login_form'
+  import SignupForm from './components/signup_form'
 
 const routes = [
-  { 
-    path: '/', 
-    component: SessionForm,
+  { path: '/', 
+    component: IndexComponent,
     meta: { 
       requiresAuth: true
     }
 
   },
-
-  { 
-    path: '/ot',
-    component: OtherThing, 
-    meta: { 
-      requiresAuth: true
-    }
-
-  }
+    { path: '/site', component: SiteShowComponent },
+    { path: '/login', component: LoginForm },
+    { path: '/signup', component: SignupForm },
 ]
 
-const router = new VueRouter({
-  routes // short for `routes: routes`
-})
 
+  const router = new VueRouter({
+    routes // short for `routes: routes`
+  })
 router.beforeEach((to, from, next) => {
   console.log(to);
   if (to.matched.some(record => record.meta.requiresAuth)) {
@@ -64,12 +60,18 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-export default {
+
+
+ export default {
   name: 'app',
   router,
   components:{
-    Sidebar
-  }
+    Sidebar,
+    IndexComponent,
+    SiteShowComponent,
+    LoginForm,
+    SignupForm
+  },
 }
 
 
@@ -77,8 +79,4 @@ export default {
 
 <style scoped>
 
-p {
-  font-size: 3em;
-  text-align: center;
-}
 </style>
