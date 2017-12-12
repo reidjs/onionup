@@ -53,8 +53,4 @@ export default {
 
 <style scoped>
 
-p {
-  font-size: 3em;
-  text-align: center;
-}
 </style>

@@ -24,14 +24,17 @@
       greet: () => {
         alert('hello');
       },
-      login: (e) => {
-        console.log(e.target.value)
-        axios.post(`http://localhost:3000/api/session`,{
-          user: {
-            username: this.user.username,
-            password: this.user.password
-          }
-        })
+      login: function() {
+        let user = {
+          "user": {
+            "username": this.user.username,
+            "password": this.user.password
+          } 
+        }
+        debugger
+        axios.post(`http://localhost:3000/api/session`,
+          user
+        )
         .then(res => { 
           alert(`logged in as ${res.data.username}`)
         })
