@@ -4,18 +4,18 @@
 // in config/webpack/loaders/vue.js) to the head of your layout file,
 // like app/views/layouts/application.html.erb.
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-Vue.use(VueRouter)
-import App from '../app.vue'
+Vue.use(VueRouter);
+import App from '../app.vue';
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.body.appendChild(document.createElement('hello'))
-  const app = new Vue(App).$mount('hello')
+  document.body.appendChild(document.createElement('hello'));
+  const app = new Vue(App).$mount('hello');
 
-  console.log(app)
-})
+  // console.log(app)
+});
 
 
 // The above code uses Vue without the compiler, which means you cannot
