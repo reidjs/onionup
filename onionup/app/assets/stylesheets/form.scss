@@ -1,0 +1,97 @@
+@import "variables";
+
+div.auth-form {
+  background-image: image-url('background/login-bg1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  font-weight: 300;
+  color: white;
+  flex-direction: column;
+  width: 100%;
+
+  h1 {
+    align-self: center;
+    margin: 20px;
+    margin-bottom:50px;
+    font-size: 40px;
+    text-align: center;   
+  }
+
+  label {
+    text-align: right;  
+    margin-right: 15px;
+    font-size: 23px;
+  }
+  input {
+    padding-left: 20px !important;
+    color: black;
+    font-size: 20px;
+    border-radius: 4px;
+    flex: 1;
+    background: $grey;
+    padding: 10px;
+  }
+  // username
+  input[type="text"] {
+    width: 300px;
+    padding-left: 8px;
+  }
+  // password
+  input[type="password"] {
+    width: 200px;
+    padding-left: 10px;
+  }
+  button {
+    text-align: center;
+    width: 100px;
+    background: $orange;
+    color: white;
+    height: 100%;
+    margin-left: 15px;
+  }
+  ul {
+    align-self:center;
+    margin: 20px;
+  }
+}
+
+.auth-inner-wrapper{
+  margin: 275px auto auto auto;
+  width: 625px;
+  line-height: 42px;
+}
+
+.form{
+  display: flex;
+  width: 90%;
+  margin: 15px auto;
+  
+}
+
+.pw-submit{
+  width: 100%;
+  display: flex;
+}
+
+.label-username{
+  width: 100px;
+}
+
+.label-password{
+  width: 125px;
+}
+
+.error-msg{
+  color: red;
+  margin-left:125px;
+  margin-bottom: -25px;
+}
+.account-prompt{
+  text-align: right;
+  margin-right: 32px;
+  a{
+    color: $orange;
+  }
+}

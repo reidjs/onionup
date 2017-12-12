@@ -1,16 +1,12 @@
 <template>
   <div id="app">
-    <h1>inner!</h1>
-    <p>
-    <!-- use router-link component for navigation. -->
-    <!-- specify the link by passing the `to` prop. -->
-    <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
-    <router-link to="/">Go to /</router-link>
-    <router-link to="/ot">Go to /ot</router-link>
-  </p>
-  <!-- route outlet -->
-  <!-- component matched by the route will render here -->
-  <router-view></router-view>
+
+    <main class='main-content'>
+      <Sidebar></Sidebar>
+      <transition name="fade" mode="out-in">
+        <router-view></router-view>
+      </transition>
+    </main>
   </div>
 
 
@@ -18,27 +14,68 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import Vuex from 'vuex';
+  import Vue from 'vue';
+  import VueRouter from 'vue-router';
+  import SessionForm from './components/session_form'
+  import Sidebar from './components/sidebar'
+  import IndexComponent from './components/index_component'
+  import SiteShowComponent from './components/site_show_component';
+  import LoginForm from './components/login_form'
+  import SignupForm from './components/signup_form'
+  import Vuex from 'vuex';
+  Vue.use(VueRouter);
+  Vue.use(Vuex);
+  import { store } from './store';
 
-Vue.use(VueRouter);
-Vue.use(Vuex);
-import SessionForm from './components/session_form';
-import OtherThing from './components/otherThing';
-import { store } from './store';
+  const routes = [
+    { path: '/', 
+      component: IndexComponent,
+      meta: { 
+        requiresAuth: true
+      }
 
-const routes = [
-  { path: '/', component: SessionForm },
-  { path: '/ot', component: OtherThing }
+
+  },
+    { path: '/site', component: SiteShowComponent ,meta: { requiresAuth: true} },
+    { path: '/login', component: LoginForm, meta: { requiresUnAuth: true} },
+    { path: '/signup', component: SignupForm, meta: { requiresUnAuth: true} },
 ]
 
-const router = new VueRouter({
-  routes // short for `routes: routes`
+  const router = new VueRouter({
+    routes // short for `routes: routes`
+  })
+
+router.beforeEach((to, from, next) => {
+
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (!Boolean(window.currentUser) ) {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+        // this route requires not being signd in, check if logged in
+    // if yes, redirect to /.
+  }else if(to.matched.some(record => record.meta.requiresUnAuth)){
+      if (Boolean(window.currentUser) ) {
+            next({
+              path: '/',
+            })
+          } else {
+            next()
+          }
+  }  else {
+    next()
+  }
 })
 
 
-export default {
+
+ export default {
   name: 'app',
   computed: {
     sites: function() {
@@ -50,19 +87,9 @@ export default {
   },
   store: store,
   components:{
-    SessionForm,
-    OtherThing
+    Sidebar
   },
-  router
 }
-
 
 </script>
 
-<style scoped>
-
-p {
-  font-size: 3em;
-  text-align: center;
-}
-</style>
