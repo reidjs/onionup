@@ -49,7 +49,8 @@
           user
         )
         .then(res => { 
-          alert(`logged in as ${res.data.username}`)
+          this.$router.go('/');
+          // alert(`logged in as ${res.data.username}`)
         })
         .catch(e => {
           console.log(e);

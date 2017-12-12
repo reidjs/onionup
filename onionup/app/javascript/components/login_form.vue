@@ -50,8 +50,9 @@
           user
         )
         .then(res => { 
-          alert(`logged in as ${res.data.username}. You will be redirected to main page.`)
-          this.$router.push('/');
+          // window.currentUser='true';
+
+          this.$router.go('/');
         })
         .catch(e => {
           console.log(e);

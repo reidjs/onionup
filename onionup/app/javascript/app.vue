@@ -31,23 +31,23 @@
         requiresAuth: true
       }
 
-    },
-      { path: '/site', component: SiteShowComponent },
-      { path: '/login', component: LoginForm },
-      { path: '/signup', component: SignupForm },
-  ]
 
+  },
+    { path: '/site', component: SiteShowComponent ,meta: { requiresAuth: true} },
+    { path: '/login', component: LoginForm, meta: { requiresUnAuth: true} },
+    { path: '/signup', component: SignupForm, meta: { requiresUnAuth: true} },
+]
 
   const router = new VueRouter({
     routes // short for `routes: routes`
   })
 
-  router.beforeEach((to, from, next) => {
-  console.log(to);
+router.beforeEach((to, from, next) => {
+
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    if (!Boolean(window.currentUser.username) ) {
+    if (!Boolean(window.currentUser) ) {
       next({
         path: '/login',
         query: { redirect: to.fullPath }
@@ -55,7 +55,17 @@
     } else {
       next()
     }
-  } else {
+        // this route requires not being signd in, check if logged in
+    // if yes, redirect to /.
+  }else if(to.matched.some(record => record.meta.requiresUnAuth)){
+      if (Boolean(window.currentUser) ) {
+            next({
+              path: '/',
+            })
+          } else {
+            next()
+          }
+  }  else {
     next()
   }
 })
@@ -66,11 +76,7 @@
   name: 'app',
   router,
   components:{
-    Sidebar,
-    IndexComponent,
-    SiteShowComponent,
-    LoginForm,
-    SignupForm
+    Sidebar
   },
 }
 
