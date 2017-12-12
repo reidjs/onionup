@@ -1,43 +1,29 @@
 
 <template>
   <div id="main">
-    <h1>Sites</h1>   
+    <h1>Uptime Checker</h1>
+    <hr/>
+    
     <ul v-if="siteKeys && siteKeys.length">
       <li v-for="key in siteKeys">
-        <p>{{sites[key].url}}</p> 
-
-        <ul v-if="pingKeys && pingKeys.length"> 
-          <li v-for="pingKey in pingKeys">
-            <p>{{pings[pingKey].status}}</p>
-            <p>{{pings[pingKey].created_at}}</p>
-          </li>
-        </ul>
-        
+        <Site v-bind:siteProp='sites[key]'></Site>     
       </li>
     </ul>
-
-
-    <h1>Pings</h1>    
-    <ul v-if="pingKeys && pingKeys.length">
-      <li v-for="key in pingKeys">
-        <p>{{pings[key]}}</p> 
-        
-        
-      </li>
-    </ul> 
-
-    <h1>{{pings}}</h1>
+ 
     <br/>
-    
   </div>
 </template>
 
 
 <script>
   import axios from 'axios';
+  import Site from './site_component';
 
   export default {
     name: 'IndexComponent',
+    components: {
+      Site
+    },
     data(){
       return{
         
@@ -48,6 +34,7 @@
       }
     },
     created(){
+      
       axios.get(`http://localhost:3000/api/ping`)
       .then(res => {
         
@@ -68,3 +55,12 @@
 
 
 </script>
+
+<style>
+  td,th{
+    border: 1px solid #dddddd;
+  }
+  li{
+    list-style:none 
+  }
+</style>

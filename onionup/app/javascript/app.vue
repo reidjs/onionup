@@ -1,37 +1,35 @@
 <template>
   <div id="app">
-  
     <router-link to="/session">SessionForm</router-link>
-    
-      <router-view></router-view>
-      <hr/>
+    <router-view></router-view>
+    <hr/>
   </div>
 </template>
 
 <script>
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+  import Vue from 'vue';
+  import VueRouter from 'vue-router';
 
-Vue.use(VueRouter);
-import SessionForm from './components/session_form'
-import IndexComponent from './components/index_component'
+  Vue.use(VueRouter);
+  import SessionForm from './components/session_form'
+  import IndexComponent from './components/index_component'
 
-const routes = [
-  { path: '/', component: IndexComponent },
-  { path: '/session', component: SessionForm }
-  
-]
+  const routes = [
+    { path: '/', component: IndexComponent },
+    { path: '/session', component: SessionForm }
+    
+  ]
 
-const router = new VueRouter({
-  routes // short for `routes: routes`
-})
+  const router = new VueRouter({
+    routes // short for `routes: routes`
+  })
 
 
-export default {
-  name: 'app',
+  export default {
+    name: 'app',
 
-  router
-}
+    router
+  }
 
 
 </script>
