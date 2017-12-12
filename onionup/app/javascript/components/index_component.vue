@@ -25,7 +25,6 @@
     },
     data(){
       return{
-        
         siteKeys:[],
         pingKeys:[],
         sites:{},
