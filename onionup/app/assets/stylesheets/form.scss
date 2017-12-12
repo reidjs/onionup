@@ -1,0 +1,41 @@
+@import "variables";
+div.auth-form {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  // align-items:center;
+  & h1 {
+    align-self: center;
+    margin: 20px;
+  }
+  & div {
+    width: 400px;
+    margin: 0 auto;
+    & label {
+      width: 100px;
+      margin-right: 10px;
+      // margin-right: 10px;
+    }
+    & input {
+      padding-left: 30px;
+      background: $grey;
+    }
+    // username
+    & input[type="text"] {
+      width: 300px;
+      padding-left: 8px;
+    }
+    // password
+    & input[type="password"] {
+      width: 200px;
+      padding-left: 10px;
+    }
+
+    & button {
+      text-align: center;
+      width: 100px;
+    }
+
+  }
+}
+

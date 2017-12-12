@@ -1,14 +1,18 @@
 <template>
-  <div>
-    <h1> User login form below:</h1>
+  <div class="auth-form">
+    <h1> Welcome back, login to get started</h1>
     <ul id="error-list">
       <li v-for="(error) in errors" :key="error[0]">
         {{error}}
       </li>
     </ul>
-    <label>Username: </label><input type="text" v-model="user.username"><br />
-    <label>Password: </label><input type="text" v-model="user.password"><br />
-    <button v-on:click="login">Log in</button>
+    <div class="form-name">
+      <label>Username: </label><input type="text" v-model="user.username">
+    </div>
+    <div class="form-password">
+      <label>Password: </label><input type="password" v-model="user.password">
+      <button v-on:click="login">Log in</button>
+    </div>
   </div>
 </template>
 
@@ -20,8 +24,8 @@
     data() {
       return{
         user: {
-          username: 'username',
-          password: 'password'
+          username: '',
+          password: ''
         },
         errors: []
       }
