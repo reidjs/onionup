@@ -23,8 +23,10 @@
   import LoginForm from './components/login_form'
   import SignupForm from './components/signup_form'
   import Vuex from 'vuex';
+  
   Vue.use(VueRouter);
   Vue.use(Vuex);
+
   import { store } from './store';
 
   const routes = [
