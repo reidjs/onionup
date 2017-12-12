@@ -23,9 +23,13 @@
   import LoginForm from './components/login_form'
   import SignupForm from './components/signup_form'
   import Vuex from 'vuex';
+  
   Vue.use(VueRouter);
   Vue.use(Vuex);
+
   import { store } from './store';
+
+  console.log("APP",window.currentUser);
 
   const routes = [
     { path: '/', 
@@ -77,6 +81,7 @@ router.beforeEach((to, from, next) => {
 
  export default {
   name: 'app',
+  router,
   computed: {
     sites: function() {
       return this.$store.getters.sites
@@ -85,7 +90,7 @@ router.beforeEach((to, from, next) => {
       return this.$store.getters.session
     }
   },
-  store: store,
+  store,
   components:{
     Sidebar
   },
