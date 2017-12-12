@@ -3,7 +3,7 @@
     <div class="auth-inner-wrapper">
       <h1> Welcome back, login to get started</h1>
       <ul id="error-list">
-        <li v-for="(error) in errors" :key="error[0]">
+        <li class="error-msg"v-for="(error) in errors" :key="error[0]" >
           {{error}}
         </li>
       </ul>

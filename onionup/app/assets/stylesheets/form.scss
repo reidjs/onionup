@@ -90,10 +90,16 @@ div.auth-form {
   display: flex;
 }
 
-   .label-username{
-        width: 100px;
-      }
+.label-username{
+  width: 100px;
+}
 
-      .label-password{
-        width: 125px;
-      }
+.label-password{
+  width: 125px;
+}
+
+.error-msg{
+  color: red;
+  margin-left:125px;
+  margin-bottom: -25px;
+}
