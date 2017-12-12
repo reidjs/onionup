@@ -49,7 +49,7 @@
           user
         )
         .then(res => { 
-          this.$router.go('/');
+          this.$router.push('/');
           // alert(`logged in as ${res.data.username}`)
         })
         .catch(e => {

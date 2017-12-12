@@ -2,7 +2,9 @@
   <div id="app">
 
     <main class='main-content'>
-      <Sidebar></Sidebar>
+      <transition name="fade" mode="out-in">
+        <Sidebar></Sidebar>
+      </transition>
       <transition name="fade" mode="out-in">
         <router-view></router-view>
       </transition>
@@ -46,15 +48,16 @@
 ]
 
   const router = new VueRouter({
-    routes // short for `routes: routes`
+    routes // short for `routes: routes`ion
   })
 
 router.beforeEach((to, from, next) => {
-
+  console.log("before each",store.state.session)
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    if (!Boolean(window.currentUser) ) {
+    if (!store.state.session ) {
+      console.log('not signed in redirect')
       next({
         path: '/login',
         query: { redirect: to.fullPath }
@@ -65,7 +68,7 @@ router.beforeEach((to, from, next) => {
         // this route requires not being signd in, check if logged in
     // if yes, redirect to /.
   }else if(to.matched.some(record => record.meta.requiresUnAuth)){
-      if (Boolean(window.currentUser) ) {
+      if (store.state.session.currentUser ) {
             next({
               path: '/',
             })
