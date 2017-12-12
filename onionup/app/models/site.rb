@@ -8,8 +8,8 @@ class Site < ApplicationRecord
     uri = URI.parse(self.url)
     # if !uri.host.nil? && uri.path
       begin
-        puts "started socks request"
-        Net::HTTP.SOCKSProxy(ENV[RAILS_ENV], 9050).start(uri.host, uri.port) do |http|
+        puts "started socks request!"
+        Net::HTTP.SOCKSProxy(ENV['TOR_IP'], 9050).start(uri.host, uri.port) do |http|
           return true
         end
           # p http.get(uri.path)

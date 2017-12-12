@@ -19,12 +19,12 @@ class SocksifyTest < Test::Unit::TestCase
     TCPSocket.socks_port = nil
   end
   def enable_socks
-    TCPSocket.socks_server = ENV[RAILS_ENV]
+    TCPSocket.socks_server = ENV['TOR_IP']
     TCPSocket.socks_port = 9050
   end
 
   def http_tor_proxy
-    Net::HTTP::SOCKSProxy(ENV[RAILS_ENV], 9050)
+    Net::HTTP::SOCKSProxy(ENV['TOR_IP'], 9050)
   end
 
   def test_check_tor
