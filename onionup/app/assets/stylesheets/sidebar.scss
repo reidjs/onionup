@@ -1,6 +1,7 @@
 @import "variables";
 
 .sidebar-logo{
+  min-height: 65px;
   height: 65px;
   background-color: $orange;
 }
@@ -24,7 +25,38 @@
     height: 100vh;
     background-color: $light-grey;
     color: white
+}
 
+.menu{
+  height: 55px;
+  cursor: pointer;
+}
+
+.menu-list{
+  display: block;
+  overflow-y: hidden;
+  height: 200px;
+	// max-height: 500px; /* approximate max height */
+
+	transition-property: all;
+	transition-duration: .7s;
+	
+  
+
+}
+.dropdown{
+  li{
+    background-color: $dark-grey;
+    height: 47px;
+
+  }
+}
+
+.hidden{
+  height: 0;
+  transition-duration: .7s;
+  
+  
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -35,3 +67,5 @@
   opacity: 0;
 
 }
+
+
