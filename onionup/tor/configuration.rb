@@ -15,7 +15,7 @@ module Tor
     end
 
     def initialize
-      @ip      = ENV[RAILS_ENV]
+      @ip      = ENV['TOR_IP']
       @port    = 9050
       @headers = Hash.new
     end
