@@ -1,17 +1,22 @@
 <template>
   <div class="auth-form">
-    <h1> Sign up to start checking the status of your favorite Onion sites.</h1>
-    <ul id="error-list">
-      <li v-for="(error) in errors" :key="error[0]">
-        {{error}}
-      </li>
-    </ul>
-    <div class="form-name">
-      <label>Username </label><input type="text" placeholder="What's your name?" v-model="user.username">
-    </div>
-    <div class="form-password">
-      <label>Password </label><input type="password" v-model="user.password">
-      <button v-on:click="login">Log in</button>
+    <div class="auth-inner-wrapper">
+      <h1> Sign up to start checking the status of your favorite Onion sites.</h1>
+      <ul id="error-list">
+        <li class="error-msg"v-for="(error) in errors" :key="error[0]" >
+          {{error}}
+        </li>
+      </ul>
+      <div class="form-name form">
+        <label class="label-username">Username </label><input type="text" placeholder="What's your name?" v-model="user.username">
+      </div>
+      <div class="form-password form">
+        <label class="label-password">Password </label>
+        <div class="pw-submit">
+          <input type="password" v-model="user.password">
+          <button v-on:click="login">Sign Up</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
