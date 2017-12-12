@@ -1,4 +1,3 @@
-
 <template>
   <div id="main">
     <h1>Uptime Checker</h1>
@@ -12,17 +11,13 @@
         </router-link>
       </li>
     </ul>
- 
-    <br/>
-    
+    <br/>  
   </div>
 </template>
-
 
 <script>
   import axios from 'axios';
   import Site from './site_component';
-
 
   export default {
     name: 'IndexComponent',
@@ -39,26 +34,21 @@
       }
     },
     created(){
-      
       axios.get(`http://localhost:3000/api/ping`)
-      .then(res => {
-        
+      .then(res => {  
         this.siteKeys = Object.keys(res.data.sites);
         this.pingKeys = Object.keys(res.data.pings);
         this.sites = res.data.sites;
         this.pings = res.data.pings;
         this.keys = res.data.keys;
-        console.log(res.data);
-        
+        console.log(res.data);  
       })
       .catch(e => {
-        console.log('error');
+        console.log('failed to get ping request');
         
       })
     }
   }
-
-
 
 </script>
 

@@ -14,9 +14,12 @@
         <label class="label-password">Password </label>
         <div class="pw-submit">
           <input type="password" v-model="user.password">
-          <button v-on:click="login">Sign Up</button>
+          <button v-on:click="login">SIGN UP</button>
         </div>
       </div>
+       <p class="account-prompt">Already have account?
+        <router-link to="/login">Click Here</router-link> log in!
+      </p>
     </div>
   </div>
 </template>
