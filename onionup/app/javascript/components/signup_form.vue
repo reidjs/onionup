@@ -7,10 +7,10 @@
       </li>
     </ul>
     <div class="form-name">
-      <label>Username: </label><input type="text" placeholder="What's your name?" v-model="user.username">
+      <label>Username </label><input type="text" placeholder="What's your name?" v-model="user.username">
     </div>
     <div class="form-password">
-      <label>Password: </label><input type="password" v-model="user.password">
+      <label>Password </label><input type="password" v-model="user.password">
       <button v-on:click="login">Log in</button>
     </div>
   </div>
@@ -45,7 +45,7 @@
         })
         .catch(e => {
           console.log(e);
-          this.errors.push(e)
+          this.errors.push(e.response.data[0])
         })
       },
     },
