@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>inner!</h1>
+    
     <p>
     <!-- use router-link component for navigation. -->
     <!-- specify the link by passing the `to` prop. -->
