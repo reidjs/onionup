@@ -7,6 +7,7 @@
     <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
     <router-link to="/">Go to /</router-link>
     <router-link to="/ot">Go to /ot</router-link>
+    <router-link to="/login">login</router-link>
   </p>
   <!-- route outlet -->
   <!-- component matched by the route will render here -->
@@ -24,10 +25,12 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 import SessionForm from './components/session_form'
 import OtherThing from './components/otherThing'
+import LoginForm from './components/login_form'
 
 const routes = [
   { path: '/', component: SessionForm },
-  { path: '/ot', component: OtherThing }
+  { path: '/ot', component: OtherThing },
+  { path: '/login', component: LoginForm },
 ]
 
 const router = new VueRouter({
@@ -39,7 +42,8 @@ export default {
   name: 'app',
   components:{
     SessionForm,
-    OtherThing
+    OtherThing,
+    LoginForm
   },
   router
 }
