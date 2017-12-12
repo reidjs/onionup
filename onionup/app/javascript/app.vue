@@ -20,10 +20,13 @@
 <script>
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Vuex from 'vuex';
 
 Vue.use(VueRouter);
-import SessionForm from './components/session_form'
-import OtherThing from './components/otherThing'
+Vue.use(Vuex);
+import SessionForm from './components/session_form';
+import OtherThing from './components/otherThing';
+import { store } from './store';
 
 const routes = [
   { path: '/', component: SessionForm },
@@ -37,6 +40,15 @@ const router = new VueRouter({
 
 export default {
   name: 'app',
+  computed: {
+    sites: function() {
+      return this.$store.getters.sites
+    },
+    session: function() {
+      return this.$store.getters.session
+    }
+  },
+  store: store,
   components:{
     SessionForm,
     OtherThing
