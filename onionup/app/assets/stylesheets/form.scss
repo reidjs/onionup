@@ -1,7 +1,6 @@
 @import "variables";
 
 div.auth-form {
-  
   background-image: image-url('background/login-bg1.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -10,72 +9,57 @@ div.auth-form {
   font-weight: 300;
   color: white;
   flex-direction: column;
-  // justify-content: center;
-  // align-items:center;
-  
-  .auth-inner-wrapper{
-    margin: 275px auto auto auto;
-    width: 625px;
-    line-height: 42px;
-  }
-  
+
   h1 {
     align-self: center;
     margin: 20px;
     margin-bottom:50px;
     font-size: 40px;
-    text-align: center;
-    
+    text-align: center;   
   }
-  label{
+
+  label {
+    text-align: right;  
+    margin-right: 15px;
     font-size: 23px;
   }
-  div {
-    
-    
-    // padding: 10px 0;
-    label {
-      text-align: right;
-   
-
-      
-      
-      margin-right: 15px;
-      // margin-right: 10px;
-    }
-    input {
-      padding-left: 20px !important;
-      color: black;
-      font-size: 20px;
-      border-radius: 4px;
-      flex: 1;
-      background: $grey;
-      padding: 10px;
-    }
-    // username
-    input[type="text"] {
-      width: 300px;
-      padding-left: 8px;
-    }
-    // password
-    input[type="password"] {
-      width: 200px;
-      padding-left: 10px;
-    }
-    button {
-      text-align: center;
-      width: 100px;
-      background: $orange;
-      color: white;
-      height: 100%;
-      margin-left: 15px;
-    }
-    ul {
-      align-self:center;
-      margin: 20px;
-    }
-
+  input {
+    padding-left: 20px !important;
+    color: black;
+    font-size: 20px;
+    border-radius: 4px;
+    flex: 1;
+    background: $grey;
+    padding: 10px;
   }
+  // username
+  input[type="text"] {
+    width: 300px;
+    padding-left: 8px;
+  }
+  // password
+  input[type="password"] {
+    width: 200px;
+    padding-left: 10px;
+  }
+  button {
+    text-align: center;
+    width: 100px;
+    background: $orange;
+    color: white;
+    height: 100%;
+    margin-left: 15px;
+  }
+  ul {
+    align-self:center;
+    margin: 20px;
+  }
+}
+
+.auth-inner-wrapper{
+  margin: 275px auto auto auto;
+  width: 625px;
+  line-height: 42px;
 }
 
 .form{
@@ -107,6 +91,6 @@ div.auth-form {
   text-align: right;
   margin-right: 32px;
   a{
-    color: #eea320;
+    color: $orange;
   }
 }

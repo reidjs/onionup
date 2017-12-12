@@ -27,7 +27,7 @@
 <script>
   import axios from 'axios';
   export default {
-    name: 'login-form',
+    name: 'signup-form',
     data() {
       return{
         user: {
@@ -56,15 +56,6 @@
           this.errors.push(e.response.data[0])
         })
       },
-    },
-    computed: {
-      info: function(){
-        return this.user.username+" "+this.user.password; 
-      }
     }
   }
 </script>
-
-<style scoped>
-  
-</style>

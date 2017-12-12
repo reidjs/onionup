@@ -14,17 +14,14 @@
         <label class="label-password">Password </label>
         <div class="pw-submit">
           <input type="password" v-model="user.password">
-          <button v-on:click="login">LOG IN</button>
-          
+          <button v-on:click="login">LOG IN</button>    
         </div>
-        
       </div>
        <p class="account-prompt">Don't have an account?
         <router-link to="/signup">Click Here</router-link> to create one!
-      </p>
-     
+      </p> 
     </div>
-  </div>
+  </div>  
 </template>
 
 
@@ -63,14 +60,6 @@
         })
       },
     },
-    computed: {
-      info: function(){
-        return this.user.username+" "+this.user.password; 
-      }
-    }
+
   }
 </script>
-
-<style scoped>
-
-</style>

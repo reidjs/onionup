@@ -4,9 +4,8 @@
     <hr/>
     
     <ul v-if="siteKeys && siteKeys.length">
-      <li v-for="key in siteKeys">
+      <li v-for="key in siteKeys" v-bind:key="key">
         <router-link to='/site'>
-
           <Site v-bind:siteProp='sites[key]'></Site>
         </router-link>
       </li>
@@ -51,12 +50,3 @@
   }
 
 </script>
-
-<style>
-  td,th{
-    border: 1px solid #dddddd;
-  }
-  li{
-    list-style:none 
-  }
-</style>
