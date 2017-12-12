@@ -21,19 +21,22 @@ export const store = new Vuex.Store({
     session: state => state.session
   },
   mutations: {
-    ADD_CURRENT_USER: (state, payload) => {
+    ADD_CURRENT_USER (state, payload) {
       const currentUser = {
         id: payload.id,
         username: payload.username
       };
       state.session.currentUser = currentUser;
     },
-    ADD_SITE: (state, payload) => {
+    ADD_SITE (state, payload) {
       const site = {
         id: payload.id,
         url: payload.url
       };
       state.sites.unshift(site); 
+    },
+    LOGOUT (state) {
+      state.session = {};
     }
   },
   actions: {
@@ -42,6 +45,9 @@ export const store = new Vuex.Store({
     },
     addCurrentUser (context) {
       context.commit('ADD_CURRENT_USER');
+    },
+    logout (context) {
+      context.commit('LOGOUT');
     }
   }
 });
