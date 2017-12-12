@@ -3,6 +3,13 @@
   <head>
     <title>OnionUp | <%= content_for?(:title) ? yield(:title) : "Pingdom for Tor" %></title>
     <%= csrf_meta_tags %>
+    
+    <script id="bootstrap-current-user" type="text/javascript">
+      <% if logged_in? %>
+  	    window.currentUser = <%= render("api/users/user.json.jbuilder",
+  		  user: current_user).html_safe %>
+      <% end %>
+    </script>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application'%>

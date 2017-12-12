@@ -1,6 +1,7 @@
 
 <template >
 
+
       <div v-if="currentUser" class="sidebar">
         <div class="sidebar-logo">
           <p class="logo-image">
@@ -30,6 +31,9 @@
           <div>
             <router-link to="/signup">go to signup</router-link>
           </div>
+          <div>
+            <button v-on:click="logout">Logout</button>
+          </div>
           
           
           
@@ -45,9 +49,19 @@
 
   export default {
     name: 'sidebar',
+    computed: {
+      currentUser () {
+        return this.$store.state.session.currentUser
+      } 
+    },
+    methods: {
+      logout: function () {
+        this.$store.dispatch('logout')
+      }
+    },
     data(){
       return {
-          currentUser: Boolean(window.currentUser)
+          // currentUser: Boolean(window.currentUser)
         }
     }
   }
