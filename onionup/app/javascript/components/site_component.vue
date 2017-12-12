@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="site">
     <p><strong>{{site.url}}</strong></p>
     <p>{{site.ping_ids.length}}</p>
   </div>
@@ -38,40 +38,29 @@
       
     },
 
-   
-
     methods:{
       greet: function(){
         alert('hello');
       },
 
-
-
       login: function(){
-          axios.post(`http://localhost:3000/api/session`,{
-            user: {
-              username: this.user.username,
-              password: this.user.password
-            }
-          })
-      .then(res => {
-        
-        alert(`logged in as ${res.data.username}`)
-      })
-      .catch(e => {
+        axios.post(`http://localhost:3000/api/session`,{
+          user: {
+            username: this.user.username,
+            password: this.user.password
+          }
+        }).then(res => {
+          alert(`logged in as ${res.data.username}`)
+        }).catch(e => {
         console.log(e);
         this.errors.push(e)
-      })
+        })
       },
-
-
-      
-    
     },
     
     computed: {
       site: function(){
-        console.log(this.siteProp)
+        
         return this.siteProp
       },
       info: function(){
@@ -83,5 +72,6 @@
 </script>
 
 <style scoped>
+
   
 </style>

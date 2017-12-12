@@ -2,9 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-td,th{
-  border: 1px solid #dddddd;
-}
+
 li{
   list-style:none 
+}
+
+.site{
+  display: flex;
+  p{
+    margin-right: 20px;
+  }
 }

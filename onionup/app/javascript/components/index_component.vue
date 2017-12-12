@@ -6,18 +6,31 @@
     
     <ul v-if="siteKeys && siteKeys.length">
       <li v-for="key in siteKeys">
-        <Site v-bind:siteProp='sites[key]'></Site>     
+        <router-link to="/site">
+          <Site v-bind:siteProp='sites[key]'></Site>
+        </router-link>
       </li>
     </ul>
  
     <br/>
+    
   </div>
 </template>
 
 
 <script>
+  import Vue from 'vue';
+  import VueRouter from 'vue-router';
   import axios from 'axios';
   import Site from './site_component';
+
+  // Vue.use(VueRouter);
+
+  // const routes = [
+  //   { path: '/', component: IndexComponent },
+  //   { path: '/session', component: SessionForm }
+    
+  // ]
 
   export default {
     name: 'IndexComponent',
@@ -43,6 +56,7 @@
         this.sites = res.data.sites;
         this.pings = res.data.pings;
         this.keys = res.data.keys;
+        console.log(res.data);
         
       })
       .catch(e => {

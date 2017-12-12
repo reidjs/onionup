@@ -1,6 +1,7 @@
 json.sites do 
     @sites.each do |site|
         json.set! site.id do
+            json.id site.id
             json.url site.url
             json.ping_ids do
                 json.array! site.pings.map{|ping| ping.id}

@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <router-link to="/session">SessionForm</router-link>
-    <router-view></router-view>
     <hr/>
+    <router-view></router-view>
+    
   </div>
 </template>
 
@@ -13,10 +14,12 @@
   Vue.use(VueRouter);
   import SessionForm from './components/session_form'
   import IndexComponent from './components/index_component'
+  import SiteShowComponent from './components/site_show_component';
 
   const routes = [
     { path: '/', component: IndexComponent },
-    { path: '/session', component: SessionForm }
+    { path: '/session', component: SessionForm },
+    { path: '/site', component: SiteShowComponent }
     
   ]
 
