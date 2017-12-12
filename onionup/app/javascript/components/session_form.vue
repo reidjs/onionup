@@ -1,6 +1,17 @@
 <template>
   <div class="test">
-   
+    <input type="text" v-model="title"><br />
+    <h1>{{title}}</h1>
+    <p v-if='showName'>{{user.firstName}}</p>
+    <p v-else> Nobody</p>
+    <ul>
+      <li v-for='item in items'>{{item.title}}</li>
+    </ul>
+    <button v-on:click="greet"> Say Greeting</button>
+
+    <br />
+    <br />
+    <hr/>
     <h1> User session form below:</h1>
     <label>Username: </label><input type="text" v-model="user.username"><br />
     <label>Password: </label><input type="text" v-model="user.password"><br />
@@ -85,8 +96,8 @@
             }
           })
       .then(res => {
-        
-        alert(`logged in as ${res.data.username}`)
+        this.$router.go('/');
+        // alert(`logged in as ${res.data.username}`)
       })
       .catch(e => {
         console.log(e);
