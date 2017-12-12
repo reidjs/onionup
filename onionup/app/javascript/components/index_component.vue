@@ -2,26 +2,33 @@
 <template>
   <div id="main">
     <h1>Sites</h1>   
-    <ul v-if="sites && sites.length">
-      <li v-for="site in sites">
-        <p>{{site.url}}</p> 
-        <hr/>
+    <ul v-if="siteKeys && siteKeys.length">
+      <li v-for="key in siteKeys">
+        <p>{{sites[key].url}}</p> 
+
+        <ul v-if="pingKeys && pingKeys.length"> 
+          <li v-for="pingKey in pingKeys">
+            <p>{{pings[pingKey].status}}</p>
+            <p>{{pings[pingKey].created_at}}</p>
+          </li>
+        </ul>
+        
       </li>
     </ul>
 
 
     <h1>Pings</h1>    
-    <ul v-if="pings && pings.length">
-      <li v-for="ping in pings">
-        <p>{{ping.id}}</p> 
-        <p>{{ping.id}}</p> 
-        <hr/>
+    <ul v-if="pingKeys && pingKeys.length">
+      <li v-for="key in pingKeys">
+        <p>{{pings[key]}}</p> 
+        
+        
       </li>
     </ul> 
 
-    {{pings}}
+    <h1>{{pings}}</h1>
     <br/>
-    {{sites}}
+    
   </div>
 </template>
 
@@ -34,16 +41,22 @@
     data(){
       return{
         
-        sites:[],
-        pings:[],
+        siteKeys:[],
+        pingKeys:[],
+        sites:{},
+        pings:{}
       }
     },
     created(){
       axios.get(`http://localhost:3000/api/ping`)
       .then(res => {
-
+        
+        this.siteKeys = Object.keys(res.data.sites);
+        this.pingKeys = Object.keys(res.data.pings);
         this.sites = res.data.sites;
-        // this.pings = res.data.pings;
+        this.pings = res.data.pings;
+        this.keys = res.data.keys;
+        
       })
       .catch(e => {
         console.log('error');
