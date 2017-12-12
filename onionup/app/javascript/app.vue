@@ -1,19 +1,10 @@
 <template>
   <div id="app">
-    <h1>inner!</h1>
-    <p>
-    <!-- use router-link component for navigation. -->
-    <!-- specify the link by passing the `to` prop. -->
-    <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
-    <router-link to="/">Go to /</router-link>
-    <router-link to="/ot">Go to /ot</router-link>
-  </p>
-  <!-- route outlet -->
-  <!-- component matched by the route will render here -->
-  <router-view></router-view>
-  </div>
-
-
+  
+    <router-link to="/session">SessionForm</router-link>
+    
+      <router-view></router-view>
+      <hr/>
   </div>
 </template>
 
@@ -23,11 +14,12 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 import SessionForm from './components/session_form'
-import OtherThing from './components/otherThing'
+import IndexComponent from './components/index_component'
 
 const routes = [
-  { path: '/', component: SessionForm },
-  { path: '/ot', component: OtherThing }
+  { path: '/', component: IndexComponent },
+  { path: '/session', component: SessionForm }
+  
 ]
 
 const router = new VueRouter({
@@ -37,10 +29,7 @@ const router = new VueRouter({
 
 export default {
   name: 'app',
-  components:{
-    SessionForm,
-    OtherThing
-  },
+
   router
 }
 
