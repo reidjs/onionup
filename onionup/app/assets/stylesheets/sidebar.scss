@@ -1,0 +1,22 @@
+.main-content{
+    display:flex;
+    
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    width: 22vw;
+    height: 100vh;
+    background-color: grey;
+    color: white
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s ease, position .2s;
+}
+.fade-enter, .fade-leave-to
+/* .component-fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+
+}
