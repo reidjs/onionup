@@ -46,19 +46,9 @@
             "password": this.user.password
           } 
         }
-        axios.post(`http://localhost:3000/api/session`,
-          user
-        )
-        .then(res => { 
-          // window.currentUser='true';
-
-          this.$router.go('/');
-        })
-        .catch(e => {
-          console.log(e);
-          // debugger
-          this.errors.push(e.response.data[0])
-        })
+      this.$store.dispatch('addCurrentUser',user)
+      console.log(this.$router);
+      this.$router.replace('/');
       },
     },
 

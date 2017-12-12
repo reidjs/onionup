@@ -1,7 +1,7 @@
 import Vuex from 'vuex';
 import Vue from 'vue';
 Vue.use(Vuex);
-
+import axios from 'axios';
 // let getUser = undefined;
 
 // if (window.currentUser) {
@@ -26,6 +26,7 @@ export const store = new Vuex.Store({
         id: payload.id,
         username: payload.username
       };
+      console.log("payload",payload)
       state.session.currentUser = currentUser;
     },
     ADD_SITE (state, payload) {
@@ -36,15 +37,31 @@ export const store = new Vuex.Store({
       state.sites.unshift(site); 
     },
     LOGOUT (state) {
-      state.session = {};
+      state.session = {currentUser: undefined};
     }
   },
   actions: {
     addSite (context) {
       context.commit('ADD_SITE');
     },
-    addCurrentUser (context) {
-      context.commit('ADD_CURRENT_USER');
+    addCurrentUser (context, user) {
+      console.log('addcurrentuser action',user);
+
+        axios.post(`http://localhost:3000/api/session`,
+          user
+        )
+          .then(res => {
+            console.log('addcurrenuser OK', res.data);
+            // window.currentUser='true';
+            context.commit('ADD_CURRENT_USER', res.data);
+            
+          })
+          .catch(e => {
+            console.log('addcurrenuser ERROR', e);
+            // debugger
+            this.errors.push(e.response.data[0]);
+          });
+      
     },
     logout (context) {
       context.commit('LOGOUT');
