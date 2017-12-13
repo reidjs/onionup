@@ -32,6 +32,7 @@
           <p>
             <i class="fa fa-bar-chart" aria-hidden="true"></i>
             <router-link to="/">Root</router-link>
+            
             <!-- <i id="arrow" class="fa fa-angle-up" aria-hidden="true"></i> -->
           </p>
         </div>
