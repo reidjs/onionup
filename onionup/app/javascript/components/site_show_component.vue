@@ -2,9 +2,9 @@
   <div>
     <h1>Site URL here</h1>
     <LineChart 
-    :chartData="datasets"
-    :options="options"
-  >
+      :datasets="datasets"
+      :options="options"
+    >
     </LineChart>
     <button v-on:click="push">Add data!</button>
   </div>

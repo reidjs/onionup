@@ -3,15 +3,13 @@ import { Line, mixins } from 'vue-chartjs';
 export default {
   extends: Line,
   mixins: [mixins.reactiveProp],
-  props: ['chartData', 'options'],
+  props: ['datasets', 'options'],
   mounted () {
-    let data = this.chartData
+    let datasets = this.datasets
     let options = this.options
-    this.renderChart({datasets: data}, options);
-  },
-  watch: {
-    'chartData': function(newVal, oldVal) {
-      console.log('data change to ', newVal)
-    }
+    this.renderChart({
+      labels: ['a', 'b', 'c'], datasets: datasets, options: options
+
+    })
   }
 }
