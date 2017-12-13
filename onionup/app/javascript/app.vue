@@ -35,8 +35,8 @@
 
   const routes = [
     
-    { path: '/', component: SignupForm, meta: { requiresUnAuth: true} },
-    { path: '/sites', component: IndexComponent,meta: { requiresAuth: true }},
+    // { path: '/', component: SignupForm, meta: { requiresUnAuth: true} },
+    { path: '/', component: IndexComponent,meta: { requiresAuth: true }},
     { path: '/sites/:id', component: SiteShowComponent ,meta: { requiresAuth: true} },
     { path: '/login', component: LoginForm, meta: { requiresUnAuth: true} },
     { path: '/signup', component: SignupForm, meta: { requiresUnAuth: true} },
