@@ -19,7 +19,7 @@
           <li v-for="key in siteKeys" v-bind:key="key">
             <div class="site-box">
               <router-link to='/site'>
-                <Site v-bind:siteProp='sites[key]'></Site>
+                <Site v-bind:siteProp='sites[key]' v-bind:pingProp='pings'></Site>
               </router-link>
             </div>
           </li>

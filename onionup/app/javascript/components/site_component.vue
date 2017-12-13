@@ -1,7 +1,14 @@
 <template>
   <div class="site">
-    <p>{{site.status}}</p>
-    <i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+
+    <p v-if="status">
+      <i class="fa fa-arrow-circle-up up" aria-hidden="true"></i>
+    </p>
+    <p v-else>
+      <i class="fa fa-arrow-circle-down down" aria-hidden="true"></i>
+    </p>
+   
+    
     <p><strong>{{site.url}}</strong></p>
     <p>{{site.ping_ids.length}}</p>
     <p> Site ID: {{site.id}}</p>
@@ -13,19 +20,27 @@
   import axios from 'axios';
   export default {
     name: 'Site',
-    props: ['siteProp'],
-    data() {
-      return{
-       
+    props: ['siteProp','pingProp'],
 
+    
+    data() {
+      // console.log(this.pingProps[this.site.ping_ids[site.ping_ids.length-1]].status)
+      
+      return{
+        status: true,
+        
+        
+       
       }
     },
 
     created(){
       
+      
     },
 
     methods:{
+
   
     },
     
@@ -34,6 +49,11 @@
         
         return this.siteProp
       },
+
+      ping: function(){
+        return this.pingProp
+      },
+
       info: function(){
         return this.user.username+" "+this.user.password;
         
