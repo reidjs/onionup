@@ -30,13 +30,13 @@ export const store = new Vuex.Store({
       };
       state.session.currentUser = currentUser;
     },
-    ADD_SITE (state, payload) {
-      const site = {
-        id: payload.id,
-        url: payload.url
-      };
-      state.sites.unshift(site); 
-    },
+    // ADD_SITE (state, payload) {
+    //   const site = {
+    //     id: payload.id,
+    //     url: payload.url
+    //   };
+    //   state.sites = Object.assign({},state.sites, site);
+    // },
     LOGOUT (state) {
       state.session = {currentUser: undefined};
     },
@@ -56,11 +56,15 @@ export const store = new Vuex.Store({
   actions: {
     addSite (context, site) {
       context.commit('CLEAR_ERRORS');
-      context.commit('ADD_SITE');
 
-        // return axios.post(`api/sites`, site)
-        //   .then()
+          return axios.post(`api/sites`, site)
+            // .then(res => { 
+            //   console.log("RES", d);
+            //   context.commit('ADD_SITE', d); });
+            .catch(e => {context.commit('SET_ERRORS', "Add Site Failed"); });
     },
+
+
     clearErrors (context) {
       context.commit('CLEAR_ERRORS');
     },

@@ -35,13 +35,11 @@
     methods:{
       addSite: function() {
         let site = {
-          "site": {
-            "url": this.user.url
-          } 
+          url: this.site.url
         }
-      
 
-        
+        console.log(this.site);
+    
         this.$store.dispatch('addSite', site).then(()=>this.$router.push('/'));                                                     
 
       },

@@ -23,6 +23,7 @@
   import SiteShowComponent from './components/site_show_component';
   import LoginForm from './components/login_form'
   import SignupForm from './components/signup_form'
+  import SiteForm from './components/site_form';
   import Vuex from 'vuex';
   
   Vue.use(VueRouter);
@@ -37,6 +38,7 @@
     // { path: '/', component: SignupForm, meta: { requiresUnAuth: true} },
     { path: '/', component: IndexComponent,meta: { requiresAuth: true }},
     { path: '/sites/:id', component: SiteShowComponent ,meta: { requiresAuth: true} },
+    { path: '/add', component: SiteForm, meta: { requiresAuth: true} },
     { path: '/login', component: LoginForm, meta: { requiresUnAuth: true} },
     { path: '/signup', component: SignupForm, meta: { requiresUnAuth: true} },
 ]

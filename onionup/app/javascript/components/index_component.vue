@@ -32,7 +32,6 @@
 </template>
 
 <script>
-  import axios from 'axios';
   import Site from './site_component';
 
   export default {
