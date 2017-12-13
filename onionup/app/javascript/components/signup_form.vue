@@ -45,12 +45,6 @@
             "password": this.user.password
           } 
         }
-<<<<<<< HEAD
-        console.log("sign in", this);
-        
-        this.$store.dispatch('signUserIn',user)
-        this.$router.go('/');                                                     
-=======
         axios.post(`api/users`,
           user
         )
@@ -62,7 +56,6 @@
           console.log(e);
           this.errors.push(e.response.data[0])
         })
->>>>>>> d1fb76cc18966c46e2280df6cbca5de03175c9ae
       },
     }
   }
