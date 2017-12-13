@@ -45,7 +45,7 @@
             "password": this.user.password
           } 
         }
-        axios.post(`/api/users`,
+        axios.post(`api/users`,
           user
         )
         .then(res => { 

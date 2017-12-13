@@ -46,7 +46,7 @@
       },
 
       login: function(){
-        axios.post(`/api/session`,{
+        axios.post(`api/session`,{
           user: {
             username: this.user.username,
             password: this.user.password
