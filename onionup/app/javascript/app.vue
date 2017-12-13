@@ -37,7 +37,7 @@
     
     // { path: '/', component: SignupForm, meta: { requiresUnAuth: true} },
     { path: '/', component: IndexComponent,meta: { requiresAuth: true }},
-    { path: '/site/:id', component: SiteShowComponent ,meta: { requiresAuth: true} },
+    { path: '/sites/:id', component: SiteShowComponent ,meta: { requiresAuth: true} },
     { path: '/login', component: LoginForm, meta: { requiresUnAuth: true} },
     { path: '/signup', component: SignupForm, meta: { requiresUnAuth: true} },
 ]
@@ -50,14 +50,8 @@
 router.beforeEach((to, from, next) => {
   console.log("before each", to , from)
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    //  debugger
-    console.log("requires auth", 'Store:',store.state.session)
+
     if (!store.state.session.currentUser ) {
-      console.log('not signed in redirect', store.state.session.currentUser, "values",Object.values(store.state.session),Object.keys(store.state.session))
-      console.log('not signed in redirect', store.state.session)
-      
       next({
         path: '/login',
         query: { redirect: to.fullPath }
@@ -65,11 +59,8 @@ router.beforeEach((to, from, next) => {
     } else {
       next()
     }
-        // this route requires not being signd in, check if logged in
-    // if yes, redirect to /.
   }else if(to.matched.some(record => record.meta.requiresUnAuth)){
       if (store.state.session.currentUser ) {
-        console.log("signed in redirect", store.state.session)
             next({
               path: '/',
               query: { redirect: to.fullPath }

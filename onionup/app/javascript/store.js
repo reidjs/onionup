@@ -45,6 +45,12 @@ export const store = new Vuex.Store({
     },
     CLEAR_ERRORS (state) {
       state.errors = null;
+    },
+    ADD_SITES(state,payload){
+      state.sites = Object.assign({},state.sites, payload);
+    },
+    ADD_PINGS(state, payload){
+      state.pings = Object.assign({},state.sites, payload);
     }
   },
   actions: {
@@ -104,6 +110,41 @@ export const store = new Vuex.Store({
 
 
       
+    },
+    getSite(context, id){
+      return axios.get(`api/sites/${id}`)
+        .then(res => {
+          console.log("gite got", res);
+          context.commit('ADD_SITES', res.data.sites)
+          context.commit('ADD_PINGS', res.data.pings)
+        })
+        .catch(e => {
+          console.log('failed to get ping request');
+
+        })
+    },
+    getSites(context) {
+      console.log("getsites")
+      return axios.get(`api/sites`)
+        .then(res => {
+          context.commit('ADD_SITES', res.data.sites)
+          context.commit('ADD_PINGS', res.data.pings)
+        })
+        .catch(e => {
+          console.log('failed to get ping request');
+
+        })
+    },
+    pingSites(context){
+      return axios.get(`api/ping`)
+          .then(res => {
+            context.commit('ADD_SITES', res.data.sites)
+            context.commit('ADD_PINGS', res.data.pings) 
+          })
+          .catch(e => {
+            console.log('failed to get ping request');
+
+          })      
     }
   }
 });
