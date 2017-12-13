@@ -54,15 +54,15 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    addSite (context, site) {
-      context.commit('CLEAR_ERRORS');
+    // addSite (context, site) {
+    //   context.commit('CLEAR_ERRORS');
 
-          return axios.post(`api/sites`, site)
-            // .then(res => { 
-            //   console.log("RES", d);
-            //   context.commit('ADD_SITE', d); });
-            .catch(e => {context.commit('SET_ERRORS', "Add Site Failed"); });
-    },
+    //       return axios.post(`api/sites`, site)
+    //         // .then(res => { 
+    //         //   console.log("RES", d);
+    //         //   context.commit('ADD_SITE', d); });
+    //         .catch(e => {context.commit('SET_ERRORS', "Add Site Failed"); });
+    // },
 
 
     clearErrors (context) {
@@ -155,7 +155,7 @@ export const store = new Vuex.Store({
           })      
     }
   },
-  PostSite(context, site){
+  postSite(context, site){
     return axios.post(`api/sites`)
     .then (res => {
       context.commit('ADD_SITES', res.sites)
