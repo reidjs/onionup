@@ -1,3 +1,19 @@
-// Place all the styles related to the Sites controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";
+
+.site{
+  i{
+    font-size: 2.5em;
+  }
+}
+
+.up{
+  color: $status-up;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: $status-up-border;
+}
+
+.down{
+  color: $status-down;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: $status-down-border;
+}

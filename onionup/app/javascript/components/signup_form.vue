@@ -8,13 +8,14 @@
         </li>
       </ul>
       <div class="form-name form">
-        <label class="label-username">Username </label><input type="text" placeholder="What's your name?" v-model="user.username">
+        <label class="label-username">Username </label>
+        <input type="text" placeholder="What's your name?" @keydown.enter="login" v-model="user.username">
       </div>
       <div class="form-password form">
         <label class="label-password">Password </label>
         <div class="pw-submit">
-          <input type="password" v-model="user.password">
-          <button v-on:click="signIn">SIGN UP</button>
+          <input type="password" @keydown.enter="login" v-model="user.password">
+          <button v-on:click="login">SIGN UP</button>
         </div>
       </div>
        <p class="account-prompt">Already have account?

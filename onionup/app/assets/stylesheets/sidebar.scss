@@ -1,15 +1,73 @@
+@import "variables";
+
+.sidebar-logo{
+  min-height: 65px;
+  height: 65px;
+  background-color: $orange;
+}
+
+.logo-image{
+  margin: auto;
+  font-size: 2rem;
+  text-align: center;
+  margin-top:13px;
+}
 .main-content{
     display:flex;
     
 }
 
+
 .sidebar{
     display: flex;
     flex-direction: column;
-    width: 22vw;
+    width: 23vw;
     height: 100vh;
-    background-color: grey;
+    background-color: $light-grey;
     color: white
+}
+
+.menu{
+  height: 55px;
+  cursor: pointer;
+  font-weight: 200;
+  p{
+    flex:1;
+  }
+  i{
+    margin-right: 10px;
+  }
+}
+.menu-inner-wrapper{
+  padding: 19px 22px;
+  display: flex;
+}
+
+.menu-list{
+  display: block;
+  overflow-y: hidden;
+  height: 100px;
+	// max-height: 500px; /* approximate max height */
+
+	transition-property: all;
+	transition-duration: .4s;
+	
+  
+
+}
+.dropdown{
+  li{
+    background-color: $dark-grey;
+    height: 47px;
+
+  }
+}
+
+.hidden{
+  height: 0;
+  transition-duration: .4s;
+  
+  
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -20,3 +78,5 @@
   opacity: 0;
 
 }
+
+

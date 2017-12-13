@@ -1,15 +1,31 @@
 <template>
-  <div id="main">
-    <h1>Uptime Checker</h1>
-    <hr/>
+  <div id="main" class="index-main">
+    <div class="content-header">
+      <h1><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;Uptime Checks</h1>
+    </div>
     
-    <ul v-if="siteKeys && siteKeys.length">
-      <li v-for="key in siteKeys" v-bind:key="key">
-        <router-link to='/site'>
-          <Site v-bind:siteProp='sites[key]'></Site>
-        </router-link>
-      </li>
-    </ul>
+
+    <div class="index-wrapper">
+      <div class="cards-toolbar">
+        <select>
+          <option value="24">Last 24 hours</option>
+          <option value="7">Last 7 days</option>
+          <option value="30">Last 30 daysl</option>
+          <option value="all">All history</option>
+        </select>
+      </div>
+      <div class="cards-wrapper">
+        <ul v-if="siteKeys && siteKeys.length">
+          <li v-for="key in siteKeys" v-bind:key="key">
+            <div class="site-box">
+              <router-link to='/site'>
+                <Site v-bind:siteProp='sites[key]' v-bind:pingProp='pings'></Site>
+              </router-link>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
     <br/>  
   </div>
 </template>

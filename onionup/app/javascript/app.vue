@@ -43,7 +43,8 @@
 ]
 
   const router = new VueRouter({
-    routes // short for `routes: routes`ion
+    // mode: 'history',
+    routes // short for `routes: routes`
   })
 
 router.beforeEach((to, from, next) => {
