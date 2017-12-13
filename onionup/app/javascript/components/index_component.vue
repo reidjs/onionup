@@ -18,7 +18,7 @@
         <ul v-if="siteKeys && siteKeys.length">
           <li v-for="key in siteKeys" v-bind:key="key">
             <div class="site-box">
-              <a :href="'/#/site/' + key">
+              <a :href="'/#/sites/' + key">
                 <Site v-bind:siteProp='sites[key]' v-bind:pingProp='pings'></Site>
               </a>
             </div>
