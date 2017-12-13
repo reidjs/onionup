@@ -25,6 +25,7 @@
           </li>
         </ul>
       </div>
+      <button v-on:click="getSite">get site id 1</button>
     </div>
     <br/>  
   </div>
@@ -35,33 +36,32 @@
   import Site from './site_component';
 
   export default {
-    name: 'IndexComponent',
-    components: {
-      Site
-    },
-    data(){
-      return{
-        siteKeys:[],
-        pingKeys:[],
-        sites:{},
-        pings:{}
-      }
+      name: 'IndexComponent',
+      components: {
+        Site
+      },
+      computed: {
+        siteKeys(){
+          return Object.keys(this.$store.state.sites)
+        },
+        pingKeys(){
+          return Object.keys(this.$store.state.pings)
+        },
+        pings(){
+          return this.$store.state.pings
+        },
+        sites(){
+          return this.$store.state.sites
+        }
     },
     created(){
-      axios.get(`api/ping`)
-      .then(res => {  
-        this.siteKeys = Object.keys(res.data.sites);
-        this.pingKeys = Object.keys(res.data.pings);
-        this.sites = res.data.sites;
-        this.pings = res.data.pings;
-        this.keys = res.data.keys;
-        console.log(res.data);  
-      })
-      .catch(e => {
-        console.log('failed to get ping request');
-        
-      })
-    }
+      this.$store.dispatch("getSites")
+    },
+    methods:{
+      getSite: function(){
+        this.$store.dispatch("getSite", 1)
+    },
+      
   }
-
+}
 </script>
