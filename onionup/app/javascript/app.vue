@@ -34,6 +34,8 @@
   console.log("APP",window.currentUser);
 
   const routes = [
+    
+    { path: '/', component: SignupForm, meta: { requiresUnAuth: true} },
     { path: '/sites', component: IndexComponent,meta: { requiresAuth: true }},
     { path: '/sites/:id', component: SiteShowComponent ,meta: { requiresAuth: true} },
     { path: '/login', component: LoginForm, meta: { requiresUnAuth: true} },
