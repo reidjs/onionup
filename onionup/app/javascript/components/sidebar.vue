@@ -10,7 +10,13 @@
         </div>
         <div>
           <div v-on:click="toggleMenu(1)" class="menu">
-             <p>Menu</p>
+             <div class="menu-inner-wrapper">
+                <p>
+                  <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                 Uptime
+                </p>
+                <i id="arrow" class="fa fa-angle-down" aria-hidden="true"></i>
+              </div>
           </div>
            <div id="menu-list-1" class="menu-list">
               <div>
@@ -30,17 +36,50 @@
             </div>
             
           </div>
-          <div class="menu">
-            <router-link to="/site">go to site</router-link>
+          <div>
+          <div v-on:click="toggleMenu(2)" class="menu">
+             
+             <p>Reports</p>
           </div>
-          <div class="menu">
-            <router-link to="/login">go to login</router-link>
+           <div id="menu-list-2" class="menu-list hidden">
+              <div>
+              <ul class="dropdown">
+                <li>
+                  <router-link to="1">sub-menu-1</router-link>
+                </li>
+                <li>
+                  <router-link to="2">sub-menu-2</router-link>
+                </li>
+                <li>
+                  <router-link to="3">sub-menu-3</router-link>
+                </li>
+              </ul>
+            </div>
+             
+            </div>
+            
           </div>
-          <div class="menu">
-            <router-link to="/signup">go to signup</router-link>
+          <div>
+          <div v-on:click="toggleMenu(3)" class="menu">
+             <p>Account</p>
           </div>
-          <div class="menu">
-            <button v-on:click="logout">Logout</button>
+           <div id="menu-list-3" class="menu-list hidden">
+              <div>
+              <ul class="dropdown">
+                <li>
+                  <router-link to="1">sub-menu-1</router-link>
+                </li>
+                <li>
+                  <router-link to="2">sub-menu-2</router-link>
+                </li>
+                <li>
+                  <router-link to="3">sub-menu-3</router-link>
+                </li>
+              </ul>
+            </div>
+             
+            </div>
+            
           </div>
           
           
@@ -71,6 +110,8 @@
         el.classList.contains('hidden') ? 
           el.classList.remove('hidden') : 
           el.classList.add('hidden');
+        const fa = document.getElementById("arrow");
+        console.log(fa);
       }
     },
     data(){
