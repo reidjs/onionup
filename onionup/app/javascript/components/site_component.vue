@@ -1,5 +1,7 @@
 <template>
   <div class="site">
+    <p>{{site.status}}</p>
+    <i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
     <p><strong>{{site.url}}</strong></p>
     <p>{{site.ping_ids.length}}</p>
     <p> Site ID: {{site.id}}</p>
@@ -14,25 +16,8 @@
     props: ['siteProp'],
     data() {
       return{
-        title:'hello world',
-        posts:[],
-        errors:[],
-        user: {
-          firstName: 'jay',
-          lastName: 'park',
-          username: 'username',
-          password: 'password'
+       
 
-        },
-        postBody: '',
-        success:[],
-        errors:[],
-        showName: true,
-        items: [
-          {title: 'Item one'},
-          {title: 'Item two'},
-          {title: 'Item three'} 
-        ]
       }
     },
 
@@ -41,23 +26,7 @@
     },
 
     methods:{
-      greet: function(){
-        alert('hello');
-      },
-
-      login: function(){
-        axios.post(`api/session`,{
-          user: {
-            username: this.user.username,
-            password: this.user.password
-          }
-        }).then(res => {
-          alert(`logged in as ${res.data.username}`)
-        }).catch(e => {
-        console.log(e);
-        this.errors.push(e)
-        })
-      },
+  
     },
     
     computed: {
@@ -73,7 +42,3 @@
   }
 </script>
 
-<style scoped>
-
-  
-</style>
