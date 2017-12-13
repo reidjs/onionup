@@ -45,7 +45,7 @@
             "password": this.user.password
           } 
         }
-        axios.post(`https://localhost:3000/api/users`,
+        axios.post(`/api/users`,
           user
         )
         .then(res => { 
