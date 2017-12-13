@@ -6,7 +6,7 @@
       </p>
     </div>
     <div>
-      <div v-on:click="toggleMenu(1)" class="menu">
+      <div v-on:click="toggleMenu(1)" class="sidebar-menu">
           <div class="menu-inner-wrapper">
             <p>
               <i class="fa fa-bar-chart" aria-hidden="true"></i>
@@ -27,38 +27,46 @@
         </ul>
       </div>
       </div>
-      <div class="menu">
+      <div class="sidebar-menu">
         <div class="menu-inner-wrapper">
-          <!-- <i class="fa fa-bar-chart" aria-hidden="true"></i> -->
-          <router-link to="/"><p>Root</p></router-link>
-          <!-- <i id="arrow" class="fa fa-angle-up" aria-hidden="true"></i> -->
+          <p>
+            <i class="fa fa-bar-chart" aria-hidden="true"></i>
+            <router-link to="/">Root</router-link>
+            <!-- <i id="arrow" class="fa fa-angle-up" aria-hidden="true"></i> -->
+          </p>
         </div>
       </div>
-      <div class="menu">
+      <div class="sidebar-menu">
         <div class="menu-inner-wrapper">
-          <!-- <i class="fa fa-bar-chart" aria-hidden="true"></i> -->
-          <router-link to="/site"><p>Sites</p></router-link>
-          <!-- <i id="arrow" class="fa fa-angle-up" aria-hidden="true"></i> -->
+          <p>
+            <i class="fa fa-bar-chart" aria-hidden="true"></i>
+            <router-link to="/site">Sites</router-link>
+            <!-- <i id="arrow" class="fa fa-angle-up" aria-hidden="true"></i> -->
+          </p>
         </div>
       </div>
-      <div class="menu">
+      <div class="sidebar-menu">
         <div class="menu-inner-wrapper">
-          <!-- <i class="fa fa-bar-chart" aria-hidden="true"></i> -->
-          <router-link to="/login">Login</router-link>
-          <!-- <i id="arrow" class="fa fa-angle-up" aria-hidden="true"></i> -->
+          <p>
+            <i class="fa fa-bar-chart" aria-hidden="true"></i>
+            <router-link to="/login">Login</router-link>
+            <!-- <i id="arrow" class="fa fa-angle-up" aria-hidden="true"></i> -->
+          </p>
         </div>
       </div>
         
-      <div class="menu">
+      <div class="sidebar-menu">
         <div class="menu-inner-wrapper">
-          <!-- <i class="fa fa-bar-chart" aria-hidden="true"></i> -->
-          <router-link to="/signup">Signup</router-link>
-          <!-- <i id="arrow" class="fa fa-angle-up" aria-hidden="true"></i> -->
+          <p>
+            <i class="fa fa-bar-chart" aria-hidden="true"></i>
+            <router-link to="/signup">Signup</router-link>
+            <!-- <i id="arrow" class="fa fa-angle-up" aria-hidden="true"></i> -->
+          </p>
         </div>
       </div>
-      <div class="menu">
+      <div class="sidebar-menu">
         <div class="menu-inner-wrapper">
-          <!-- <i class="fa fa-bar-chart" aria-hidden="true"></i> -->
+          <i class="fa fa-bar-chart" aria-hidden="true"></i>
           <p>
             <button v-on:click="logout">Logout</button>
           </p>
