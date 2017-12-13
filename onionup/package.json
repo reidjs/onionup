@@ -4,9 +4,11 @@
   "dependencies": {
     "@rails/webpacker": "^3.0.2",
     "axios": "^0.17.1",
+    "chart.js": "^2.7.1",
     "coffeescript": "1.12.7",
     "jshint": "^2.9.5",
     "vue": "^2.5.9",
+    "vue-chartjs": "^3.0.2",
     "vue-loader": "^13.5.0",
     "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.5.9",
