@@ -8,5 +8,10 @@ export default {
     let data = this.chartData
     let options = this.options
     this.renderChart({datasets: data}, options);
+  },
+  watch: {
+    'chartData': function(newVal, oldVal) {
+      console.log('data change to ', newVal)
+    }
   }
 }

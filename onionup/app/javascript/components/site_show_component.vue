@@ -6,16 +6,26 @@
     :options="options"
   >
     </LineChart>
+    <button v-on:click="push">Add data!</button>
   </div>
 </template>
 
 <script>
+  //UPDATING CHART DATA (see last comment)
+  // https://github.com/apertureless/vue-chartjs/issues/44
   import LineChart from './line_chart'
-  
+  let data = [20, 10, 30]
   export default {
     name: 'graph',
+    methods: {
+      push: function() {
+        // console.log(data)
+        data.push(50)
+        
+        console.log(data)
+      }
+    },
     data() {
-      let data = [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
       return {
         datasets:
         [
@@ -27,7 +37,7 @@
         ],
         options: {
           scales: {
-              yAxes: [{
+              xAxes: [{
                   ticks: {
                       beginAtZero:true
                   }
