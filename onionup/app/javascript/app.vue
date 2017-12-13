@@ -37,13 +37,14 @@
     
     // { path: '/', component: SignupForm, meta: { requiresUnAuth: true} },
     { path: '/', component: IndexComponent,meta: { requiresAuth: true }},
-    { path: '/sites/:id', component: SiteShowComponent ,meta: { requiresAuth: true} },
+    { path: '/site/:id', component: SiteShowComponent ,meta: { requiresAuth: true} },
     { path: '/login', component: LoginForm, meta: { requiresUnAuth: true} },
     { path: '/signup', component: SignupForm, meta: { requiresUnAuth: true} },
 ]
 
   const router = new VueRouter({
-    routes // short for `routes: routes`ion
+    // mode: 'history',
+    routes // short for `routes: routes`
   })
 
 router.beforeEach((to, from, next) => {

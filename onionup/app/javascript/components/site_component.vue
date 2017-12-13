@@ -1,5 +1,14 @@
 <template>
   <div class="site">
+
+    <p v-if="status">
+      <i class="fa fa-arrow-circle-up up" aria-hidden="true"></i>
+    </p>
+    <p v-else>
+      <i class="fa fa-arrow-circle-down down" aria-hidden="true"></i>
+    </p>
+   
+    
     <p><strong>{{site.url}}</strong></p>
     <p>{{site.ping_ids.length}}</p>
     <p> Site ID: {{site.id}}</p>
@@ -11,53 +20,28 @@
   import axios from 'axios';
   export default {
     name: 'Site',
-    props: ['siteProp'],
-    data() {
-      return{
-        title:'hello world',
-        posts:[],
-        errors:[],
-        user: {
-          firstName: 'jay',
-          lastName: 'park',
-          username: 'username',
-          password: 'password'
+    props: ['siteProp','pingProp'],
 
-        },
-        postBody: '',
-        success:[],
-        errors:[],
-        showName: true,
-        items: [
-          {title: 'Item one'},
-          {title: 'Item two'},
-          {title: 'Item three'} 
-        ]
+    
+    data() {
+      // console.log(this.pingProps[this.site.ping_ids[site.ping_ids.length-1]].status)
+      
+      return{
+        status: true,
+        
+        
+       
       }
     },
 
     created(){
       
+      
     },
 
     methods:{
-      greet: function(){
-        alert('hello');
-      },
 
-      login: function(){
-        axios.post(`api/session`,{
-          user: {
-            username: this.user.username,
-            password: this.user.password
-          }
-        }).then(res => {
-          alert(`logged in as ${res.data.username}`)
-        }).catch(e => {
-        console.log(e);
-        this.errors.push(e)
-        })
-      },
+  
     },
     
     computed: {
@@ -65,6 +49,11 @@
         
         return this.siteProp
       },
+
+      ping: function(){
+        return this.pingProp
+      },
+
       info: function(){
         return this.user.username+" "+this.user.password;
         
@@ -73,7 +62,3 @@
   }
 </script>
 
-<style scoped>
-
-  
-</style>

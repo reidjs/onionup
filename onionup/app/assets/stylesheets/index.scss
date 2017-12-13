@@ -1,0 +1,31 @@
+@import "variables";
+.index-main{
+  flex: 1;
+}
+
+.content-header{
+  background-color: $very-light-grey;
+  h1{
+    color: #969696;
+    font-size: 22px;
+    font-weight: 200;
+    padding: 19px 65px;
+    border-bottom: 1px solid $light-grey-border;
+    
+  }
+}
+.site-box{
+  margin: 10px auto 10px auto;
+  border: 1px solid $light-grey-border;
+  border-radius: 5px;
+  padding: 15px;
+  
+}
+.index-wrapper{
+  margin:40px auto 10px auto;
+  width: 90%;
+}
+
+.cards-toolbar{
+  right:1;
+}
