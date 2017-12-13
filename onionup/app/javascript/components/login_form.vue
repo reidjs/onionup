@@ -3,8 +3,8 @@
     <div class="auth-inner-wrapper">
       <h1> Welcome back, login to get started</h1>
       <ul id="error-list">
-        <li class="error-msg"v-for="(error) in errors" :key="error[0]" >
-          {{error}}
+         <li class="error-msg">
+          {{errors}}
         </li>
       </ul>
       <div class="form-name form">
@@ -18,7 +18,7 @@
         </div>
       </div>
        <p class="account-prompt">Don't have an account?
-        <router-link to="/signup">Click Here</router-link> to create one!
+        <router-link v-on:click.native="clearErrors" to="/signup">Click Here</router-link> to create one!
       </p> 
     </div>
   </div>  
@@ -34,8 +34,12 @@
         user: {
           username: '',
           password: ''
-        },
-        errors: []
+        }
+      }
+    },
+    computed:{
+      errors () {
+        return this.$store.getters.errors
       }
     },
     methods:{
@@ -52,6 +56,9 @@
       console.log("user log in", user);
       
       },
+      clearErrors: function() {
+        this.$store.dispatch('clearErrors');
+      }
     },
 
   }

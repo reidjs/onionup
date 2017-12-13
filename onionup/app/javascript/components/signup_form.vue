@@ -3,8 +3,8 @@
     <div class="auth-inner-wrapper">
       <h1> Sign up to start checking the status of your favorite Onion sites.</h1>
       <ul id="error-list">
-        <li class="error-msg"v-for="(error) in errors" :key="error[0]" >
-          {{error}}
+        <li class="error-msg">
+          {{errors}}
         </li>
       </ul>
       <div class="form-name form">
@@ -18,7 +18,8 @@
         </div>
       </div>
        <p class="account-prompt">Already have account?
-        <router-link to="/login">Click Here</router-link> log in!
+        <router-link v-on:click.native="clearErrors" to="/login">Click Here</router-link> log in!
+        <!--  -->
       </p>
     </div>
   </div>
@@ -33,8 +34,12 @@
         user: {
           username: '',
           password: ''
-        },
-        errors: []
+        }
+      }
+    },
+    computed:{
+      errors () {
+        return this.$store.getters.errors
       }
     },
     methods:{
@@ -45,12 +50,16 @@
             "password": this.user.password
           } 
         }
+      
 
         console.log("sign in", this);
         
         this.$store.dispatch('signUserIn',user).then(()=>this.$router.push('/'));                                                     
 
       },
+      clearErrors: function() {
+        this.$store.dispatch('clearErrors');
+      }
     }
   }
 </script>
