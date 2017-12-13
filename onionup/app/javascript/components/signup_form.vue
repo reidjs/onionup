@@ -48,7 +48,7 @@
 
         console.log("sign in", this);
         
-        this.$store.dispatch('signUserIn',user).then(()=>this.$router.go('/'));                                                     
+        this.$store.dispatch('signUserIn',user).then(()=>this.$router.push('/'));                                                     
 
       },
     }
