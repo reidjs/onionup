@@ -1,7 +1,7 @@
 require 'thread'
 
 class Api::SitesController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :require_logged_in
 
   def show_ping
     @site = Site.find_by(id: params[:id])

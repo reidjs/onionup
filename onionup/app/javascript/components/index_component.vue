@@ -32,7 +32,7 @@
       }
     },
     created(){
-      axios.get(`http://localhost:3000/api/ping`)
+      axios.get(`api/ping`)
       .then(res => {  
         this.siteKeys = Object.keys(res.data.sites);
         this.pingKeys = Object.keys(res.data.pings);

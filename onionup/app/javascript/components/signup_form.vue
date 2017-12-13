@@ -14,8 +14,13 @@
       <div class="form-password form">
         <label class="label-password">Password </label>
         <div class="pw-submit">
+<<<<<<< HEAD
           <input type="password" @keydown.enter="login" v-model="user.password">
           <button v-on:click="login">SIGN UP</button>
+=======
+          <input type="password" v-model="user.password">
+          <button v-on:click="signIn">SIGN UP</button>
+>>>>>>> master
         </div>
       </div>
        <p class="account-prompt">Already have account?
@@ -39,18 +44,18 @@
       }
     },
     methods:{
-      login: function() {
+      signIn: function() {
         let user = {
           "user": {
             "username": this.user.username,
             "password": this.user.password
           } 
         }
-        axios.post(`http://localhost:3000/api/users`,
+        axios.post(`api/users`,
           user
         )
         .then(res => { 
-          this.$router.go('/');
+          this.$router.push('/');
           // alert(`logged in as ${res.data.username}`)
         })
         .catch(e => {

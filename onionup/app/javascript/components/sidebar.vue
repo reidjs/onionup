@@ -3,6 +3,19 @@
 
 
       <div v-if="currentUser" class="sidebar">
+
+        <!-- 
+          
+          <div v-if="currentUser" class="sidebar">
+        <h1>sidebar</h1>
+        <router-link to="/">Go to /</router-link>
+        <router-link to="/site">go to site</router-link>
+        <router-link to="/login">go to login</router-link>
+        <router-link to="/signup">go to signup</router-link>
+        <button v-on:click="logout">Logout</button>
+          
+          
+          -->
         <div class="sidebar-logo">
           <p class="logo-image">
             ONION UP
@@ -92,7 +105,7 @@
 </template>
 
 
-<<script>
+<script>
 
   export default {
     name: 'sidebar',
@@ -103,7 +116,8 @@
     },
     methods: {
       logout: function () {
-        this.$store.dispatch('logout')
+         this.$store.dispatch('logout').then(()=>this.$router.push('login'))
+        console.log("logout")
       },
       toggleMenu: function(i) {
         const el = document.getElementById(`menu-list-${i}`);
@@ -111,7 +125,7 @@
           el.classList.remove('hidden') : 
           el.classList.add('hidden');
         const fa = document.getElementById("arrow");
-        console.log(fa);
+        fa.classList.contains('fa-angle-down')
       }
     },
     data(){

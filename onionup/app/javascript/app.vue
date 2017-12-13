@@ -2,7 +2,9 @@
   <div id="app">
 
     <main class='main-content'>
-      <Sidebar></Sidebar>
+      <transition name="fade" mode="out-in">
+        <Sidebar></Sidebar>
+      </transition>
       <transition name="fade" mode="out-in">
         <router-view></router-view>
       </transition>
@@ -32,30 +34,34 @@
   console.log("APP",window.currentUser);
 
   const routes = [
-    { path: '/', 
-      component: IndexComponent,
-      meta: { 
-        requiresAuth: true
-      }
-
-
-  },
-    { path: '/site', component: SiteShowComponent ,meta: { requiresAuth: true} },
+    
+    // { path: '/', component: SignupForm, meta: { requiresUnAuth: true} },
+    { path: '/', component: IndexComponent,meta: { requiresAuth: true }},
+    { path: '/sites/:id', component: SiteShowComponent ,meta: { requiresAuth: true} },
     { path: '/login', component: LoginForm, meta: { requiresUnAuth: true} },
     { path: '/signup', component: SignupForm, meta: { requiresUnAuth: true} },
 ]
 
   const router = new VueRouter({
+<<<<<<< HEAD
     // mode: 'history',
     routes // short for `routes: routes`
+=======
+    routes // short for `routes: routes`ion
+>>>>>>> master
   })
 
 router.beforeEach((to, from, next) => {
-
+  console.log("before each", to , from)
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    if (!Boolean(window.currentUser) ) {
+    //  debugger
+    console.log("requires auth", 'Store:',store.state.session)
+    if (!store.state.session.currentUser ) {
+      console.log('not signed in redirect', store.state.session.currentUser, "values",Object.values(store.state.session),Object.keys(store.state.session))
+      console.log('not signed in redirect', store.state.session)
+      
       next({
         path: '/login',
         query: { redirect: to.fullPath }
@@ -66,9 +72,11 @@ router.beforeEach((to, from, next) => {
         // this route requires not being signd in, check if logged in
     // if yes, redirect to /.
   }else if(to.matched.some(record => record.meta.requiresUnAuth)){
-      if (Boolean(window.currentUser) ) {
+      if (store.state.session.currentUser ) {
+        console.log("signed in redirect", store.state.session)
             next({
               path: '/',
+              query: { redirect: to.fullPath }
             })
           } else {
             next()

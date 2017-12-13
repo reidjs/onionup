@@ -1,19 +1,20 @@
 import Vuex from 'vuex';
 import Vue from 'vue';
 Vue.use(Vuex);
+import axios from 'axios';
+let getUser = undefined;
 
-// let getUser = undefined;
-
-// if (window.currentUser) {
-//   getUser = window.currentUser;
-// }
+if (window.currentUser) {
+  console.log("BOOTSTRAP");
+  getUser = window.currentUser;
+}
 
 // console.log("STORE",window.currentUser);
 
 export const store = new Vuex.Store({
   state: {
     sites: {},
-    session: {currentUser: window.currentUser},
+    session: { currentUser:getUser},
     errors: {}
   },
   getters: {
@@ -26,6 +27,7 @@ export const store = new Vuex.Store({
         id: payload.id,
         username: payload.username
       };
+      console.log("payload",payload)
       state.session.currentUser = currentUser;
     },
     ADD_SITE (state, payload) {
@@ -36,18 +38,63 @@ export const store = new Vuex.Store({
       state.sites.unshift(site); 
     },
     LOGOUT (state) {
-      state.session = {};
+      console.log("LOGOUT")
+      state.session = {currentUser: undefined};
     }
   },
   actions: {
     addSite (context) {
       context.commit('ADD_SITE');
     },
-    addCurrentUser (context) {
-      context.commit('ADD_CURRENT_USER');
+    logCurrentUserIn (context, user) {
+      console.log('logCurrentUserIn action',user);
+
+
+        return axios.post(`api/session`,
+
+          user
+        )
+          .then(res => {
+            console.log('addcurrenuser OK', res.data);
+            // window.currentUser='true';
+            context.commit('ADD_CURRENT_USER', res.data);
+            
+          })
+          .catch(e => {
+            console.log('addcurrenuser ERROR', e);
+            // debugger
+            this.errors.push(e.response.data[0]);
+          });
+      
+    },
+    signUserIn(context, user){
+      
+        return axios.post(`api/users`,
+          user
+        )
+          .then(res => {
+            context.commit('ADD_CURRENT_USER', res.data);
+            // alert(`logged in as ${res.data.username}`)
+          })
+          .catch(e => {
+            console.log(e);
+            this.errors.push(e.response.data[0]);
+          });
+      
     },
     logout (context) {
-      context.commit('LOGOUT');
+      return axios.delete(`api/session`)
+        .then(res => {
+          context.commit('LOGOUT');
+          // alert(`logged in as ${res.data.username}`)
+        })
+        .catch(e => {
+          console.log(e);
+          this.errors.push(e.response.data[0]);
+        });
+
+
+      
     }
   }
 });

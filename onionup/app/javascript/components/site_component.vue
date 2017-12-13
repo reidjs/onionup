@@ -46,7 +46,7 @@
       },
 
       login: function(){
-        axios.post(`http://localhost:3000/api/session`,{
+        axios.post(`api/session`,{
           user: {
             username: this.user.username,
             password: this.user.password
