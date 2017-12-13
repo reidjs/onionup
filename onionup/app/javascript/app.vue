@@ -34,15 +34,8 @@
   console.log("APP",window.currentUser);
 
   const routes = [
-    { path: '/', 
-      component: IndexComponent,
-      meta: { 
-        requiresAuth: true
-      }
-
-
-  },
-    { path: '/site', component: SiteShowComponent ,meta: { requiresAuth: true} },
+    { path: '/sites', component: IndexComponent,meta: { requiresAuth: true }},
+    { path: '/sites/:id', component: SiteShowComponent ,meta: { requiresAuth: true} },
     { path: '/login', component: LoginForm, meta: { requiresUnAuth: true} },
     { path: '/signup', component: SignupForm, meta: { requiresUnAuth: true} },
 ]
