@@ -46,9 +46,11 @@
             "password": this.user.password
           } 
         }
-      this.$store.dispatch('addCurrentUser',user)
-      console.log(this.$router);
-      this.$router.replace('/');
+      this.$store.dispatch('logCurrentUserIn',user).then( ()=>{
+        console.log("login redirect to '/'")
+        this.$router.push('/')})
+      console.log("user log in", user);
+      
       },
     },
 

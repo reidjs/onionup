@@ -2,18 +2,19 @@ import Vuex from 'vuex';
 import Vue from 'vue';
 Vue.use(Vuex);
 import axios from 'axios';
-// let getUser = undefined;
+let getUser = undefined;
 
-// if (window.currentUser) {
-//   getUser = window.currentUser;
-// }
+if (window.currentUser) {
+  console.log("BOOTSTRAP");
+  getUser = window.currentUser;
+}
 
 // console.log("STORE",window.currentUser);
 
 export const store = new Vuex.Store({
   state: {
     sites: {},
-    session: {currentUser: window.currentUser},
+    session: { currentUser:getUser},
     errors: {}
   },
   getters: {
@@ -37,6 +38,7 @@ export const store = new Vuex.Store({
       state.sites.unshift(site); 
     },
     LOGOUT (state) {
+      console.log("LOGOUT")
       state.session = {currentUser: undefined};
     }
   },
@@ -44,10 +46,10 @@ export const store = new Vuex.Store({
     addSite (context) {
       context.commit('ADD_SITE');
     },
-    addCurrentUser (context, user) {
-      console.log('addcurrentuser action',user);
+    logCurrentUserIn (context, user) {
+      console.log('logCurrentUserIn action',user);
 
-        axios.post(`http://localhost:3000/api/session`,
+        return axios.post(`http://localhost:3000/api/session`,
           user
         )
           .then(res => {
@@ -63,8 +65,34 @@ export const store = new Vuex.Store({
           });
       
     },
+    signUserIn(context, user){
+      
+        return axios.post(`http://localhost:3000/api/users`,
+          user
+        )
+          .then(res => {
+            context.commit('ADD_CURRENT_USER', res.data);
+            // alert(`logged in as ${res.data.username}`)
+          })
+          .catch(e => {
+            console.log(e);
+            this.errors.push(e.response.data[0]);
+          });
+      
+    },
     logout (context) {
-      context.commit('LOGOUT');
+      return axios.delete(`http://localhost:3000/api/session`)
+        .then(res => {
+          context.commit('LOGOUT');
+          // alert(`logged in as ${res.data.username}`)
+        })
+        .catch(e => {
+          console.log(e);
+          this.errors.push(e.response.data[0]);
+        });
+
+
+      
     }
   }
 });

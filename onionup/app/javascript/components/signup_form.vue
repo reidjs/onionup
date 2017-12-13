@@ -14,7 +14,7 @@
         <label class="label-password">Password </label>
         <div class="pw-submit">
           <input type="password" v-model="user.password">
-          <button v-on:click="login">SIGN UP</button>
+          <button v-on:click="signIn">SIGN UP</button>
         </div>
       </div>
        <p class="account-prompt">Already have account?
@@ -38,24 +38,17 @@
       }
     },
     methods:{
-      login: function() {
+      signIn: function() {
         let user = {
           "user": {
             "username": this.user.username,
             "password": this.user.password
           } 
         }
-        axios.post(`http://localhost:3000/api/users`,
-          user
-        )
-        .then(res => { 
-          this.$router.push('/');
-          // alert(`logged in as ${res.data.username}`)
-        })
-        .catch(e => {
-          console.log(e);
-          this.errors.push(e.response.data[0])
-        })
+        console.log("sign in", this);
+        
+        this.$store.dispatch('signUserIn',user)
+        this.$router.go('/');                                                     
       },
     }
   }

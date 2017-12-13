@@ -52,12 +52,16 @@
   })
 
 router.beforeEach((to, from, next) => {
-  console.log("before each",store.state.session)
+  console.log("before each", to , from)
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    if (!store.state.session ) {
-      console.log('not signed in redirect')
+    //  debugger
+    console.log("requires auth", 'Store:',store.state.session)
+    if (!store.state.session.currentUser ) {
+      console.log('not signed in redirect', store.state.session.currentUser, "values",Object.values(store.state.session),Object.keys(store.state.session))
+      console.log('not signed in redirect', store.state.session)
+      
       next({
         path: '/login',
         query: { redirect: to.fullPath }
@@ -69,8 +73,10 @@ router.beforeEach((to, from, next) => {
     // if yes, redirect to /.
   }else if(to.matched.some(record => record.meta.requiresUnAuth)){
       if (store.state.session.currentUser ) {
+        console.log("signed in redirect", store.state.session)
             next({
               path: '/',
+              query: { redirect: to.fullPath }
             })
           } else {
             next()
