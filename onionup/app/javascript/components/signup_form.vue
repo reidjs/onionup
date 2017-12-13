@@ -20,7 +20,6 @@
       </div>
        <p class="account-prompt">Already have account?
         <router-link v-on:click.native="clearErrors" to="/login">Click Here</router-link> log in!
-        <!--  -->
       </p>
     </div>
   </div>
