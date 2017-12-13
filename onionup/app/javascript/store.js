@@ -15,11 +15,12 @@ export const store = new Vuex.Store({
   state: {
     sites: {},
     session: { currentUser:getUser},
-    errors: {}
+    errors: null
   },
   getters: {
     sites: state => state.sites,
-    session: state => state.session
+    session: state => state.session,
+    errors: state => state.errors
   },
   mutations: {
     ADD_CURRENT_USER (state, payload) {
@@ -27,7 +28,6 @@ export const store = new Vuex.Store({
         id: payload.id,
         username: payload.username
       };
-      console.log("payload",payload)
       state.session.currentUser = currentUser;
     },
     ADD_SITE (state, payload) {
@@ -38,15 +38,24 @@ export const store = new Vuex.Store({
       state.sites.unshift(site); 
     },
     LOGOUT (state) {
-      console.log("LOGOUT")
       state.session = {currentUser: undefined};
+    },
+    SET_ERRORS (state, payload) {
+      state.errors = payload;
+    },
+    CLEAR_ERRORS (state) {
+      state.errors = null;
     }
   },
   actions: {
     addSite (context) {
       context.commit('ADD_SITE');
     },
+    clearErrors (context) {
+      context.commit('CLEAR_ERRORS');
+    },
     logCurrentUserIn (context, user) {
+      context.commit('CLEAR_ERRORS');
       console.log('logCurrentUserIn action',user);
 
 
@@ -63,12 +72,12 @@ export const store = new Vuex.Store({
           .catch(e => {
             console.log('addcurrenuser ERROR', e);
             // debugger
-            this.errors.push(e.response.data[0]);
+            context.commit('SET_ERRORS', e.response.data[0]);
           });
       
     },
     signUserIn(context, user){
-      
+        context.commit('CLEAR_ERRORS');
         return axios.post(`api/users`,
           user
         )
@@ -78,7 +87,7 @@ export const store = new Vuex.Store({
           })
           .catch(e => {
             console.log(e);
-            this.errors.push(e.response.data[0]);
+            context.commit('SET_ERRORS', e.response.data[0]);
           });
       
     },
@@ -90,7 +99,7 @@ export const store = new Vuex.Store({
         })
         .catch(e => {
           console.log(e);
-          this.errors.push(e.response.data[0]);
+          context.commit('SET_ERRORS', e.response.data[0]);
         });
 
 
