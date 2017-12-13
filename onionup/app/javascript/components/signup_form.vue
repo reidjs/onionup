@@ -27,7 +27,6 @@
 </template>
 
 <script>
-  import axios from 'axios';
   export default {
     name: 'signup-form',
     data() {

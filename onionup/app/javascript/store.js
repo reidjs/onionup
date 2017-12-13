@@ -48,8 +48,12 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    addSite (context) {
+    addSite (context, site) {
+      context.commit('CLEAR_ERRORS');
       context.commit('ADD_SITE');
+
+        // return axios.post(`api/sites`, site)
+        //   .then()
     },
     clearErrors (context) {
       context.commit('CLEAR_ERRORS');
