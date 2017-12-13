@@ -3,6 +3,7 @@
     <h1>Site URL here</h1>
     <LineChart 
     :chartData="datasets"
+    :options="options"
   >
     </LineChart>
   </div>
@@ -22,7 +23,16 @@
             backgroundColor: '#f87979',
             data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
           }
-        ]
+        ],
+        options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+        } 
       }
     },
     components: {

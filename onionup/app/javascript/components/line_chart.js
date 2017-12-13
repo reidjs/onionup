@@ -4,18 +4,9 @@ export default {
   extends: Line,
   mixins: [mixins.reactiveProp],
   props: ['chartData', 'options'],
-  
   mounted () {
-    // let datasets = 
-    //   [
-    //     {
-    //       label: 'GitHub Commits',
-    //       backgroundColor: '#f87979',
-    //       data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
-    //     }
-    //   ]
     let data = this.chartData
-    // console.log(data)
-    this.renderChart({datasets: data}, this.options);
+    let options = this.options
+    this.renderChart({datasets: data}, options);
   }
 }
