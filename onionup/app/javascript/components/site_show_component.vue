@@ -1,42 +1,14 @@
 <template>
-  <div class="site">
-    <p><strong>in site show</strong></p>
-    <p></p>
-  </div>
+  <LineChart></LineChart>
 </template>
 
 <script>
-  import axios from 'axios';
+  import LineChart from './line_chart'
+  
   export default {
-    name: 'SiteShowComponent',
-    // props: ['siteProp'],
-    data() {
-      return{
-      }
-    },
-
-    created(){
-      
-    },
-
-    methods:{
-      
-    },
-    
-    computed: {
-      site: function(){
-        
-        return this.siteProp
-      },
-      info: function(){
-        return this.user.username+" "+this.user.password;
-        
-      }
+    name: 'graph',
+    components: {
+      LineChart 
     }
   }
 </script>
-
-<style scoped>
-
-  
-</style>
