@@ -18,6 +18,7 @@
           <button v-on:click="login">LOG IN</button>    
         </div>
       </div>
+      <button v-on:click="loginDemoUser">Demo User</button>
        <p class="account-prompt">Don't have an account?
         <router-link v-on:click.native="clearErrors" to="/signup">Click Here</router-link> to create one!
       </p> 
@@ -51,11 +52,18 @@
             "password": this.user.password
           } 
         }
-      this.$store.dispatch('logCurrentUserIn',user).then( ()=>{
-        console.log("login redirect to '/'")
+        this.$store.dispatch('logCurrentUserIn',user).then( ()=>{
         this.$router.push('/')})
-      console.log("user log in", user);
-      
+      },
+      loginDemoUser: function() {
+        let user = {
+          "user": {
+            "username": 'DemoUser',
+            "password": 'asdfasdf'
+          } 
+        }
+        this.$store.dispatch('logCurrentUserIn',user).then( ()=>{
+        this.$router.push('/')})
       },
       clearErrors: function() {
         this.$store.dispatch('clearErrors');

@@ -15,12 +15,11 @@
         <label class="label-password">Password </label>
         <div class="pw-submit">
           <input type="password" @keydown.enter="login" v-model="user.password">
-          <button v-on:click="login">SIGN UP</button>
+          <button v-on:click="signIn">SIGN UP</button>
         </div>
       </div>
        <p class="account-prompt">Already have account?
         <router-link v-on:click.native="clearErrors" to="/login">Click Here</router-link> log in!
-        <!--  -->
       </p>
     </div>
   </div>

@@ -18,8 +18,7 @@
 <script>
   import Vue from 'vue';
   import VueRouter from 'vue-router';
-  import SessionForm from './components/session_form'
-  import Sidebar from './components/sidebar'
+  import Sidebar from './components/sidebar';
   import IndexComponent from './components/index_component'
   import SiteShowComponent from './components/site_show_component';
   import LoginForm from './components/login_form'
