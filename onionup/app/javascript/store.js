@@ -49,7 +49,9 @@ export const store = new Vuex.Store({
     logCurrentUserIn (context, user) {
       console.log('logCurrentUserIn action',user);
 
-        return axios.post(`http://localhost:3000/api/session`,
+
+        return axios.post(`api/session`,
+
           user
         )
           .then(res => {
@@ -67,7 +69,7 @@ export const store = new Vuex.Store({
     },
     signUserIn(context, user){
       
-        return axios.post(`http://localhost:3000/api/users`,
+        return axios.post(`api/users`,
           user
         )
           .then(res => {
@@ -81,7 +83,7 @@ export const store = new Vuex.Store({
       
     },
     logout (context) {
-      return axios.delete(`http://localhost:3000/api/session`)
+      return axios.delete(`api/session`)
         .then(res => {
           context.commit('LOGOUT');
           // alert(`logged in as ${res.data.username}`)
