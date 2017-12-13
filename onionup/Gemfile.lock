@@ -240,7 +240,7 @@ DEPENDENCIES
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   figaro
-  font-awesome-rails (~> 4.7, >= 4.7.0.2)
+  font-awesome-rails
   guard-livereload (~> 2.5)
   guard-rspec
   jbuilder (~> 2.5)

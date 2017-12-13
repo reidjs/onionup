@@ -1,42 +1,53 @@
 <template>
-  <div class="site">
-    <p><strong>in site show</strong></p>
-    <p></p>
+  <div>
+    <h1>Site URL here</h1>
+    <LineChart 
+      :datasets="datasets"
+      :options="options"
+    >
+    </LineChart>
+    <button v-on:click="push">Add data!</button>
   </div>
 </template>
 
 <script>
-  import axios from 'axios';
+  //UPDATING CHART DATA (see last comment)
+  // https://github.com/apertureless/vue-chartjs/issues/44
+  import LineChart from './line_chart'
+  let data = [20, 10, 30]
   export default {
-    name: 'SiteShowComponent',
-    // props: ['siteProp'],
+    name: 'graph',
+    methods: {
+      push: function() {
+        // console.log(data)
+        data.push(50)
+        
+        console.log(data)
+      }
+    },
     data() {
-      return{
+      return {
+        datasets:
+        [
+          {
+            label: 'Stuff',
+            backgroundColor: '#f87979',
+            data: data
+          }
+        ],
+        options: {
+          scales: {
+              xAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+        } 
       }
     },
-
-    created(){
-      
-    },
-
-    methods:{
-      
-    },
-    
-    computed: {
-      site: function(){
-        
-        return this.siteProp
-      },
-      info: function(){
-        return this.user.username+" "+this.user.password;
-        
-      }
+    components: {
+      LineChart 
     }
   }
 </script>
-
-<style scoped>
-
-  
-</style>
