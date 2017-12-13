@@ -47,7 +47,7 @@ export const store = new Vuex.Store({
     addCurrentUser (context, user) {
       console.log('addcurrentuser action',user);
 
-        axios.post(`http://localhost:3000/api/session`,
+        axios.post(`https://localhost:3000/api/session`,
           user
         )
           .then(res => {
