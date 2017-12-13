@@ -45,24 +45,11 @@
             "password": this.user.password
           } 
         }
-<<<<<<< HEAD
+
         console.log("sign in", this);
         
-        this.$store.dispatch('signUserIn',user)
-        this.$router.go('/');                                                     
-=======
-        axios.post(`api/users`,
-          user
-        )
-        .then(res => { 
-          this.$router.push('/');
-          // alert(`logged in as ${res.data.username}`)
-        })
-        .catch(e => {
-          console.log(e);
-          this.errors.push(e.response.data[0])
-        })
->>>>>>> d1fb76cc18966c46e2280df6cbca5de03175c9ae
+        this.$store.dispatch('signUserIn',user).then(()=>this.$router.go('/'));                                                     
+
       },
     }
   }
