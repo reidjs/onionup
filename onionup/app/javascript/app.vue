@@ -38,7 +38,7 @@
     
     // { path: '/', component: SignupForm, meta: { requiresUnAuth: true} },
     { path: '/', component: IndexComponent,meta: { requiresAuth: true }},
-    { path: '/sites/:id', component: SiteShowComponent ,meta: { requiresAuth: true} },
+    { path: '/sites/:id', component: SiteShowComponent , meta: { requiresAuth: true}, props: true },
     { path: '/login', component: LoginForm, meta: { requiresUnAuth: true} },
     { path: '/signup', component: SignupForm, meta: { requiresUnAuth: true} },
 ]
@@ -85,6 +85,9 @@ router.beforeEach((to, from, next) => {
     },
     session: function() {
       return this.$store.getters.session
+    },
+    pings: function() {
+      return this.$store.getters.pings
     }
   },
   store,

@@ -43,20 +43,26 @@ div.auth-form {
     width: 200px;
     padding-left: 10px;
   }
-  button {
-    text-align: center;
-    width: 100px;
-    background: $orange;
-    color: white;
-    height: 100%;
-    margin-left: 15px;
-  }
   ul {
     align-self:center;
     margin: 20px;
   }
 }
 
+div#demo-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 32px;
+}
+
+button {
+  text-align: center;
+  width: 100px;
+  background: $orange;
+  color: white;
+  height: 100%;
+  margin-left: 15px;
+}
 .auth-inner-wrapper{
   margin: 275px auto auto auto;
   width: 625px;

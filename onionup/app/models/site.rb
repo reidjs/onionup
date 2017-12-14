@@ -1,6 +1,8 @@
 require 'socksify/http'
 
 class Site < ApplicationRecord
+  validates :url, presence: true
+  
   belongs_to :user
   has_many :pings
 
