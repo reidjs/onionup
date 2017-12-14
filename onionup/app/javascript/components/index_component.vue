@@ -81,6 +81,7 @@
     components: {
       Site
     },
+    
     computed: {
       siteKeys(){
         return Object.keys(this.$store.state.sites)
@@ -106,3 +107,4 @@
   }
 }
 </script>
+

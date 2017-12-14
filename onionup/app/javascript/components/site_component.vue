@@ -27,9 +27,7 @@
       // console.log(this.pingProps[this.site.ping_ids[site.ping_ids.length-1]].status)
       
       return{
-        status: false,
-        
-        
+        status: true,
        
       }
     },
