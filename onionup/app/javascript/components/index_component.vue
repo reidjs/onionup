@@ -14,6 +14,12 @@
           <option value="all">All history</option>
         </select>
       </div>
+      <div class="pinger-holder">
+        <transition name="fade">
+          <button class='pinger' v-on:click="pingSites" v-if="!loading">pinger</button>
+          <h1 v-else class="loader"></h1>
+        </transition>
+      </div>
       <div class="cards-wrapper">
         <ul v-if="siteKeys && siteKeys.length">
           <li v-for="key in siteKeys" v-bind:key="key">
@@ -25,7 +31,8 @@
           </li>
         </ul>
       </div>
-      <button v-on:click="getSite">get site id 1</button>
+
+     
     </div>
     <br/>  
   </div>
@@ -40,8 +47,15 @@
       components: {
         Site
       },
+      data(){
+        return{
+          loading:false
+        }
+      },
+
       computed: {
         siteKeys(){
+          console.log(this)
           return Object.keys(this.$store.state.sites)
         },
         pingKeys(){
@@ -58,9 +72,13 @@
       this.$store.dispatch("getSites")
     },
     methods:{
-      getSite: function(){
+    getSite: function(){
         this.$store.dispatch("getSite", 1)
     },
+    pingSites: function(){
+        this.loading = true;
+        this.$store.dispatch("pingSites").then(()=> this.loading = false)
+    }
       
   }
 }
