@@ -7,6 +7,18 @@ export default {
   props: ['chartData', 'options'],
   mounted () {
     // console.log(this.data)
-    this.renderChart(this.chartData,this.options)
+    let chartData = this.chartData
+    console.log('linechart', chartData)
+    console.log('data:', chartData)
+    this.renderChart({
+      labels: ['dates go here'],
+      datasets: [
+        {
+          label: 'Response Time',
+          backgroundColor: '#f87979',
+          data: chartData
+        }
+      ]
+    })
   }
 }

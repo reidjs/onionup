@@ -3,7 +3,7 @@
     <h1>Site URL here</h1>
     <!-- <h2 v-if="loading">Loading</h2> -->
     <LineChart
-      :chartData="chartData"
+      :chartData="pings"
       :options="options"
       :test="pings"
     >
@@ -20,7 +20,7 @@
   //SHould show spinner until site data is loaded in
   import LineChart from './line_chart'
   import values from 'lodash/values'
-  let data = [20, 10, 30]
+  // let data = [20, 10, 30]
   // let loading = true
   export default {
     name: 'graph',
@@ -39,32 +39,37 @@
       this.$store.dispatch("clearPings");
       this.$store.dispatch("getSite", this.id);
       this.$store.dispatch("pingSite", this.id);
+      console.log(this.$store.state.pings)
+      console.log(this.pings)
       // console.log(this.$store.state)
       // console.log(this.$store.state.pings)
     },
     data() {
-      let data = this.$store.state.pings;
+      let data = values(this.$store.state.pings);
+      // this.pings()
+      console.log(data)
       return {
-        chartData: {
-          datasets:
-          [
-            {
-              label: 'Ping Response Time',
-              backgroundColor: '#f87979',
-              data: [4,5,6]
-            }
-          ]
-        },
-        options: {
-          scales: {
-              xAxes: [{
-                  ticks: {
-                      beginAtZero:true
-                  }
-              }]
-          }
-        }
-        // test: this.$store.state.pings
+      //   chartData: {
+      //     datasets:
+      //     [
+      //       {
+      //         label: 'Ping Response Time',
+      //         backgroundColor: '#f87979',
+      //         data: data
+      //       }
+      //     ]
+      //   },
+      //   options: {
+      //     scales: {
+      //         xAxes: [{
+      //             ticks: {
+      //                 beginAtZero:true
+      //             }
+      //         }]
+      //     }
+      //   }
+      //   // test: this.$store.state.pings
+      // }
       }
     },
     components: {
@@ -72,8 +77,22 @@
     },
     computed: {
       pings: function(){
-        return this.$store.state.pings
+        // return this.$store.state.pings
+        // return values(this.$store.state.pings)
         // loading = false;
+        let pings = this.$store.state.pings
+        if (pings === undefined) 
+          return []
+        let responseTimes = []
+        console.log(values(pings))
+        values(pings).map(ping => {
+          if (ping.responseTime === null)
+            responseTimes.push(0)
+          else
+            responseTimes.push(ping.responseTime)
+        })
+        console.log('res', responseTimes)
+        return responseTimes
       },
       sites: function(){
         return this.$store.state.sites
