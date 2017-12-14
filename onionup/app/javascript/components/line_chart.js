@@ -6,23 +6,21 @@ export default {
   mixins: [mixins.reactiveProp],
   props: ['chartData', 'options', 'labels'],
   mounted () {
+    debugger
     // console.log(this.data)
     let chartData = this.chartData;
-    console.log('chartdata', this.chartData)
+    console.log('chartdata', chartData)
     // let chartData = [5,6,7,8]
     let labels = this.labels;
-
+    // if (chartData === undefined)
+      // chartData = [];
     // console.log('linechart', chartData)
     // console.log('data:', chartData)
-    this.renderChart({
-      labels: labels,
-      datasets: [
-        {
-          label: 'Response Time',
-          backgroundColor: '#f87979',
-          data: chartData
-        }
-      ]
-    })
+    this.renderChart({labels: labels, datasets: chartData.datasets})
+  },
+  watch: { 
+    chartData: function(newData, oldData){
+      console.log('new chartData received', newData, oldData)   
+    }
   }
 }

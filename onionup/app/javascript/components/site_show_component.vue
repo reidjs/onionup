@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Site URL here</h1>
     <!-- <h2 v-if="loading">Loading</h2> -->
     <LineChart
       :chartData="pings"
@@ -47,7 +46,9 @@
                       beginAtZero:false
                   }
               }]
-          }
+          },
+            response: false,
+            maintainAspectRatio: true
         },
         labels: [0, 1, 2, 3, 4]
       //   chartData: {
@@ -82,7 +83,7 @@
         // return values(this.$store.state.pings)
         // loading = false;
         let pings = this.$store.state.pings
-        console.log(pings)
+        console.log('trying to send pings', pings)
         if (pings === undefined) 
           return []
         let responseTimes = []
@@ -95,10 +96,24 @@
         })
         // console.log('res', responseTimes)
         console.log('sending', responseTimes)
-        return responseTimes
+        // return responseTimes
+        return 
+        {
+          datasets:
+          [
+            {
+              label: 'Ping Response Time',
+              backgroundColor: '#f87979',
+              data: responseTimes
+            }
+          ]
+        }
       },
       sites: function(){
         return this.$store.state.sites
+      },
+      siteURL: function(){
+        return this.$store.state.sites[this.id]
       }
     }
   }
