@@ -63,7 +63,6 @@
       lastPing: function(){
         const ping = this.siteProp.ping_ids[this.siteProp.ping_ids.length - 1];
         const stat = this.pingProp[ping]
-        console.log(stat)
         return stat;
       }
     }

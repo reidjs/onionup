@@ -58,8 +58,8 @@ div#demo-button {
 button {
   text-align: center;
   width: 100px;
-  background: $orange;
-  color: white;
+  // background: $orange;
+  background-color: $theme-color !important;
   height: 100%;
   margin-left: 15px;
 }
@@ -79,7 +79,18 @@ button {
 .pw-submit{
   width: 100%;
   display: flex;
+  button{
+    background-color:$orange;
+    border-radius: 4px;
+  }
 }
+
+#demo-button{
+  button{
+    border-radius: 4px;
+  }
+}
+
 
 .label-username{
   width: 100px;

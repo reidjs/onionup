@@ -27,11 +27,21 @@
   import SignupForm from './components/signup_form'
   import Vuex from 'vuex';
   import Vuetify from 'vuetify';
+  import VeeValidate from 'vee-validate';
+
+
   
   import('../../node_modules/vuetify/dist/vuetify.css');
   Vue.use(Vuetify);
   Vue.use(VueRouter);
   Vue.use(Vuex);
+ 
+
+  const config = {
+    errorBagName: 'frontendErrors', // change if property conflicts
+  }
+
+   Vue.use(VeeValidate, config);
 
   import { store } from './store';
 
