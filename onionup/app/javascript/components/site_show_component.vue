@@ -1,12 +1,15 @@
 <template>
-  <div>
-    <h1>Site URL here</h1>
-    <LineChart 
-      :datasets="datasets"
-      :options="options"
-    >
-    </LineChart>
-    <button v-on:click="push">Add data!</button>
+  <div class="site-show-container">
+    <h1>{{siteURL}}</h1>
+    <!-- <h2 v-if="loading">Loading</h2> -->
+    <div id="show-chart">
+      <LineChart
+        :pings="pings"
+        :options="options"
+      >
+      </LineChart>
+    </div>
+    <h1>Received: {{pings}}</h1>
   </div>
 </template>
 
@@ -14,58 +17,81 @@
   //UPDATING CHART DATA (see last comment)
   // https://github.com/apertureless/vue-chartjs/issues/44
   // debugger
+  //SHould show spinner until site data is loaded in
   import LineChart from './line_chart'
-  let data = [20, 10, 30]
+  import values from 'lodash/values'
+  // let data = [20, 10, 30]
+  // let loading = true
   export default {
     name: 'graph',
-    methods: {
-      push: function() {
-        // console.log(data)
-        data.push(50)
-        
-        // console.log(data)
-      }
-    },
     props:['id'],
-    created() {
-      this.$store.dispatch("clearSites")
-      this.$store.dispatch("clearPings")
+    mounted() {
+      // console.log('mounted')
+      this.$store.dispatch("clearSites");
+      this.$store.dispatch("clearPings");
+      this.$store.dispatch("getSite", this.id);
+      this.$store.dispatch("pingSite", this.id);
+      // console.log(this.$store.state.pings)
+      // console.log(this.pings)
+      // console.log(this.$store.state)
+      // console.log(this.$store.state.pings)
     },
     data() {
-      // console.log('id: ', this.id, 'asdf') 
-      // this.$store.dispatch('getSite', this.id)
-      console.log('site data', this.$store.state.sites[this.id])
-      console.log('ping data', this.$store.state.sites[this.id])
+      let data = values(this.$store.state.pings);
+      // this.pings()
+      // console.log(data)
       return {
-        datasets:
-        [
-          {
-            label: 'Stuff',
-            backgroundColor: '#f87979',
-            data: data
-          }
-        ],
         options: {
           scales: {
               xAxes: [{
                   ticks: {
-                      beginAtZero:true
+                      beginAtZero:false
                   }
               }]
-          }
-        } 
+          },
+          responsive: true,
+          maintainAspectRatio: false
+        }
+
       }
     },
-    
     components: {
       LineChart 
     },
     computed: {
-      pings(){
-        return this.$store.state.pings
+      pings: function(){
+        let pings = this.$store.state.pings
+        // console.log('trying to send pings', pings)
+        if (pings === undefined) 
+          return []
+        let responseTimes = []
+        let labels = []
+        // console.log(values(pings))
+        values(pings).map(ping => {
+          if (ping.responseTime === null) {
+            responseTimes.push(0)
+          }
+          else {
+            responseTimes.push(ping.responseTime)
+          }
+          labels.push(ping.created_at)
+        })
+        // console.log('res', responseTimes)
+        // console.log('sending', responseTimes)
+        return {
+          responseTimes,
+          labels
+        }
       },
-      sites(){
+      sites: function(){
         return this.$store.state.sites
+      },
+      siteURL: function(){
+        const sites = values(this.$store.state.sites)
+        if (sites[0])
+          return sites[0].url
+        else 
+          return "Loading site URL"
       }
     }
   }

@@ -82,7 +82,7 @@
     data(){
       return{
         dialog: false,
-        loading: true,
+        loading: false,
 
 
       }
