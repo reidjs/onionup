@@ -78,9 +78,13 @@
   import Site from './site_component';
 
   export default {
+    
     data(){
       return{
-        dialog: false
+        dialog: false,
+        loading: true,
+
+
       }
     },
 
@@ -103,18 +107,20 @@
         return this.$store.state.sites
       }
     },
+
     created(){
       this.$store.dispatch("getSites")
     },
+  
     methods:{
-    getSite: function(){
-        this.$store.dispatch("getSite", 1)
-    },
-    pingSites: function(){
-        this.loading = true;
-        this.$store.dispatch("pingSites").then(()=> this.loading = false)
-    }
-      
+      getSite: function(){
+          this.$store.dispatch("getSite", 1)
+      },
+      pingSites: function(){
+          this.loading = true;
+          this.$store.dispatch("pingSites").then(()=> this.loading = false)
+      }
+        
   }
 }
 </script>
