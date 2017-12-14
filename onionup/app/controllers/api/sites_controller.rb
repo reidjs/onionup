@@ -34,6 +34,12 @@ class Api::SitesController < ApplicationController
   def create
     @site = Site.new(site_params)
     @site.user_id = current_user.id
+    al = params[:site][:alias]
+    if al.nil?
+      @site.alias = ""
+    else
+      @site.alias = al
+    end
     if @site.save
       # render json: @site
       render "api/sites/show"
@@ -56,6 +62,6 @@ class Api::SitesController < ApplicationController
   private
 
   def site_params
-    params.require(:site).permit(:url, :alias)
+    params.require(:site).permit(:url)
   end
 end
