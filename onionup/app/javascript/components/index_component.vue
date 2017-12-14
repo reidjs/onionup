@@ -55,8 +55,12 @@
             <v-dialog v-model="dialog" max-width="500px">
               <v-card>
               <v-card-text>
-                  <v-text-field label="Add a Site"></v-text-field>
-                  
+                <p :class= "{'control': true }">
+                  <!-- <v-text-field v-validate="'url'" :class="{ 'input': true, 'is-danger': errors.has('url') }" name="url" label="Add a Site" type="text"></v-text-field>
+                  <span v-show="errors.has('url')" class="help is-danger">{{ errors.first('url') }}</span> -->
+                  <v-text-field v-validate="'url:require_protocol'" data-vv-as="field" :class="{'input': true, 'is-danger': frontendErrors.has('url_field') }" name="url_field" type="text" placeholder="url"></v-text-field> 
+                  <span v-show="frontendErrors.has('url_field')" class="help is-danger">{{ frontendErrors.first('url_field') }}</span>
+                </p>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
