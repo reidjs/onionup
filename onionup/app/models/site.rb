@@ -1,6 +1,8 @@
 require 'socksify/http'
 
 class Site < ApplicationRecord
+  validates :url, presence: true
+  
   belongs_to :user
   has_many :pings
 
@@ -10,7 +12,6 @@ class Site < ApplicationRecord
       begin
         puts "started socks request!"
         Net::HTTP.SOCKSProxy(ENV['TOR_IP'], 9050).start(uri.host, uri.port) do |http|
-          puts http
           return true
         end
           # p http.get(uri.path)

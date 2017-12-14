@@ -9,19 +9,21 @@
       </ul>
       <div class="form-name form">
         <label class="label-username">Username </label>
-        <input type="text" @keydown.enter="login" v-model="user.username">
+        <input type="text" v-on:keyup="clearErrors" @keydown.enter="login" v-model="user.username">
       </div>
       <div class="form-password form">
         <label class="label-password">Password </label>
         <div class="pw-submit">
-          <input type="password" @keydown.enter="login" v-model="user.password">
+          <input type="password" v-on:keyup="clearErrors" @keydown.enter="login" v-model="user.password">
           <button v-on:click="login">LOG IN</button>    
         </div>
       </div>
-      <button v-on:click="loginDemoUser">Demo User</button>
-       <p class="account-prompt">Don't have an account?
-        <router-link v-on:click.native="clearErrors" to="/signup">Click Here</router-link> to create one!
-      </p> 
+      <div id="demo-button">
+        <p class="account-prompt">Don't have an account?
+          <router-link v-on:click.native="clearErrors" to="/signup">Click Here</router-link> to create one!
+        </p> 
+        <button v-on:click="loginDemoUser">Demo User</button>
+      </div>
     </div>
   </div>  
 </template>

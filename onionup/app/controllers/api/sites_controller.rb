@@ -34,27 +34,29 @@ class Api::SitesController < ApplicationController
   def create
     @site = Site.new(site_params)
     @site.user_id = current_user.id
+    al = params[:site][:alias]
+    if al.nil?
+      @site.alias = ""
+    else
+      @site.alias = al
+    end
     if @site.save
-      render json: @site
-    #  render "api/events/show"
+      # render json: @site
+      render "api/sites/show"
     else
       render json: @site.errors.full_messages
-      return
     end
-    # fail
   end
 
   def destroy
     @site = Site.find_by(id: params[:id])
     if !@site
-      render
-      return
+      render json {["no such site"]}
     elsif @site.destroy
-      redirect_to sites_url
-      return
+      render json {[success]}
     else
       flash.now[:errors] = @site.errors.full_messages
-      return
+      render @site.errors.full_messages
     end
   end
   private
