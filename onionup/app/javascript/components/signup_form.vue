@@ -50,12 +50,7 @@
             "password": this.user.password
           } 
         }
-      
-
-        console.log("sign in", this);
-        
-        this.$store.dispatch('signUserIn',user).then((e)=>e? this.$router.push('/') : undefined);                                                     
-
+        this.$store.dispatch('signUserIn',user).then((e)=>e? this.$router.push('/') : undefined);                                            
       },
       clearErrors: function() {
         this.$store.dispatch('clearErrors');
