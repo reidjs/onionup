@@ -40,6 +40,8 @@ export const store = new Vuex.Store({
     },
     LOGOUT (state) {
       state.session = {currentUser: undefined};
+      state.sites = {};
+      state.pings = {};
     },
     SET_ERRORS (state, payload) {
       state.errors = payload;
