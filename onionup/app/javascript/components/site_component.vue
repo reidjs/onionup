@@ -13,7 +13,11 @@
     <p id="response">{{site.ping_ids.length}}</p>
     <p id="unit">ms</p>
     <p> Site ID: {{site.id}}</p>
-
+    
+   
+    
+    
+    
   </div>
 </template>
 
@@ -52,11 +56,6 @@
       ping: function(){
         return this.pingProp
       },
-
-      info: function(){
-        return this.user.username+" "+this.user.password;
-        
-      }
     }
   }
 </script>
