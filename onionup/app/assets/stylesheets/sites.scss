@@ -27,3 +27,8 @@
 #unit{
   margin: auto 0 10px 0;
 }
+// need important tags because chartjs has inline styles
+canvas#line-chart {
+  height: 500px !important; 
+  width: 800px !important;
+}

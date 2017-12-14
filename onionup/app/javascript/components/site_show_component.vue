@@ -1,12 +1,13 @@
 <template>
-  <div>
+  <div class="site-show-container">
     <!-- <h2 v-if="loading">Loading</h2> -->
-    <LineChart
-      :pings="pings"
-      :options="options"
-      :labels="labels"
-    >
-    </LineChart>
+    <div id="show-chart">
+      <LineChart
+        :pings="pings"
+        :options="options"
+      >
+      </LineChart>
+    </div>
     <h1>Received: {{pings}}</h1>
   </div>
 </template>
@@ -37,7 +38,7 @@
     data() {
       let data = values(this.$store.state.pings);
       // this.pings()
-      console.log(data)
+      // console.log(data)
       return {
         options: {
           scales: {
@@ -47,31 +48,10 @@
                   }
               }]
           },
-            response: false,
-            maintainAspectRatio: true
-        },
-        labels: [0, 1, 2, 3, 4]
-      //   chartData: {
-      //     datasets:
-      //     [
-      //       {
-      //         label: 'Ping Response Time',
-      //         backgroundColor: '#f87979',
-      //         data: data
-      //       }
-      //     ]
-      //   },
-      //   options: {
-      //     scales: {
-      //         xAxes: [{
-      //             ticks: {
-      //                 beginAtZero:true
-      //             }
-      //         }]
-      //     }
-      //   }
-      //   // test: this.$store.state.pings
-      // }
+          responsive: true,
+          maintainAspectRatio: false
+        }
+
       }
     },
     components: {
@@ -79,35 +59,28 @@
     },
     computed: {
       pings: function(){
-        // return this.$store.state.pings
-        // return values(this.$store.state.pings)
-        // loading = false;
         let pings = this.$store.state.pings
-        console.log('trying to send pings', pings)
+        // console.log('trying to send pings', pings)
         if (pings === undefined) 
           return []
         let responseTimes = []
+        let labels = []
         // console.log(values(pings))
         values(pings).map(ping => {
-          if (ping.responseTime === null)
+          if (ping.responseTime === null) {
             responseTimes.push(0)
-          else
+          }
+          else {
             responseTimes.push(ping.responseTime)
+          }
+          labels.push(ping.created_at)
         })
         // console.log('res', responseTimes)
-        console.log('sending', responseTimes)
-        return responseTimes
-        // return 
-        // {
-        //   datasets:
-        //   [
-        //     {
-        //       label: 'Ping Response Time',
-        //       backgroundColor: '#f87979',
-        //       data: responseTimes
-        //     }
-        //   ]
-        // }
+        // console.log('sending', responseTimes)
+        return {
+          responseTimes,
+          labels
+        }
       },
       sites: function(){
         return this.$store.state.sites
