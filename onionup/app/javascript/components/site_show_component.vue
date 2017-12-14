@@ -3,7 +3,7 @@
     <h1>Site URL here</h1>
     <!-- <h2 v-if="loading">Loading</h2> -->
     <LineChart
-      :datasets="datasets"
+      :chartData="chartData"
       :options="options"
       :test="pings"
     >
@@ -45,29 +45,27 @@
     data() {
       let data = this.$store.state.pings;
       return {
-        data
+        chartData: {
+          datasets:
+          [
+            {
+              label: 'Ping Response Time',
+              backgroundColor: '#f87979',
+              data: [4,5,6]
+            }
+          ]
+        },
+        options: {
+          scales: {
+              xAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+        }
+        // test: this.$store.state.pings
       }
-      //   data: {
-      //     datasets:
-      //     [
-      //       {
-      //         label: 'Ping Response Time',
-      //         backgroundColor: '#f87979',
-      //         data: data
-      //       }
-      //     ],
-      //     options: {
-      //       scales: {
-      //           xAxes: [{
-      //               ticks: {
-      //                   beginAtZero:true
-      //               }
-      //           }]
-      //       }
-      //     }
-      //     // test: this.$store.state.pings
-      //   }
-      // }
     },
     components: {
       LineChart 
