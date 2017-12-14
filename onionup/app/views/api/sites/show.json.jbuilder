@@ -1,14 +1,12 @@
 json.sites do 
-
-        json.set! @site.id do
-            json.id @site.id
-            json.url @site.url
-            json.alias @site.alias
-            json.ping_ids do
-                json.array! @site.pings.map{|ping| ping.id}
-            end
+    json.set! @site.id do
+        json.id @site.id
+        json.url @site.url
+        json.alias @site.alias
+        json.ping_ids do
+            json.array! @site.pings.map{|ping| ping.id}
         end
-    
+    end   
 end
 pings = @site.pings
 json.pings do 

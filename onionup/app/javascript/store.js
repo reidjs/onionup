@@ -168,5 +168,16 @@ export const store = new Vuex.Store({
     .catch(e => {
       // console.log("didnt post site")
     })
+  },
+  pingSite(context, siteId){
+    return axios.get(`api/ping/${siteId}`)
+      .then(res => {
+        context.commit('ADD_SITES', res.data.site);
+        context.commit('ADD_PINGS', res.data.pings); 
+      })
+      .catch(e => {
+        // console.log('failed to get ping request');
+
+      })      
   }
 });

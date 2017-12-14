@@ -12,7 +12,7 @@ class Api::SitesController < ApplicationController
         ping.status = false;
     end
     ping.save! ############################## remove
-    '/api/sites/show.json.jbuilder'
+    render '/api/sites/show.json.jbuilder'
   end
 
   def index_ping

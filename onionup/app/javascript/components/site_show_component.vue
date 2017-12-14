@@ -27,9 +27,13 @@
       }
     },
     props:['id'],
-    created() {
-      this.$store.dispatch("clearSites")
-      this.$store.dispatch("clearPings")
+    mounted() {
+      console.log('mounted')
+      this.$store.dispatch("clearSites");
+      this.$store.dispatch("clearPings");
+      this.$store.dispatch("getSite", this.id);
+      this.$store.dispatch("getPings", this.id);
+
     },
     data() {
       // console.log('id: ', this.id, 'asdf') 
