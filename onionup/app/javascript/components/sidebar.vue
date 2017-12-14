@@ -2,7 +2,8 @@
   <div v-if="currentUser" class="sidebar">
     <div class="sidebar-logo">
       <p class="logo-image">
-        ONION UP
+        <router-link to="/">ONION UP</router-link>
+        
       </p>
     </div>
     <div>
@@ -31,36 +32,7 @@
         <div class="menu-inner-wrapper">
           <p>
             <i class="fa fa-bar-chart" aria-hidden="true"></i>
-            <router-link to="/">Root</router-link>
-            
-            <!-- <i id="arrow" class="fa fa-angle-up" aria-hidden="true"></i> -->
-          </p>
-        </div>
-      </div>
-      <div class="sidebar-menu">
-        <div class="menu-inner-wrapper">
-          <p>
-            <i class="fa fa-bar-chart" aria-hidden="true"></i>
-            <router-link to="/site">Sites</router-link>
-            <!-- <i id="arrow" class="fa fa-angle-up" aria-hidden="true"></i> -->
-          </p>
-        </div>
-      </div>
-      <div class="sidebar-menu">
-        <div class="menu-inner-wrapper">
-          <p>
-            <i class="fa fa-bar-chart" aria-hidden="true"></i>
-            <router-link to="/login">Login</router-link>
-            <!-- <i id="arrow" class="fa fa-angle-up" aria-hidden="true"></i> -->
-          </p>
-        </div>
-      </div>
-        
-      <div class="sidebar-menu">
-        <div class="menu-inner-wrapper">
-          <p>
-            <i class="fa fa-bar-chart" aria-hidden="true"></i>
-            <router-link to="/signup">Signup</router-link>
+            <router-link to="/">Other Menu</router-link>
             <!-- <i id="arrow" class="fa fa-angle-up" aria-hidden="true"></i> -->
           </p>
         </div>
