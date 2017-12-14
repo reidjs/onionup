@@ -1,34 +1,44 @@
 <template>
-  <div class="site">
-    <div>
-      <p v-if="lastPing.status" class="site-fa">
-        <i class="fa fa-arrow-circle-up up" aria-hidden="true"></i>
-      </p>
-      <p v-else class="site-fa">
-        <i class="fa fa-arrow-circle-down down" aria-hidden="true"></i>
-      </p>
+  <div  class="site">
+    <div v-if="lastPing">
+      <div>
+        <p v-if="lastPing.status" class="site-fa">
+          <i class="fa fa-arrow-circle-up up" aria-hidden="true"></i>
+        </p>
+        <p v-else class="site-fa">
+          <i class="fa fa-arrow-circle-down down" aria-hidden="true"></i>
+        </p>
+      </div>
+      <div>
+        <p>Site url:</p>
+        <p id="url">{{site.url}}</p>
+      </div>
+      <div>
+        <p>Response Time:</p>
+        <p id="response">{{lastPing.responseTime}}</p>
+        <p id="unit">ms</p>
+      </div>
+      <div>
+        <p>Updated at:</p>
+        <p>{{lastPing.created_at}}</p>
+      </div>
     </div>
-    <div>
-      <p>Site url:</p>
-      <p id="url">{{site.url}}</p>
+    <div v-else>
+      <div>
+        <p>Site url:</p>
+        <p id="url">{{site.url}}</p>
+      </div>
     </div>
-    <div>
-      <p>Response Time:</p>
-      <p id="response">{{lastPing.responseTime}}</p>
-      <p id="unit">ms</p>
-    </div>
-    <div>
-      <p>Updated at:</p>
-      <p>{{lastPing.created_at}}</p>
-    </div>
+   
   </div>
+
 </template>
 
 <script>
   import axios from 'axios';
   export default {
     name: 'Site',
-    props: ['siteProp','pingProp'],
+    props: ['siteProp'],
 
     
     data() {
@@ -36,7 +46,7 @@
       
       return{
         status: true,
-       
+        site:this.siteProp
       }
     },
 
@@ -49,23 +59,21 @@
 
   
     },
-    
     computed: {
-      site: function(){
-        
-        return this.siteProp
-      },
-
-      ping: function(){
-        return this.pingProp
-      },
-
       lastPing: function(){
-        const ping = this.siteProp.ping_ids[this.siteProp.ping_ids.length - 1];
-        const stat = this.pingProp[ping]
-        console.log(stat)
-        return stat;
-      }
+        
+        const lastping = this.pings[this.pings.length-1]
+        console.log('lastping', lastping, "this:", this)
+        return lastping
+        // this.LastPing=lastping;
+      },
+      pings: function(){
+        console.log("pings calculation")
+        //get every ping in the global store whos id is included in the  ping_id array of the site prop
+        return Object.values(this.$store.state.pings).filter( (ping) => this.siteProp.ping_ids.includes(ping.id) )
+      },
+
+
     }
   }
 </script>

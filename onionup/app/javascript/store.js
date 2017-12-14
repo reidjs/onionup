@@ -155,7 +155,10 @@ export const store = new Vuex.Store({
     pingSites(context){
       return axios.get(`api/ping`)
           .then(res => {
+            // this shouldnd be needed BUT
+            // without also adding sites the site_component doesnt update :(
             context.commit('ADD_SITES', res.data.sites)
+
             context.commit('ADD_PINGS', res.data.pings) 
           })
           .catch(e => {
