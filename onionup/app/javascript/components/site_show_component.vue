@@ -23,12 +23,15 @@
         // console.log(data)
         data.push(50)
         
-        console.log(data)
+        // console.log(data)
       }
     },
     props:['id'],
     data() {
-      console.log('id: ', this.id, 'asdf') 
+      // console.log('id: ', this.id, 'asdf') 
+      this.$store.dispatch('getSite', this.id)
+      console.log('site data', this.$store.state.sites[this.id])
+      console.log('ping data', this.$store.state.sites[this.id])
       return {
         datasets:
         [
@@ -49,8 +52,14 @@
         } 
       }
     },
+    
     components: {
       LineChart 
+    },
+    computed: {
+      pings(){
+        return this.$store.state.pings
+      }
     }
   }
 </script>

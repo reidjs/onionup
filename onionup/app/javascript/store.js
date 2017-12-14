@@ -20,6 +20,10 @@ export const store = new Vuex.Store({
   getters: {
     sites: state => state.sites,
     session: state => state.session,
+    pings: state => {
+      console.log('pings:', state.pings)
+    },
+    
     errors: state => state.errors
   },
   mutations: {
@@ -50,7 +54,7 @@ export const store = new Vuex.Store({
       state.sites = Object.assign({},state.sites, payload);
     },
     ADD_PINGS(state, payload){
-      state.pings = Object.assign({},state.sites, payload);
+      state.pings = Object.assign({},state.pings, payload);
     }
   },
   actions: {
@@ -62,7 +66,7 @@ export const store = new Vuex.Store({
     },
     logCurrentUserIn (context, user) {
       context.commit('CLEAR_ERRORS');
-      console.log('logCurrentUserIn action',user);
+      // console.log('logCurrentUserIn action',user);
 
 
         return axios.post(`api/session`,
@@ -70,13 +74,13 @@ export const store = new Vuex.Store({
           user
         )
           .then(res => {
-            console.log('addcurrenuser OK', res.data);
+            // console.log('addcurrenuser OK', res.data);
             // window.currentUser='true';
             context.commit('ADD_CURRENT_USER', res.data);
             
           })
           .catch(e => {
-            console.log('addcurrenuser ERROR', e);
+            // console.log('addcurrenuser ERROR', e);
             // debugger
             context.commit('SET_ERRORS', e.response.data[0]);
           });
@@ -92,7 +96,7 @@ export const store = new Vuex.Store({
             // alert(`logged in as ${res.data.username}`)
           })
           .catch(e => {
-            console.log(e);
+            // console.log(e);
             context.commit('SET_ERRORS', e.response.data[0]);
           });
       
@@ -114,24 +118,24 @@ export const store = new Vuex.Store({
     getSite(context, id){
       return axios.get(`api/sites/${id}`)
         .then(res => {
-          console.log("gite got", res);
+          // console.log("gite got", res);
           context.commit('ADD_SITES', res.data.sites)
           context.commit('ADD_PINGS', res.data.pings)
         })
         .catch(e => {
-          console.log('failed to get ping request');
+          // console.log('failed to get ping request');
 
         })
     },
     getSites(context) {
-      console.log("getsites")
+      // console.log("getsites")
       return axios.get(`api/sites`)
         .then(res => {
           context.commit('ADD_SITES', res.data.sites)
           context.commit('ADD_PINGS', res.data.pings)
         })
         .catch(e => {
-          console.log('failed to get ping request');
+          // console.log('failed to get ping request');
 
         })
     },
@@ -142,7 +146,7 @@ export const store = new Vuex.Store({
             context.commit('ADD_PINGS', res.data.pings) 
           })
           .catch(e => {
-            console.log('failed to get ping request');
+            // console.log('failed to get ping request');
 
           })      
     }
@@ -153,7 +157,7 @@ export const store = new Vuex.Store({
       context.commit('ADD_SITES', res.sites)
     })
     .catch(e => {
-      console.log("didnt post site")
+      // console.log("didnt post site")
     })
   }
 });
