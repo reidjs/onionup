@@ -39,6 +39,8 @@ export const store = new Vuex.Store({
     },
     LOGOUT (state) {
       state.session = {currentUser: undefined};
+      state.sites = {};
+      state.pings = {};
     },
     SET_ERRORS (state, payload) {
       state.errors = payload;
@@ -50,7 +52,7 @@ export const store = new Vuex.Store({
       state.sites = Object.assign({},state.sites, payload);
     },
     ADD_PINGS(state, payload){
-      state.pings = Object.assign({},state.sites, payload);
+      state.pings = Object.assign({},state.pings, payload);
     }
   },
   actions: {
