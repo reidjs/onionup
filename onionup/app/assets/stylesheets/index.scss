@@ -16,6 +16,10 @@
   }
 }
 
+.dialog{
+  // background: color !important;
+}
+
 // site partial view
 .site-box{
   margin: 10px auto 10px auto;
@@ -23,10 +27,12 @@
   border-radius: 10px;
   padding: 20px;
   background-color: white;
+  transition-duration: 0.2s;
 }
 .site-box:hover{
-  // display: none;
-  // background-color: $light-grey;
+  background: rgba(238, 163, 32, 0.7);
+  transition-duration: 0.2s;
+  transform: translate(-2px,-2px);
 }
 
 li{
