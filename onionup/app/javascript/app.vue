@@ -28,7 +28,7 @@
   import Vuex from 'vuex';
   import Vuetify from 'vuetify';
   
-  import('../../node_modules/vuetify/dist/vuetify.css');
+  import('../../app/assets/stylesheets/vuetify.css');
   Vue.use(Vuetify);
   Vue.use(VueRouter);
   Vue.use(Vuex);
