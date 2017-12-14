@@ -2,7 +2,7 @@
   <div>
     <!-- <h2 v-if="loading">Loading</h2> -->
     <LineChart
-      :chartData="pings"
+      :pings="pings"
       :options="options"
       :labels="labels"
     >
@@ -96,18 +96,18 @@
         })
         // console.log('res', responseTimes)
         console.log('sending', responseTimes)
-        // return responseTimes
-        return 
-        {
-          datasets:
-          [
-            {
-              label: 'Ping Response Time',
-              backgroundColor: '#f87979',
-              data: responseTimes
-            }
-          ]
-        }
+        return responseTimes
+        // return 
+        // {
+        //   datasets:
+        //   [
+        //     {
+        //       label: 'Ping Response Time',
+        //       backgroundColor: '#f87979',
+        //       data: responseTimes
+        //     }
+        //   ]
+        // }
       },
       sites: function(){
         return this.$store.state.sites

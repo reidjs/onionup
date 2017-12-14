@@ -3,24 +3,42 @@ import { Line, mixins } from 'vue-chartjs';
 //THIS MUST RECEIVE CHARTDATA AS A PROP. NO OTHER NAME IS ALLOWED
 export default {
   extends: Line,
-  mixins: [mixins.reactiveProp],
-  props: ['chartData', 'options', 'labels'],
+  props: ['pings', 'options', 'labels'],
   mounted () {
-    debugger
+    // debugger
     // console.log(this.data)
-    let chartData = this.chartData;
-    console.log('chartdata', chartData)
+    // let chartData = this.chartData;
+    // console.log('chartdata', chartData)
     // let chartData = [5,6,7,8]
-    let labels = this.labels;
+    // let labels = this.labels;
     // if (chartData === undefined)
       // chartData = [];
     // console.log('linechart', chartData)
     // console.log('data:', chartData)
-    this.renderChart({labels: labels, datasets: chartData.datasets})
+    this.renderChart({
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      datasets: [
+        {
+          label: 'GitHub Commits',
+          backgroundColor: '#f87979',
+          data: []
+        }
+      ]
+    })
   },
   watch: { 
-    chartData: function(newData, oldData){
-      console.log('new chartData received', newData, oldData)   
+    pings: function(newData, oldData){
+      console.log('pings reced', newData)
+      this.renderChart({
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        datasets: [
+          {
+            label: 'GitHub Commits',
+            backgroundColor: '#f87979',
+            data: newData
+          }
+        ]
+      })
     }
   }
 }
