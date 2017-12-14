@@ -35,7 +35,42 @@
      
     </div>
     <br/>  
+    <!-- Vuetify button -->
+    <div>
+      
+      <v-layout row>
+        <v-flex xs12 sm6 offset-sm11>
+          <v-btn
+            fab
+            small
+            color="theme-color accent-2"
+            bottom
+            right
+            
+            @click.native.stop="dialog = !dialog">
+            
+            <i class="fa fa-plus white--text" aria-hidden="true"></i>
+          </v-btn>
+          <v-card>
+            <v-dialog v-model="dialog" max-width="500px">
+              <v-card>
+              <v-card-text>
+                  <v-text-field label="Add a Site"></v-text-field>
+                  
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn flat color="primary" @click.native="dialog = false">Create</v-btn>
+              </v-card-actions>
+              </v-card>
+            </v-dialog>
+          </v-card>
+        </v-flex>
+      </v-layout>
+
+    </div>
   </div>
+  
 </template>
 
 <script>
@@ -43,43 +78,50 @@
   import Site from './site_component';
 
   export default {
-      name: 'IndexComponent',
-      components: {
-        Site
-      },
-      data(){
-        return{
-          loading:false
-        }
-      },
+    
+    data(){
+      return{
+        dialog: false,
+        loading: true,
 
-      computed: {
-        siteKeys(){
-          console.log(this)
-          return Object.keys(this.$store.state.sites)
-        },
-        pingKeys(){
-          return Object.keys(this.$store.state.pings)
-        },
-        pings(){
-          return this.$store.state.pings
-        },
-        sites(){
-          return this.$store.state.sites
-        }
+
+      }
     },
+
+    name: 'IndexComponent',
+    components: {
+      Site
+    },
+    
+    computed: {
+      siteKeys(){
+        return Object.keys(this.$store.state.sites)
+      },
+      pingKeys(){
+        return Object.keys(this.$store.state.pings)
+      },
+      pings(){
+        return this.$store.state.pings
+      },
+      sites(){
+        return this.$store.state.sites
+      }
+    },
+
     created(){
       this.$store.dispatch("getSites")
     },
+  
     methods:{
-    getSite: function(){
-        this.$store.dispatch("getSite", 1)
-    },
-    pingSites: function(){
-        this.loading = true;
-        this.$store.dispatch("pingSites").then(()=> this.loading = false)
-    }
-      
+      getSite: function(){
+          this.$store.dispatch("getSite", 1)
+      },
+      pingSites: function(){
+          this.loading = true;
+          this.$store.dispatch("pingSites").then(()=> this.loading = false)
+      }
+        
   }
 }
 </script>
+
