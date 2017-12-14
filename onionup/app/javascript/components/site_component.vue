@@ -72,7 +72,11 @@
         //get every ping in the global store whos id is included in the  ping_id array of the site prop
         return Object.values(this.$store.state.pings).filter( (ping) => this.siteProp.ping_ids.includes(ping.id) )
       },
-
+      lastPing: function(){
+        const ping = this.siteProp.ping_ids[this.siteProp.ping_ids.length - 1];
+        const stat = this.pingProp[ping]
+        return stat;
+      }
 
     }
   }

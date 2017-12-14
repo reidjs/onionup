@@ -5,14 +5,8 @@ class Api::SitesController < ApplicationController
 
   def show_ping
     @site = Site.find_by(id: params[:id])
-    ping = Ping.new(site_id: @site.id)
-    if (@site.ping)
-        ping.status = true;
-      else
-        ping.status = false;
-    end
-    ping.save! ############################## remove
-    '/api/sites/show.json.jbuilder'
+    PingListJob.new.perform([@site])
+    render '/api/sites/show.json.jbuilder'
   end
 
   def index_ping

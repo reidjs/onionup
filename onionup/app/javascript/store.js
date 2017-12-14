@@ -5,7 +5,7 @@ import axios from 'axios';
 let getUser = undefined;
 
 if (window.currentUser) {
-  console.log("BOOTSTRAP");
+  // console.log("BOOTSTRAP");
   getUser = window.currentUser;
 }
 
@@ -14,6 +14,7 @@ if (window.currentUser) {
 export const store = new Vuex.Store({
   state: {
     sites: {},
+    pings: {},
     session: { currentUser:getUser},
     errors: null
   },
@@ -59,7 +60,9 @@ export const store = new Vuex.Store({
       state.sites = Object.assign({},state.sites, payload);
     },
     ADD_PINGS(state, payload){
-      state.pings = Object.assign({},state.pings, payload);
+      // state.pings = Object.assign({},state.pings, payload);
+      console.log(payload)
+      state.pings = payload
     }
   },
   actions: {
@@ -151,6 +154,17 @@ export const store = new Vuex.Store({
           // console.log('failed to get ping request');
 
         })
+    },
+    pingSite(context, siteId){
+      return axios.get(`api/ping/${siteId}`)
+        .then(res => {
+          context.commit('ADD_SITES', res.data.site);
+          context.commit('ADD_PINGS', res.data.pings); 
+        })
+        .catch(e => {
+          // console.log('failed to get ping request');
+  
+        })      
     },
     pingSites(context){
       return axios.get(`api/ping`)
