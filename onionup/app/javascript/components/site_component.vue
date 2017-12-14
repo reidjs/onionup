@@ -1,23 +1,26 @@
 <template>
   <div class="site">
-
-    <p v-if="status" class="site-fa">
-      <i class="fa fa-arrow-circle-up up" aria-hidden="true"></i>
-    </p>
-    <p v-else class="site-fa">
-      <i class="fa fa-arrow-circle-down down" aria-hidden="true"></i>
-    </p>
-   
-    
-    <p id="url">{{site.url}}</p>
-    <p id="response">{{site.ping_ids.length}}</p>
-    <p id="unit">ms</p>
-    <p> Site ID: {{site.id}}</p>
-    
-   
-    
-    
-    
+    <div>
+      <p v-if="lastPing.status" class="site-fa">
+        <i class="fa fa-arrow-circle-up up" aria-hidden="true"></i>
+      </p>
+      <p v-else class="site-fa">
+        <i class="fa fa-arrow-circle-down down" aria-hidden="true"></i>
+      </p>
+    </div>
+    <div>
+      <p>Site url:</p>
+      <p id="url">{{site.url}}</p>
+    </div>
+    <div>
+      <p>Response Time:</p>
+      <p id="response">{{lastPing.responseTime}}</p>
+      <p id="unit">ms</p>
+    </div>
+    <div>
+      <p>Updated at:</p>
+      <p>{{lastPing.created_at}}</p>
+    </div>
   </div>
 </template>
 
@@ -56,6 +59,12 @@
       ping: function(){
         return this.pingProp
       },
+
+      lastPing: function(){
+        const ping = this.siteProp.ping_ids[this.siteProp.ping_ids.length - 1];
+        const stat = this.pingProp[ping]
+        return stat;
+      }
     }
   }
 </script>
