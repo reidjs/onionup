@@ -8,8 +8,8 @@ export default {
   mounted () {
     // console.log(this.data)
     let chartData = this.chartData
-    console.log('linechart', chartData)
-    console.log('data:', chartData)
+    // console.log('linechart', chartData)
+    // console.log('data:', chartData)
     this.renderChart({
       labels: ['dates go here'],
       datasets: [

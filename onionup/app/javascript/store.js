@@ -60,7 +60,9 @@ export const store = new Vuex.Store({
       state.sites = Object.assign({},state.sites, payload);
     },
     ADD_PINGS(state, payload){
-      state.pings = Object.assign({},state.pings, payload);
+      // state.pings = Object.assign({},state.pings, payload);
+      console.log(payload)
+      state.pings = payload
     }
   },
   actions: {

@@ -39,8 +39,8 @@
       this.$store.dispatch("clearPings");
       this.$store.dispatch("getSite", this.id);
       this.$store.dispatch("pingSite", this.id);
-      console.log(this.$store.state.pings)
-      console.log(this.pings)
+      // console.log(this.$store.state.pings)
+      // console.log(this.pings)
       // console.log(this.$store.state)
       // console.log(this.$store.state.pings)
     },
@@ -49,6 +49,15 @@
       // this.pings()
       console.log(data)
       return {
+        options: {
+          scales: {
+              xAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+        }
       //   chartData: {
       //     datasets:
       //     [
@@ -84,7 +93,7 @@
         if (pings === undefined) 
           return []
         let responseTimes = []
-        console.log(values(pings))
+        // console.log(values(pings))
         values(pings).map(ping => {
           if (ping.responseTime === null)
             responseTimes.push(0)
