@@ -27,9 +27,13 @@
       }
     },
     props:['id'],
+    created() {
+      this.$store.dispatch("clearSites")
+      this.$store.dispatch("clearPings")
+    },
     data() {
       // console.log('id: ', this.id, 'asdf') 
-      this.$store.dispatch('getSite', this.id)
+      // this.$store.dispatch('getSite', this.id)
       console.log('site data', this.$store.state.sites[this.id])
       console.log('ping data', this.$store.state.sites[this.id])
       return {
@@ -59,6 +63,9 @@
     computed: {
       pings(){
         return this.$store.state.pings
+      },
+      sites(){
+        return this.$store.state.sites
       }
     }
   }

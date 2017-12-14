@@ -20,10 +20,7 @@ export const store = new Vuex.Store({
   getters: {
     sites: state => state.sites,
     session: state => state.session,
-    pings: state => {
-      console.log('pings:', state.pings)
-    },
-    
+    pings: state => state.pings,
     errors: state => state.errors
   },
   mutations: {
@@ -50,6 +47,12 @@ export const store = new Vuex.Store({
     CLEAR_ERRORS (state) {
       state.errors = null;
     },
+    CLEAR_SITES (state) {
+      state.sites = {};
+    },
+    CLEAR_PINGS (state) {
+      state.pings = {};
+    }, 
     ADD_SITES(state,payload){
       state.sites = Object.assign({},state.sites, payload);
     },
@@ -60,6 +63,12 @@ export const store = new Vuex.Store({
   actions: {
     addSite (context) {
       context.commit('ADD_SITE');
+    },
+    clearSites (context) {
+      context.commit('CLEAR_SITES');
+    },
+    clearPings (context) {
+      context.commit('CLEAR_PINGS');
     },
     clearErrors (context) {
       context.commit('CLEAR_ERRORS');
