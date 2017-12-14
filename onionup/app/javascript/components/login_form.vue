@@ -9,12 +9,12 @@
       </ul>
       <div class="form-name form">
         <label class="label-username">Username </label>
-        <input type="text" @keydown.enter="login" v-model="user.username">
+        <input type="text" v-on:keyup="clearErrors" @keydown.enter="login" v-model="user.username">
       </div>
       <div class="form-password form">
         <label class="label-password">Password </label>
         <div class="pw-submit">
-          <input type="password" @keydown.enter="login" v-model="user.password">
+          <input type="password" v-on:keyup="clearErrors" @keydown.enter="login" v-model="user.password">
           <button v-on:click="login">LOG IN</button>    
         </div>
       </div>
