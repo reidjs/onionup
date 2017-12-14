@@ -37,6 +37,8 @@ class Site < ApplicationRecord
       rescue
         puts "Host unreachable error"
       end
+      b=Time.now
+      responseTime =  (b-a)*1000
     return {responseTime:responseTime, loadTime:loadTime, status: status, loaded: loaded}
   end
 end
