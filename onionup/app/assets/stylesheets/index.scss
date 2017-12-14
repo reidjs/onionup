@@ -1,6 +1,7 @@
 @import "variables";
 .index-main{
   flex: 1;
+  background-color: #f9f9f9;
 }
 
 .content-header{
@@ -14,13 +15,31 @@
     
   }
 }
+
+// site partial view
 .site-box{
   margin: 10px auto 10px auto;
   border: 1px solid $light-grey-border;
-  border-radius: 5px;
-  padding: 15px;
-  
+  border-radius: 10px;
+  padding: 20px;
+  background-color: white;
 }
+.site-box:hover{
+  // display: none;
+  // background-color: $light-grey;
+}
+
+li{
+  list-style:none 
+}
+
+.site{
+  display: flex;
+  p{
+    margin: auto 10px;
+  }
+}
+
 .index-wrapper{
   margin:40px auto 10px auto;
   width: 90%;
@@ -28,4 +47,21 @@
 
 .cards-toolbar{
   right:1;
+}
+.pinger-holder{
+  position: absolute;
+  right: 10vw;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  
+
+}
+.pinger{
+
+  border-radius: 20px;
+  height: 100%;
+  width: 100%;
 }

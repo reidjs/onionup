@@ -107,11 +107,13 @@ export const store = new Vuex.Store({
         )
           .then(res => {
             context.commit('ADD_CURRENT_USER', res.data);
+            return true;
             // alert(`logged in as ${res.data.username}`)
           })
           .catch(e => {
             // console.log(e);
             context.commit('SET_ERRORS', e.response.data[0]);
+            return false;
           });
       
     },

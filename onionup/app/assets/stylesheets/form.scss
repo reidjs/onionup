@@ -1,7 +1,7 @@
 @import "variables";
 
 div.auth-form {
-  background-image: image-url('background/login-bg1.jpg');
+  background-image: image-url('background/login-bg3.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
@@ -97,6 +97,7 @@ button {
 .account-prompt{
   text-align: right;
   margin-right: 32px;
+  font-weight: 400;
   a{
     color: $orange;
   }

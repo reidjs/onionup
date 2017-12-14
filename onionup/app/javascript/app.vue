@@ -26,7 +26,10 @@
   import LoginForm from './components/login_form'
   import SignupForm from './components/signup_form'
   import Vuex from 'vuex';
+  import Vuetify from 'vuetify';
   
+  import('../../node_modules/vuetify/dist/vuetify.css');
+  Vue.use(Vuetify);
   Vue.use(VueRouter);
   Vue.use(Vuex);
 
