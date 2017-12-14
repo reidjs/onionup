@@ -18,10 +18,12 @@
           <button v-on:click="login">LOG IN</button>    
         </div>
       </div>
-      <button v-on:click="loginDemoUser">Demo User</button>
-       <p class="account-prompt">Don't have an account?
-        <router-link v-on:click.native="clearErrors" to="/signup">Click Here</router-link> to create one!
-      </p> 
+      <div id="demo-button">
+        <p class="account-prompt">Don't have an account?
+          <router-link v-on:click.native="clearErrors" to="/signup">Click Here</router-link> to create one!
+        </p> 
+        <button v-on:click="loginDemoUser">Demo User</button>
+      </div>
     </div>
   </div>  
 </template>
