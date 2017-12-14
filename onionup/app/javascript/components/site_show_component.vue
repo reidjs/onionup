@@ -13,6 +13,7 @@
 <script>
   //UPDATING CHART DATA (see last comment)
   // https://github.com/apertureless/vue-chartjs/issues/44
+  // debugger
   import LineChart from './line_chart'
   let data = [20, 10, 30]
   export default {
@@ -25,7 +26,9 @@
         console.log(data)
       }
     },
+    props:['id'],
     data() {
+      console.log('id: ', this.id, 'asdf') 
       return {
         datasets:
         [
