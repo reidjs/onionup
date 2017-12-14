@@ -49,7 +49,7 @@
                   }
               }]
           },
-          responsive: true,
+          responsive: false,
           maintainAspectRatio: false
         }
 
@@ -66,13 +66,16 @@
           return []
         let responseTimes = []
         let labels = []
-        // console.log(values(pings))
+        let loadTimes = []
+        console.log(values(pings))
         values(pings).map(ping => {
           if (ping.responseTime === null) {
             responseTimes.push(0)
+            loadTimes.push(0)
           }
           else {
             responseTimes.push(ping.responseTime)
+            loadTimes.push(ping.loadTime)
           }
           labels.push(ping.created_at)
         })
@@ -80,7 +83,8 @@
         // console.log('sending', responseTimes)
         return {
           responseTimes,
-          labels
+          labels,
+          loadTimes
         }
       },
       sites: function(){

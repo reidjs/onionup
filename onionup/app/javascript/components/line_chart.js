@@ -12,9 +12,14 @@ export default {
           label: 'Response Time',
           backgroundColor: '#f87979',
           data: []
+        },
+        {
+          label: 'Load Times',
+          // backgroundColor: '#000000',
+          data: []
         }
       ]
-    })
+    });
   },
   watch: { 
     pings: function(newData, oldData){
@@ -24,11 +29,16 @@ export default {
         datasets: [
           {
             label: 'Response Time (ms)',
-            backgroundColor: '#f87979',
+            // backgroundColor: '#f87979',
             data: newData.responseTimes
+          },
+          {
+            label: 'Load Times',
+            // backgroundColor: '#000000',
+            data: newData.loadTimes
           }
         ]
-      })
+      });
     },
     deep: true //because we are sending an object
   }
