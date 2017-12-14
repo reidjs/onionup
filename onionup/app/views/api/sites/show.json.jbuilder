@@ -18,6 +18,8 @@ json.pings do
             json.site_id ping.site_id
             json.responseTime ping.responseTime
             json.created_at ping.created_at
+            json.loaded ping.loaded
+            json.loadTime ping.loadTime
         end
     end
 end
