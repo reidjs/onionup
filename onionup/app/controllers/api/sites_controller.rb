@@ -56,6 +56,6 @@ class Api::SitesController < ApplicationController
   private
 
   def site_params
-    params.require(:site).permit(:url)
+    params.require(:site).permit(:url, :alias)
   end
 end
