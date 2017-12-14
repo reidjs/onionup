@@ -21,16 +21,18 @@
 .sidebar{
     display: flex;
     flex-direction: column;
-    width: 23vw;
+    min-width: 300px;
+    max-width: 300px;
     height: 100vh;
     background-color: $light-grey;
     color: white
 }
 
-.menu{
+.sidebar-menu{
   height: 55px;
   cursor: pointer;
   font-weight: 200;
+  
   p{
     flex:1;
   }
@@ -41,6 +43,8 @@
 .menu-inner-wrapper{
   padding: 19px 22px;
   display: flex;
+  font-size: 1.2rem;
+  font-weight: 400;
 }
 
 .menu-list{
