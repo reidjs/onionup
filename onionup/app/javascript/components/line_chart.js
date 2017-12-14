@@ -5,9 +5,14 @@ export default {
   extends: Line,
   mixins: [mixins.reactiveProp],
   props: ['datasets', 'options', 'labels', 'test'],
+  
   mounted () {
     // console.log('here')
-    console.log(this.test)
+    // console.log(this.test)
+    // console.log('stor', this.$store.state)
+    let pings = this.$store.state.pings;
+    let sites = this.$store.state.sites;
+    console.log(pings, sites)
     let datasets = this.datasets;
     let options = this.options;
     //Labels should be an array of strings 
@@ -18,5 +23,12 @@ export default {
     this.renderChart({
       labels: labels, datasets: datasets, options: options
     })
+  },
+  watch: {
+    'test': {
+      handler: function(newData, oldData) {
+        console.log(newData)
+      }
+    }
   }
 }

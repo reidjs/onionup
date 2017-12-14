@@ -5,7 +5,7 @@
     <LineChart
       :datasets="datasets"
       :options="options"
-      :test="test"
+      :test="pings"
     >
     </LineChart>
     <h1>a{{pings}}</h1>
@@ -19,6 +19,7 @@
   // debugger
   //SHould show spinner until site data is loaded in
   import LineChart from './line_chart'
+  import values from 'lodash/values'
   let data = [20, 10, 30]
   // let loading = true
   export default {
@@ -38,8 +39,8 @@
       this.$store.dispatch("clearPings");
       this.$store.dispatch("getSite", this.id);
       this.$store.dispatch("pingSite", this.id);
-      console.log(this.$store.state)
-      console.log(this.$store.state.pings)
+      // console.log(this.$store.state)
+      // console.log(this.$store.state.pings)
     },
     data() {
       // console.log('id: ', this.id, 'asdf') 
@@ -47,6 +48,14 @@
       // console.log('site data', this.$store.state.sites[this.id])
       // console.log('ping data', this.$store.state.sites[this.id])
       // debugger
+      // let pings = this.$store.state.pings
+      // console.log('pings', pings)
+      // const selectData = function() {
+      //   console.log('pings', pings)
+      //   values(pings).forEach(ping => {
+      //     console.log(ping)
+      //   })
+      // }()
       let test = this.$store.state.pings;
       return {
         datasets:
