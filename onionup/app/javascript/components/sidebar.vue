@@ -2,7 +2,7 @@
   <div v-if="currentUser" class="sidebar">
     <div class="sidebar-logo">
       <p class="logo-image">
-        <router-link to="/">ONION UP</router-link>
+        <router-link to="/">OnionUp</router-link>
         
       </p>
     </div>
