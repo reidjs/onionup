@@ -29,12 +29,12 @@ export default {
         datasets: [
           {
             label: 'Response Time (ms)',
-            // backgroundColor: '#f87979',
+            backgroundColor: "rgba(25,230,33,1.0)",
             data: newData.responseTimes
           },
           {
             label: 'Load Times',
-            // backgroundColor: '#000000',
+            backgroundColor: "rgba(255,26,14,0.2)",
             data: newData.loadTimes
           }
         ]
