@@ -4,31 +4,17 @@ import { Line, mixins } from 'vue-chartjs';
 export default {
   extends: Line,
   mixins: [mixins.reactiveProp],
-  props: ['datasets', 'options', 'labels', 'test'],
-  
+  props: ['data'],
   mounted () {
-    // console.log('here')
-    // console.log(this.test)
-    // console.log('stor', this.$store.state)
-    let pings = this.$store.state.pings;
-    let sites = this.$store.state.sites;
-    console.log(pings, sites)
-    let datasets = this.datasets;
-    let options = this.options;
-    //Labels should be an array of strings 
-    let labels = this.labels;
-    // labels = ['a']
-    // console.log(datasets)
-    //I know I can dereference these, I just don't want to.
-    this.renderChart({
-      labels: labels, datasets: datasets, options: options
-    })
+    console.log(this.data)
+    this.renderChart(this.data)
   },
   watch: {
-    'test': {
+    'data': {
       handler: function(newData, oldData) {
-        console.log(newData)
+        console.log('data', newData)
       }
-    }
+    },
+    deep: true
   }
 }

@@ -43,41 +43,31 @@
       // console.log(this.$store.state.pings)
     },
     data() {
-      // console.log('id: ', this.id, 'asdf') 
-      // this.$store.dispatch('getSite', this.id)
-      // console.log('site data', this.$store.state.sites[this.id])
-      // console.log('ping data', this.$store.state.sites[this.id])
-      // debugger
-      // let pings = this.$store.state.pings
-      // console.log('pings', pings)
-      // const selectData = function() {
-      //   console.log('pings', pings)
-      //   values(pings).forEach(ping => {
-      //     console.log(ping)
-      //   })
-      // }()
-      let test = this.$store.state.pings;
+      let data = this.$store.state.pings;
       return {
-        datasets:
-        [
-          {
-            label: 'Ping Response Time',
-            backgroundColor: '#f87979',
-            data: data
-          }
-        ],
-        options: {
-          scales: {
-              xAxes: [{
-                  ticks: {
-                      beginAtZero:true
-                  }
-              }]
-          }
-        },
-        test: test
-        // test: this.$store.state.pings
+        data
       }
+      //   data: {
+      //     datasets:
+      //     [
+      //       {
+      //         label: 'Ping Response Time',
+      //         backgroundColor: '#f87979',
+      //         data: data
+      //       }
+      //     ],
+      //     options: {
+      //       scales: {
+      //           xAxes: [{
+      //               ticks: {
+      //                   beginAtZero:true
+      //               }
+      //           }]
+      //       }
+      //     }
+      //     // test: this.$store.state.pings
+      //   }
+      // }
     },
     components: {
       LineChart 
