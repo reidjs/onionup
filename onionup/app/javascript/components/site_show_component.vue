@@ -28,11 +28,11 @@
     },
     props:['id'],
     mounted() {
-      console.log('mounted')
+      // console.log('mounted')
       this.$store.dispatch("clearSites");
       this.$store.dispatch("clearPings");
       this.$store.dispatch("getSite", this.id);
-      this.$store.dispatch("getPings", this.id);
+      this.$store.dispatch("pingSite", this.id);
 
     },
     data() {
