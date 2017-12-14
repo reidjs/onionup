@@ -5,11 +5,10 @@
     <LineChart
       :chartData="pings"
       :options="options"
-      :test="pings"
+      :labels="labels"
     >
     </LineChart>
-    <h1>a{{pings}}</h1>
-    <button v-on:click="push">Add data!</button>
+    <h1>Received: {{pings}}</h1>
   </div>
 </template>
 
@@ -24,14 +23,6 @@
   // let loading = true
   export default {
     name: 'graph',
-    methods: {
-      push: function() {
-        // console.log(data)
-        data.push(50)
-        
-        // console.log(data)
-      }
-    },
     props:['id'],
     mounted() {
       // console.log('mounted')
@@ -53,11 +44,12 @@
           scales: {
               xAxes: [{
                   ticks: {
-                      beginAtZero:true
+                      beginAtZero:false
                   }
               }]
           }
-        }
+        },
+        labels: [0, 1, 2, 3, 4]
       //   chartData: {
       //     datasets:
       //     [
@@ -90,6 +82,7 @@
         // return values(this.$store.state.pings)
         // loading = false;
         let pings = this.$store.state.pings
+        console.log(pings)
         if (pings === undefined) 
           return []
         let responseTimes = []
@@ -100,7 +93,8 @@
           else
             responseTimes.push(ping.responseTime)
         })
-        console.log('res', responseTimes)
+        // console.log('res', responseTimes)
+        console.log('sending', responseTimes)
         return responseTimes
       },
       sites: function(){

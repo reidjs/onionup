@@ -4,14 +4,18 @@ import { Line, mixins } from 'vue-chartjs';
 export default {
   extends: Line,
   mixins: [mixins.reactiveProp],
-  props: ['chartData', 'options'],
+  props: ['chartData', 'options', 'labels'],
   mounted () {
     // console.log(this.data)
-    let chartData = this.chartData
+    let chartData = this.chartData;
+    console.log('chartdata', this.chartData)
+    // let chartData = [5,6,7,8]
+    let labels = this.labels;
+
     // console.log('linechart', chartData)
     // console.log('data:', chartData)
     this.renderChart({
-      labels: ['dates go here'],
+      labels: labels,
       datasets: [
         {
           label: 'Response Time',
