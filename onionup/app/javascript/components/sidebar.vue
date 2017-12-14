@@ -39,9 +39,9 @@
       </div>
       <div class="sidebar-menu">
         <div class="menu-inner-wrapper">
-          <i class="fa fa-bar-chart" aria-hidden="true"></i>
           <p>
-            <button v-on:click="logout">Logout</button>
+            <i class="fa fa-bar-chart" aria-hidden="true"></i>
+            <a v-on:click="logout">Logout</a>
           </p>
           <!-- <i id="arrow" class="fa fa-angle-up" aria-hidden="true"></i> -->
         </div>
