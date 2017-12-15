@@ -1,6 +1,6 @@
 <template>
   <div class="site-show-container">
-    <h1>{{siteURL}}</h1>
+    <h1>{{siteData.url}}</h1>
     <!-- <h2 v-if="loading">Loading</h2> -->
     <div id="show-chart">
       <LineChart
@@ -90,12 +90,12 @@
       sites: function(){
         return this.$store.state.sites
       },
-      siteURL: function(){
+      siteData: function(){
         const sites = values(this.$store.state.sites)
         if (sites[0])
-          return sites[0].url
+          return sites[0]
         else 
-          return "Loading site URL"
+          return "Loading site data"
       }
     }
   }
