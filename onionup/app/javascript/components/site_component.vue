@@ -69,11 +69,8 @@
   
     },
     computed: {
-      lastPing: function(){
-        
+      lastPing: function(){    
         const lastping = this.pings[this.pings.length-1]
-        let temp = new Date(lastping.created_at)
-        console.log(temp.toLocaleString());
         return lastping
       },
       pings: function(){

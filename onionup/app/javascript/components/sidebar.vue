@@ -88,6 +88,9 @@ export default {
       }
     }
   },
+  created(){
+    console.log(this.$store);
+  },
   data() {
     return {
       // currentUser: Boolean(window.currentUser)
