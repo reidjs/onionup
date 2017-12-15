@@ -77,16 +77,16 @@ export const store = new Vuex.Store({
       context.commit('CLEAR_ERRORS');
     },
     postSite(context, site) {
-      return axios.post(`api/sites`, {site : {url:site}})
+      return axios.post(`api/sites`, site)
         .then(res => {
           // console.log("res",res)
-          context.commit('ADD_SITES', res.data.sites)
-          return (res)
+          context.commit('ADD_SITES', res.data.sites);
+          return (res);
         })
         .catch(e => {
           // console.log("didnt post site") 
-          return (false)
-        })
+          return (false);
+        });
     },
     logCurrentUserIn (context, user) {
       context.commit('CLEAR_ERRORS');

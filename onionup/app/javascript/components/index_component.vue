@@ -59,9 +59,8 @@
                   <!-- <v-text-field v-validate="'url'" :class="{ 'input': true, 'is-danger': errors.has('url') }" name="url" label="Add a Site" type="text"></v-text-field>
                   <span v-show="errors.has('url')" class="help is-danger">{{ errors.first('url') }}</span> -->
 
-                  <v-text-field name="alias-field" type="text" placeholder="alias"></v-text-field> 
-                  <!-- v-model="site.alias" -->
-                  <v-text-field v-model="siteURL" v-validate="'url:require_protocol'" data-vv-as="field" :class="{'input': true, 'is-danger': frontendErrors.has('url_field') }" name="url_field" type="text" placeholder="url"></v-text-field> 
+                  <v-text-field name="alias-field" type="text" placeholder="alias" v-model="site.alias"></v-text-field> 
+                  <v-text-field v-model="site.url" v-validate="'url:require_protocol'" data-vv-as="field" :class="{'input': true, 'is-danger': frontendErrors.has('url_field') }" name="url_field" type="text" placeholder="url"></v-text-field> 
                   <span v-show="frontendErrors.has('url_field')" class="help is-danger">{{ frontendErrors.first('url_field') }}</span>
                 </p>
               </v-card-text>
@@ -132,7 +131,11 @@
       return{
         dialog: false,
         loading: false,
-        siteURL: "http://www.YourSiteHere"
+        site: {
+          url: "http://www.YourSiteHere",
+          alias: ""
+        }
+        
 
       }
     },
@@ -170,10 +173,10 @@
           this.$store.dispatch("pingSites").then(()=> this.loading = false)
       },
       postSite: function(){
-        this.$store.dispatch("postSite",this.siteURL).then((ok)=> {
+        this.$store.dispatch("postSite",this.site).then((ok)=> {
             if (ok){
               this.dialog = false;
-              this.siteURL = "http://www.YourSiteHere";
+              this.site.url = "http://www.YourSiteHere";
 
    
             }
