@@ -101,10 +101,6 @@
     },
     computed: {
       pings: function(){
-<<<<<<< HEAD
-        
-        let pings = this.$store.state.pings;
-=======
         let options = {
           scales: {
               xAxes: [{
@@ -128,17 +124,16 @@
         } else {
           return []
         }
-        console.log(ping_ids, this.$store.state.pings)
+        // console.log(ping_ids, this.$store.state.pings)
         if (ping_ids) {
           ping_ids.map(p_id => {
             pings.push(this.$store.state.pings[p_id])
           })
         }
-        console.log('my pings', pings)
+        // console.log('my pings', pings)
         // debugger
         // let mypings = this.$store.state.site.
         // debugger 
->>>>>>> new-index
         // console.log('trying to send pings', pings)
         if (pings === undefined) 
           return [];
