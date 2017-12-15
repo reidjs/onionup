@@ -87,7 +87,7 @@
       return{
         dialog: false,
         loading: false,
-        siteURL: "http://www."
+        siteURL: "http://www.YourSiteHere"
 
       }
     },
@@ -127,8 +127,10 @@
       postSite: function(){
         this.$store.dispatch("postSite",this.siteURL).then((ok)=> {
             if (ok){
-               this.dialog = false;
-               this.siteURL = "http://www.YourSiteHere";
+              this.dialog = false;
+              this.siteURL = "http://www.YourSiteHere";
+
+   
             }
           })
       }
