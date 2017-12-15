@@ -10,14 +10,16 @@
     color: #969696;
     font-size: 22px;
     font-weight: 200;
-    padding: 19px 65px;
+    padding: 13px 65px;
+    display: flex;
+    justify-content: space-between; 
     border-bottom: 1px solid $light-grey-border;
     
   }
 }
 
-.dialog{
-  // background: color !important;
+.index-header-title{
+  margin-top: 7px;
 }
 
 // site partial view
@@ -55,21 +57,22 @@ li{
   right:1;
 }
 .pinger-holder{
-  position: absolute;
-  right: 10vw;
-  width: 40px;
-  height: 40px;
+  height: 39px;
+  width: 150px;
   display: flex;
   align-content: center;
   align-items: center;
+  display: inline-flex;
+  color: white;
+  font-weight: 400;
+  font-size: 15px;
   
-
 }
 .pinger{
 
-  border-radius: 20px;
+  border-radius: 5px;
   height: 100%;
-  width: 100%;
+  width: 70%;
 }
 
 footer.index{

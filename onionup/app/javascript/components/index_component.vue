@@ -1,17 +1,21 @@
 <template>
   <div id="main" class="index-main">
     <div class="content-header">
-      <h1><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;Uptime Checks</h1>
+      <h1>
+        <span class="index-header-title">    
+          <i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;Uptime Checks
+        </span>
+        <div class="pinger-holder">
+          <transition name="fade">
+            <button class='pinger' v-on:click="pingSites" v-if="!loading">REFRESH</button>
+            <h1 v-else class="loader"></h1>
+          </transition>
+        </div>
+      </h1>
     </div>
-    
 
     <div class="index-wrapper">
-      <div class="pinger-holder">
-        <transition name="fade">
-          <button class='pinger' v-on:click="pingSites" v-if="!loading">pinger</button>
-          <h1 v-else class="loader"></h1>
-        </transition>
-      </div>
+      
       <div class="cards-wrapper">
         <ul v-if="siteKeys && siteKeys.length">
           <li v-for="key in siteKeys" v-bind:key="key">
