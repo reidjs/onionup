@@ -36,7 +36,7 @@ class Api::SitesController < ApplicationController
     end
     if @site.save
       # render json: @site
-      render "api/sites/show"
+      render '/api/sites/show.json.jbuilder'
     else
       render json: @site.errors.full_messages
     end

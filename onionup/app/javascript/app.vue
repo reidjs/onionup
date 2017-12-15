@@ -45,7 +45,6 @@
 
   import { store } from './store';
 
-  console.log("APP",window.currentUser);
 
   const routes = [
     
@@ -62,7 +61,6 @@
   })
 
 router.beforeEach((to, from, next) => {
-  console.log("before each", to , from)
   if (to.matched.some(record => record.meta.requiresAuth)) {
 
     if (!store.state.session.currentUser ) {

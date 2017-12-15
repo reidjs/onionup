@@ -15,14 +15,15 @@ class Site < ApplicationRecord
       begin
         puts "started socks request!  url: " + self.url
         a = Time.now
-        Net::HTTP.SOCKSProxy(ENV['TOR_IP'], 9050).start(uri.host, uri.port) do |http|
+        Net::HTTP.SOCKSProxy(ENV['TOR_IP'], 9050).start(uri.host, uri.port, open_timeout:10) do |http|
           b = Time.now
           status = true
           responseTime =  (b-a)*1000
-
+          http.read_timeout = 10
+          http.open_timeout = 10
           begin
             a = Time.now
-            res = Net::HTTP.SOCKSProxy(ENV['TOR_IP'], 9050).get_response(uri)
+            res = http.get(uri)
             b = Time.now
             loaded = true
             loadTime = (b-a)*1000

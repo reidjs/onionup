@@ -60,9 +60,7 @@ export const store = new Vuex.Store({
       state.sites = Object.assign({},state.sites, payload);
     },
     ADD_PINGS(state, payload){
-      // state.pings = Object.assign({},state.pings, payload);
-      console.log(payload)
-      state.pings = payload
+      state.pings = Object.assign({}, state.pings, payload);
     }
   },
   actions: {
@@ -78,15 +76,24 @@ export const store = new Vuex.Store({
     clearErrors (context) {
       context.commit('CLEAR_ERRORS');
     },
+    postSite(context, site) {
+      return axios.post(`api/sites`, {site : {url:site}})
+        .then(res => {
+          // console.log("res",res)
+          context.commit('ADD_SITES', res.data.sites)
+          return (res)
+        })
+        .catch(e => {
+          // console.log("didnt post site") 
+          return (false)
+        })
+    },
     logCurrentUserIn (context, user) {
       context.commit('CLEAR_ERRORS');
       // console.log('logCurrentUserIn action',user);
 
 
-        return axios.post(`api/session`,
-
-          user
-        )
+        return axios.post(`api/session`, user )
           .then(res => {
             // console.log('addcurrenuser OK', res.data);
             // window.currentUser='true';
@@ -180,14 +187,6 @@ export const store = new Vuex.Store({
 
           })      
     }
-  },
-  PostSite(context, site){
-    return axios.post(`api/sites`, site)
-    .then (res => {
-      context.commit('ADD_SITES', res.sites)
-    })
-    .catch(e => {
-      // console.log("didnt post site")
-    })
   }
+  
 });
