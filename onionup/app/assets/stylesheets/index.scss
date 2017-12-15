@@ -69,10 +69,12 @@ li{
   
 }
 .pinger{
-
   border-radius: 5px;
   height: 100%;
-  width: 70%;
+  width: 100%;
+  background-color: $dark-green !important;
+  font-weight: bold;
+  padding-bottom: 1px;
 }
 
 footer.index{
