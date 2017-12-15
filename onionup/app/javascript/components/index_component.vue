@@ -1,25 +1,30 @@
 <template>
   <div id="main" class="index-main">
     <div class="content-header">
-      <h1><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;Uptime Checks</h1>
+      <h1>
+        <span class="index-header-title hover-message">    
+          <i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;Uptime Checks
+          
+            <p class="message-text"> 
+              message box 
+            </p>
+          
+
+        </span>
+        <div class="pinger-holder">
+          <transition name="fade">
+            <button class='pinger' v-on:click="pingSites" v-if="!loading">
+              <i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;Refresh
+            </button>
+            <h1 v-else class="loader"></h1>
+          </transition>
+        </div>
+
+      </h1>
     </div>
-    
 
     <div class="index-wrapper">
-      <div class="cards-toolbar">
-        <select>
-          <option value="24">Last 24 hours</option>
-          <option value="7">Last 7 days</option>
-          <option value="30">Last 30 daysl</option>
-          <option value="all">All history</option>
-        </select>
-      </div>
-      <div class="pinger-holder">
-        <transition name="fade">
-          <button class='pinger' v-on:click="pingSites" v-if="!loading">pinger</button>
-          <h1 v-else class="loader"></h1>
-        </transition>
-      </div>
+      
       <div class="cards-wrapper">
         <ul v-if="siteKeys && siteKeys.length">
           <li v-for="key in siteKeys" v-bind:key="key">
@@ -58,8 +63,12 @@
                 <p :class= "{'control': true }">
                   <!-- <v-text-field v-validate="'url'" :class="{ 'input': true, 'is-danger': errors.has('url') }" name="url" label="Add a Site" type="text"></v-text-field>
                   <span v-show="errors.has('url')" class="help is-danger">{{ errors.first('url') }}</span> -->
+<<<<<<< HEAD
+                  <!-- <v-text-field name="alias-field" type="text" placeholder="alias" v-model="site.alias"></v-text-field>  -->
+=======
                   <v-text-field name="alias-field" type="text" placeholder="alias"></v-text-field> 
                   <!-- v-model="site.alias" -->
+>>>>>>> master
                   <v-text-field v-validate="'url:require_protocol'" data-vv-as="field" :class="{'input': true, 'is-danger': frontendErrors.has('url_field') }" name="url_field" type="text" placeholder="url"></v-text-field> 
                   <span v-show="frontendErrors.has('url_field')" class="help is-danger">{{ frontendErrors.first('url_field') }}</span>
                 </p>

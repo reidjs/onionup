@@ -10,14 +10,16 @@
     color: #969696;
     font-size: 22px;
     font-weight: 200;
-    padding: 19px 65px;
+    padding: 13px 65px;
+    display: flex;
+    justify-content: space-between; 
     border-bottom: 1px solid $light-grey-border;
     
   }
 }
 
-.dialog{
-  // background: color !important;
+.index-header-title{
+  margin-top: 7px;
 }
 
 // site partial view
@@ -55,21 +57,39 @@ li{
   right:1;
 }
 .pinger-holder{
-  position: absolute;
-  right: 10vw;
-  width: 40px;
-  height: 40px;
+  height: 39px;
+  width: 150px;
   display: flex;
   align-content: center;
   align-items: center;
+  display: inline-flex;
+  color: white;
+  font-weight: 400;
+  font-size: 15px;
   
-
 }
 .pinger{
-
-  border-radius: 20px;
+  border-radius: 5px;
   height: 100%;
   width: 100%;
+  background-color: $dark-green !important;
+  font-weight: bold;
+  padding-bottom: 1px;
+}
+
+.site-status{
+  div{
+    margin: auto;
+  }
+}
+
+.site-stat{
+  display: flex;
+}
+
+.data-title{
+  font-size: 11px;
+  color: #838181;
 }
 
 footer.index{
@@ -97,5 +117,39 @@ div.profile:hover div.links > a:first-child{
 }
 div.profile:hover div.links > a:last-child{
   color: $status-up
+}
+
+
+
+// Hover message for 'i' font-awesome in index header
+.hover-message .message-text{
+  display: none;
+}
+
+.hover-message:hover .message-text{
+   opacity: 1;
+  transition: all 0.2s ease-in-out;
+  border-radius: 3px;
+  display: block;
+  box-shadow: 0 0 0 0 rgba(0,0,0,.15); 
+  top: 69px;
+  margin-left:-125px;
+  border: 1px solid #dddddd;
+  background-color: green;
+  
+}
+
+.message-text:before{
+   content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  margin-left:-125px;
+  top: -6px;
+  border-style: solid;
+  border-width: 6px;
+  border-color: red;
+  box-shadow: -1px -1px 0 0 rgba(0, 0, 0, .15);
+  transform: rotate(45deg);
 }
 
