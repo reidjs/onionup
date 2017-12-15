@@ -18,7 +18,7 @@ export default {
   },
   watch: { 
     pings: function(newData, oldData){
-      // console.log('pings received', newData)
+      // console.log('pings received', newData.options)
       this.renderChart({
         labels: newData.labels,
         datasets: [

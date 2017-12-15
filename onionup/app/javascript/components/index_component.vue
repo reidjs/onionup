@@ -1,25 +1,28 @@
 <template>
   <div id="main" class="index-main">
     <div class="content-header">
-      <h1><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;Uptime Checks</h1>
+      <h1>
+        <span class="index-header-title hover-message">    
+          <i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;Uptime Checks
+          <p class="message-text"> 
+            <span>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </span>
+          </p>
+        </span>
+        <div class="pinger-holder">
+          <transition name="fade">
+            <button class='pinger' v-on:click="pingSites" v-if="!loading">
+              <i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;Refresh
+            </button>
+            <h1 v-else class="loader"></h1>
+          </transition>
+        </div>
+      </h1>
     </div>
-    
 
     <div class="index-wrapper">
-      <div class="cards-toolbar">
-        <select>
-          <option value="24">Last 24 hours</option>
-          <option value="7">Last 7 days</option>
-          <option value="30">Last 30 daysl</option>
-          <option value="all">All history</option>
-        </select>
-      </div>
-      <div class="pinger-holder">
-        <transition name="fade">
-          <button class='pinger' v-on:click="pingSites" v-if="!loading">pinger</button>
-          <h1 v-else class="loader"></h1>
-        </transition>
-      </div>
+      
       <div class="cards-wrapper">
         <ul v-if="siteKeys && siteKeys.length">
           <li v-for="key in siteKeys" v-bind:key="key">
@@ -75,48 +78,7 @@
       </v-layout>
 
     </div>
-    <footer class="index">
-      <div class="profile">
-        <h2>Artem</h2>
-        <div class="links">
-          <a href="https://www.linkedin.com/in/"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
 
-</a>
-          <a href="https://www.github.com/"><i class="fa fa-github-alt" aria-hidden="true"></i>
-</a>
-        </div>
-      </div>
-      <div class="profile">
-        <h2>Chris</h2>
-        <div class="links">
-          <a href="https://www.linkedin.com/in/"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
-
-</a>
-          <a href="https://www.github.com/"><i class="fa fa-github-alt" aria-hidden="true"></i>
-</a>
-        </div>
-      </div>
-      <div class="profile">
-        <h2>Jay</h2>
-        <div class="links">
-          <a href="https://www.linkedin.com/in/"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
-
-</a>
-          <a href="https://www.github.com/"><i class="fa fa-github-alt" aria-hidden="true"></i>
-</a>
-        </div>
-      </div>
-      <div class="profile">
-        <h2>Reid</h2>
-        <div class="links">
-          <a href="https://www.linkedin.com/in/reidsherman"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
-
-</a>
-          <a href="https://www.github.com/reidjs"><i class="fa fa-github-alt" aria-hidden="true"></i>
-</a>
-        </div>
-      </div>
-    </footer>
   </div>
   
 </template>
