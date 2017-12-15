@@ -31,12 +31,12 @@
         <div>
         <ul class="dropdown">
           <router-link to="sites/1">
-            <li>
+            <li class="site-link">
             site 1
             </li>
           </router-link>
           <router-link to="site/2">
-            <li>
+            <li class="site-link">
             site 2
             </li>
           </router-link>
