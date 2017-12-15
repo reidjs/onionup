@@ -180,46 +180,8 @@
         // console.log('res', responseTimes)
         // console.log('sending', responseTimes)
         if (pings.length > 0) {
-<<<<<<< HEAD
-          averageResponseTime = averageResponseTime/pings.length
-          averageLoadTime = averageLoadTime/pings.length
-          latestPingDate = dates[dates.length - 1];
-          latestPingTime = times[times.length - 1];
-          console.log(dates[dates.length-1])
-        console.log(latestPingDate, latestPingTime)
-        }
-        /*
-        Unable to verify if the options actually does anything to the chart. 
-        */
-        let options = {
-          scales: {
-              xAxes: [{
-                  ticks: {
-                      beginAtZero:false,
-                      lineWidth:3,
-                      fontSize:14
-                  }
-              }]
-          },
-          tooltips: {
-            callbacks: {
-              label: function(tooltipItem) {
-                let idx = tooltipItem.index;
-                // debugger
-                // let payloadDetails = data.launches[idx].payload_details[0];
-                return [
-                    `Pinged at: ${times[idx]}` 
-                   
-                ]
-            }
-            }
-          },
-          responsive: false,
-          maintainAspectRatio: true
-=======
           averageResponseTime = Math.floor(averageResponseTime/pings.length)
           averageLoadTime = Math.floor(averageLoadTime/pings.length)
->>>>>>> new-index
         }
         return {
           responseTimes,
