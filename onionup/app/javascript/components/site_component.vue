@@ -1,6 +1,6 @@
 <template>
   <div  class="site">
-    <div v-if="lastPing" class="site-inner-wrapper">
+    <div v-if="lastPing" class="site-inner-wrapper site-status">
       <div >
         <p v-if="lastPing.status" class="site-fa">
           <i class="fa fa-arrow-circle-up up" aria-hidden="true"></i>
@@ -9,28 +9,32 @@
           <i class="fa fa-arrow-circle-down down" aria-hidden="true"></i>
         </p>
       </div>
-      <div>
-        <p>Site url:</p>
+      <div class="site-url">
+        <p class="data-title">Site url:</p>
         <p id="url">{{site.url}}</p>
       </div>
-      <div>
-        <p>Response Time:</p>
-        <p id="response">{{lastPing.responseTime}}</p>
-        <p id="unit">ms</p>
+      <div class="site-response">
+        <p class="data-title left-indent-50">Response Time:</p>
+        <div class="site-stat">
+          <p id="response">{{lastPing.responseTime}}</p>
+          <p id="unit">ms</p>
+        </div>
       </div>
-       <div>
-        <p>HTTP Load:</p>
-        <p id="response">{{lastPing.loadTime}}</p>
-        <p id="unit">ms</p>
+       <div class="site-load">
+        <p class="data-title left-indent-50">HTTP Load:</p>
+        <div class="site-stat">
+          <p id="response">{{lastPing.loadTime}}</p>
+          <p id="unit">ms</p>
+        </div>
       </div>
-      <div>
-        <p>Updated at:</p>
+      <div class="site-updated left-indent-30">
+        <p class="data-title ">Updated at:</p>
         <p>{{lastPing.created_at}}</p>
       </div>
     </div>
     <div v-else class="site-inner-wrapper">
       <div>
-        <p>Site url:</p>
+        <p class="data-title ">Site url:</p>
         <p id="url">{{site.url}}</p>
       </div>
     </div>

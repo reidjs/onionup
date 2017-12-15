@@ -99,3 +99,17 @@ div.profile:hover div.links > a:last-child{
   color: $status-up
 }
 
+.site-status{
+  div{
+    margin: auto;
+  }
+}
+
+.site-stat{
+  display: flex;
+}
+
+.data-title{
+  font-size: 11px;
+  color: #838181;
+}
