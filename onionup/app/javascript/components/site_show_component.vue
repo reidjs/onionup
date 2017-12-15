@@ -4,49 +4,63 @@
     <h2>{{siteData.url}}</h2>
     <!-- <h2 v-if="loading">Loading</h2> -->
     <div id="response-chart">
+      <h1>HTTP Response (Through Tor)</h1>
       <ResponseTimeChart
         :pings="pings"
         :options="options"
       >
       </ResponseTimeChart>
+    </div>
+    <div class="data-box-container">
       <div class="data-box">
         <h2>Average Response Time</h2>
         <p>{{pings.averageResponseTime}}</p>
+        <footer>ms</footer>
       </div>
       <div class="data-box">
         <h2>Max Response Time</h2>
         <p>{{pings.maxResponseTime}}</p>
+        <footer>ms</footer>
       </div>
       <div class="data-box">
         <h2>Min Response Time</h2>
         <p>{{pings.minResponseTime}}</p>
+        <footer>ms</footer>
       </div>
     </div>
     <div id="load-chart">
+      <h1>Page Load (Through Tor) </h1>
       <LoadTimeChart
         :pings="pings"
         :options="options"
       >
       </LoadTimeChart>
     </div>
-    <div class="data-box">
-      <h2>Average Load Time</h2>
-      <p>{{pings.averageLoadTime}}</p>
+    <div class="data-box-container">
+      <div class="data-box">
+        <h2>Average Load Time</h2>
+        <p>{{pings.averageLoadTime}}</p>
+        <footer>ms</footer>
+      </div>
+      <div class="data-box">
+        <h2>Max Load Time</h2>
+        <p>{{pings.maxLoadTime}}</p>
+        <footer>ms</footer>
+      </div>
+      <div class="data-box">
+        <h2>Min Load Time</h2>
+        <p>{{pings.minLoadTime}}</p>
+        <footer>ms</footer>
+      </div>
     </div>
-    <div class="data-box">
-      <h2>Max Load Time</h2>
-      <p>{{pings.maxLoadTime}}</p>
+    <div id="dual-chart">
+      <h1>Combined</h1>
+      <DualChart
+        :pings="pings"
+        :options="options"
+      >
+      </DualChart>
     </div>
-    <div class="data-box">
-      <h2>Min Load Time</h2>
-      <p>{{pings.minLoadTime}}</p>
-    </div>
-    <h1>Received: {{pings}}</h1>
-    <DualChart
-      :pings="pings"
-      :options="options"
-    >
-    </DualChart>
   </div>
 </template>
 
