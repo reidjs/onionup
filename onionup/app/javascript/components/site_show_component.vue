@@ -7,7 +7,6 @@
     <div id="chart">
       <ResponseTimeChart
         :pings="pings"
-        :options="options"
       >
       </ResponseTimeChart>
     </div>
@@ -32,7 +31,6 @@
     <div id="chart">
       <LoadTimeChart
         :pings="pings"
-        :options="options"
       >
       </LoadTimeChart>
     </div>
@@ -93,20 +91,7 @@
       // this.pings()
       // console.log(data)
       return {
-        options: {
-          scales: {
-              xAxes: [{
-                  ticks: {
-                      beginAtZero:false,
-                      lineWidth:3,
-                      fontSize:18
-                  }
-              }]
-          },
-          responsive: false,
-          maintainAspectRatio: true
-        }
-
+    
       }
     },
     components: {
@@ -116,25 +101,14 @@
     },
     computed: {
       pings: function(){
-        let options = {
-          scales: {
-              xAxes: [{
-                  ticks: {
-                      beginAtZero:false,
-                      lineWidth:3,
-                      fontSize:18
-                  }
-              }]
-          },
-          responsive: false,
-          maintainAspectRatio: true
-        }
+        
         let pings = this.$store.state.pings;
         // console.log('trying to send pings', pings)
         if (pings === undefined) 
           return [];
         let responseTimes = [];
         let times = [];
+        let dates = [];
         let loadTimes = [];
         let averageLoadTime = 0;
         // console.log(values(pings))
@@ -144,6 +118,8 @@
         let maxLoadTime = 0;
         let minResponseTime = null;
         let minLoadTime = null;
+        let latestPingDate;
+        let latestPingTime;
         let i = 0;
         values(pings).map(ping => {
           if (ping.responseTime === null) {
@@ -164,8 +140,9 @@
             minResponseTime = ping.responseTime
           if (ping.loadTime < minLoadTime || minLoadTime === null)
             minLoadTime = ping.loadTime
-          let time = new Date(ping.created_at)
-          times.push(time.toLocaleString())
+          let datetime = new Date(ping.created_at)
+          times.push(datetime.toLocaleTimeString())
+          dates.push(datetime.toLocaleDateString())
           labels.push(i)
           i++;
         })
@@ -174,6 +151,39 @@
         if (pings.length > 0) {
           averageResponseTime = averageResponseTime/pings.length
           averageLoadTime = averageLoadTime/pings.length
+          latestPingDate = dates[dates.length - 1];
+          latestPingTime = times[times.length - 1];
+          console.log(dates[dates.length-1])
+        console.log(latestPingDate, latestPingTime)
+        }
+        /*
+        Unable to verify if the options actually does anything to the chart. 
+        */
+        let options = {
+          scales: {
+              xAxes: [{
+                  ticks: {
+                      beginAtZero:false,
+                      lineWidth:3,
+                      fontSize:14
+                  }
+              }]
+          },
+          tooltips: {
+            callbacks: {
+              label: function(tooltipItem) {
+                let idx = tooltipItem.index;
+                // debugger
+                // let payloadDetails = data.launches[idx].payload_details[0];
+                return [
+                    `Pinged at: ${times[idx]}` 
+                   
+                ]
+            }
+            }
+          },
+          responsive: false,
+          maintainAspectRatio: true
         }
         return {
           responseTimes,
@@ -181,6 +191,8 @@
           labels,
           loadTimes,
           options,
+          latestPingDate,
+          latestPingTime,
           averageResponseTime,
           averageLoadTime,
           maxResponseTime,
