@@ -77,8 +77,8 @@
     props:['id'],
     mounted() {
       // console.log('mounted')
-      this.$store.dispatch("clearSites");
-      this.$store.dispatch("clearPings");
+      // this.$store.dispatch("clearSites");
+      // this.$store.dispatch("clearPings");
       this.$store.dispatch("getSite", this.id);
       this.$store.dispatch("pingSite", this.id);
       // console.log(this.$store.state.pings)
@@ -101,8 +101,44 @@
     },
     computed: {
       pings: function(){
+<<<<<<< HEAD
         
         let pings = this.$store.state.pings;
+=======
+        let options = {
+          scales: {
+              xAxes: [{
+                  ticks: {
+                      beginAtZero:false,
+                      lineWidth:3,
+                      fontSize:18
+                  }
+              }]
+          },
+          responsive: false,
+          maintainAspectRatio: true
+        }
+        // let pings = this.$store.state.pings;
+        let pings = [];
+        let id = Number(this.id);
+        let ping_ids = []
+        //make sure site is loaded in
+        if (this.$store.state.sites[id]) {
+          ping_ids = this.$store.state.sites[id].ping_ids;
+        } else {
+          return []
+        }
+        console.log(ping_ids, this.$store.state.pings)
+        if (ping_ids) {
+          ping_ids.map(p_id => {
+            pings.push(this.$store.state.pings[p_id])
+          })
+        }
+        console.log('my pings', pings)
+        // debugger
+        // let mypings = this.$store.state.site.
+        // debugger 
+>>>>>>> new-index
         // console.log('trying to send pings', pings)
         if (pings === undefined) 
           return [];
@@ -149,6 +185,7 @@
         // console.log('res', responseTimes)
         // console.log('sending', responseTimes)
         if (pings.length > 0) {
+<<<<<<< HEAD
           averageResponseTime = averageResponseTime/pings.length
           averageLoadTime = averageLoadTime/pings.length
           latestPingDate = dates[dates.length - 1];
@@ -184,6 +221,10 @@
           },
           responsive: false,
           maintainAspectRatio: true
+=======
+          averageResponseTime = Math.floor(averageResponseTime/pings.length)
+          averageLoadTime = Math.floor(averageLoadTime/pings.length)
+>>>>>>> new-index
         }
         return {
           responseTimes,
@@ -205,11 +246,13 @@
         return this.$store.state.sites
       },
       siteData: function(){
-        const sites = values(this.$store.state.sites)
-        if (sites[0]) {
-          return sites[0]
+        // console.log('site id', this.id)
+        const site = this.$store.state.sites[this.id]
+        // console.log('site:', site)
+        if (site) {
+          return site
         } else {
-          return "Loading site data"
+          return {}
         }
       }
     }

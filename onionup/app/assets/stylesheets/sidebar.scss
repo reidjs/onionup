@@ -41,16 +41,41 @@
   }
 }
 .menu-inner-wrapper{
-  padding: 19px 22px;
+  padding: 17px 22px;
   display: flex;
   font-size: 1.2rem;
   font-weight: 400;
+  transition-duration: 0.3s;
+
+  p{
+    margin:0;
+  }
+}
+
+.menu-inner-wrapper:hover{
+  background: $light-grey-2;
+  transition-duration: 0.3s;
+}
+
+.site-link:hover{
+  background: $light-grey-2;
+  transition-duration: 0.2s;
+}
+
+.logout-div{
+  margin-left: 2px !important;
+}
+
+.user-fa{
+  
+  margin-left: 3px !important;
+  font-size: 19px;
 }
 
 .menu-list{
   display: block;
   overflow-y: hidden;
-  height: 100px;
+  height: 94px;
 	// max-height: 500px; /* approximate max height */
 
 	transition-property: all;
@@ -66,6 +91,7 @@
 
   }
 }
+
 
 .hidden{
   height: 0;

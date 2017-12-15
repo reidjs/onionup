@@ -1,3 +1,497 @@
+html, body, header, nav, h1, a,
+ul, li, strong, main, button, i,
+section, img, div, h2, p, form,
+fieldset, label, input, textarea,
+span, article, footer, time, small {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  box-sizing: inherit;
+  background: transparent;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+input[type="password"],
+input[type="email"],
+input[type="text"],
+input[type="submit"],
+textarea,
+button {
+  /*
+  Get rid of native styling. Read more here:
+  http://css-tricks.com/almanac/properties/a/appearance/
+  */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button,
+input[type="submit"] {
+  cursor: pointer;
+}
+
+/* Clearfix */
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+/* line 3, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+div.auth-form {
+  background-image: url(/assets/background/login-bg3-e7dab561861dacbd30c23e8a1ab00be6b3e0d893a6e9f494e067a464c3735b59.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  font-weight: 300;
+  color: white;
+  flex-direction: column;
+  width: 100%;
+}
+/* line 14, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+div.auth-form h1 {
+  align-self: center;
+  margin: 20px;
+  margin-bottom: 50px;
+  font-size: 40px;
+  text-align: center;
+}
+/* line 22, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+div.auth-form label {
+  text-align: right;
+  margin-right: 15px;
+  font-size: 23px;
+}
+/* line 27, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+div.auth-form input {
+  padding-left: 20px !important;
+  color: black;
+  font-size: 20px;
+  border-radius: 4px;
+  flex: 1;
+  background: #eee;
+  padding: 10px;
+}
+/* line 37, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+div.auth-form input[type="text"] {
+  width: 300px;
+  padding-left: 8px;
+}
+/* line 42, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+div.auth-form input[type="password"] {
+  width: 200px;
+  padding-left: 10px;
+}
+/* line 46, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+div.auth-form ul {
+  align-self: center;
+  margin: 20px;
+}
+
+/* line 52, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+div#demo-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 32px;
+}
+
+/* line 58, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+button {
+  text-align: center;
+  width: 100px;
+  background-color: #ec981e !important;
+  height: 100%;
+  margin-left: 15px;
+}
+
+/* line 66, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+.auth-inner-wrapper {
+  margin: 275px auto auto auto;
+  width: 625px;
+  line-height: 42px;
+}
+
+/* line 72, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+.form {
+  display: flex;
+  width: 90%;
+  margin: 15px auto;
+}
+
+/* line 79, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+.pw-submit {
+  width: 100%;
+  display: flex;
+}
+/* line 82, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+.pw-submit button {
+  background-color: #eea320;
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+/* line 91, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+#demo-button button {
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+/* line 99, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+.label-username {
+  width: 100px;
+}
+
+/* line 103, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+.label-password {
+  width: 125px;
+}
+
+/* line 107, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+.error-msg {
+  color: red;
+  margin-left: 125px;
+  margin-bottom: -25px;
+}
+
+/* line 112, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+.account-prompt {
+  text-align: right;
+  margin-right: 32px;
+  font-weight: 400;
+}
+/* line 116, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/form.scss */
+.account-prompt a {
+  color: #eea320;
+}
+@import url("https://fonts.googleapis.com/css?family=Barlow|Cabin");
+/* line 21, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/home.scss */
+.logo-image {
+  font-family: 'Cabin', sans-serif;
+}
+/* line 2, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/index.scss */
+.index-main {
+  flex: 1;
+  background-color: #f9f9f9;
+}
+
+/* line 7, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/index.scss */
+.content-header {
+  background-color: #F7F7F7;
+}
+/* line 9, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/index.scss */
+.content-header h1 {
+  color: #969696;
+  font-size: 22px;
+  font-weight: 200;
+  padding: 19px 65px;
+  border-bottom: 1px solid #E6E6E6;
+}
+
+/* line 24, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/index.scss */
+.site-box {
+  margin: 10px auto 10px auto;
+  border: 1px solid #E6E6E6;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: white;
+  transition-duration: 0.2s;
+}
+
+/* line 32, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/index.scss */
+.site-box:hover {
+  background: rgba(238, 163, 32, 0.7);
+  transition-duration: 0.2s;
+  transform: translate(-2px, -2px);
+}
+
+/* line 38, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/index.scss */
+li {
+  list-style: none;
+}
+
+/* line 42, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/index.scss */
+.site {
+  display: flex;
+}
+/* line 44, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/index.scss */
+.site p {
+  margin: auto 10px;
+}
+
+/* line 49, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/index.scss */
+.index-wrapper {
+  margin: 40px auto 10px auto;
+  width: 90%;
+}
+
+/* line 54, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/index.scss */
+.cards-toolbar {
+  right: 1;
+}
+
+/* line 57, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/index.scss */
+.pinger-holder {
+  position: absolute;
+  right: 10vw;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+/* line 68, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/index.scss */
+.pinger {
+  border-radius: 20px;
+  height: 100%;
+  width: 100%;
+}
+.loader {
+  width: 100%;
+  height: 100%;
+  background-color: #eea320;
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+
+  position: relative;
+  left: 16px;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+  0% { 
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+  } 50% { 
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+  } 100% { 
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+/* line 1, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/main.scss */
+html {
+  overflow-x: hidden;
+  font-family: "Helvetica Neue";
+}
+/* line 3, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sidebar.scss */
+.sidebar-logo {
+  min-height: 65px;
+  height: 65px;
+  background-color: #eea320;
+}
+
+/* line 9, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sidebar.scss */
+.logo-image {
+  margin: auto;
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 13px;
+}
+
+/* line 15, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sidebar.scss */
+.main-content {
+  display: flex;
+}
+
+/* line 21, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sidebar.scss */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  max-width: 300px;
+  height: 100vh;
+  background-color: #444;
+  color: white;
+}
+
+/* line 31, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sidebar.scss */
+.sidebar-menu {
+  height: 55px;
+  cursor: pointer;
+  font-weight: 200;
+}
+/* line 36, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sidebar.scss */
+.sidebar-menu p {
+  flex: 1;
+}
+/* line 39, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sidebar.scss */
+.sidebar-menu i {
+  margin-right: 10px;
+}
+
+/* line 43, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sidebar.scss */
+.menu-inner-wrapper {
+  padding: 19px 22px;
+  display: flex;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+/* line 50, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sidebar.scss */
+.menu-list {
+  display: block;
+  overflow-y: hidden;
+  height: 100px;
+  transition-property: all;
+  transition-duration: .4s;
+}
+
+/* line 63, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sidebar.scss */
+.dropdown li {
+  background-color: #383838;
+  height: 47px;
+}
+
+/* line 70, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sidebar.scss */
+.hidden {
+  height: 0;
+  transition-duration: .4s;
+}
+
+/* line 77, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sidebar.scss */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s ease, position .2s;
+}
+
+/* line 80, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sidebar.scss */
+.fade-enter, .fade-leave-to
+ {
+  opacity: 0;
+}
+/* line 3, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/site_show.scss */
+div.site-show-container {
+  padding-left: 25px;
+}
+
+/* line 7, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/site_show.scss */
+div.site-show-container > h1:first-child, div.site-show-container > h2 {
+  text-align: center;
+  font-size: 22px;
+}
+
+/* line 12, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/site_show.scss */
+div.site-show-container > h1 {
+  margin-top: 10px;
+  padding: 5px;
+}
+
+/* line 16, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/site_show.scss */
+div.site-show-container > h2 {
+  padding-top: 5px;
+  margin-bottom: 15px;
+}
+
+/* line 20, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/site_show.scss */
+div#chart {
+  width: 700px;
+  height: 400px;
+  overflow: hidden;
+}
+
+/* line 28, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/site_show.scss */
+canvas#line-chart {
+  width: 700px !important;
+  height: 400px !important;
+}
+
+/* line 33, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/site_show.scss */
+div.data-box-container {
+  padding: 10px 10px;
+  display: flex;
+  justify-content: space-around;
+}
+/* line 38, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/site_show.scss */
+div.data-box-container div.data-box {
+  display: flex;
+  width: 150px;
+  height: 100px;
+  font-size: 12px;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  padding: 10px 5px;
+}
+/* line 48, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/site_show.scss */
+div.data-box-container h2 {
+  font-size: 12px;
+}
+/* line 51, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/site_show.scss */
+div.data-box-container p {
+  padding-top: 5px;
+  font-size: 20px;
+}
+/* line 55, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/site_show.scss */
+div.data-box-container footer {
+  font-size: 10px;
+}
+/* line 4, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sites.scss */
+.site i {
+  font-size: 2.5em;
+}
+
+/* line 9, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sites.scss */
+.up {
+  color: #9ae944;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #88c740;
+}
+
+/* line 15, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sites.scss */
+.down {
+  color: #fc4d51;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #ce5458;
+}
+
+/* line 21, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sites.scss */
+#url {
+  width: 270px;
+}
+
+/* line 24, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sites.scss */
+#response {
+  font-size: 3.7rem;
+}
+
+/* line 27, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sites.scss */
+#unit {
+  margin: auto 0 10px 0;
+}
+
+/* line 31, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/sites.scss */
+.is-danger {
+  color: red;
+}
+/* line 5, /Users/chrisbigelow/Desktop/Flex Project/onionup/onionup/app/assets/stylesheets/static_pages.scss */
+* {
+  background: #eee;
+}
 .black {
   background-color: #000 !important;
   border-color: #000 !important;
@@ -11765,4 +12259,5 @@ table.table tfoot tr {
     padding: 10px 16px;
   }
 }
+
 
