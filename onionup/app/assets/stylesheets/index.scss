@@ -124,18 +124,22 @@ div.profile:hover div.links > a:last-child{
 // Hover message for 'i' font-awesome in index header
 .hover-message .message-text{
   display: none;
+
 }
 
 .hover-message:hover .message-text{
    opacity: 1;
+   padding: 15px;
+   width: 320px;
+   position: absolute;
   transition: all 0.2s ease-in-out;
   border-radius: 3px;
   display: block;
-  box-shadow: 0 0 0 0 rgba(0,0,0,.15); 
-  top: 69px;
-  margin-left:-125px;
+  box-shadow: 1px 1px 2px 2px rgba(0,0,0,0.25); 
+  top: 55px;
+  margin-left:-35px;
   border: 1px solid #dddddd;
-  background-color: green;
+  background-color: white;
   
 }
 
@@ -144,12 +148,19 @@ div.profile:hover div.links > a:last-child{
   position: absolute;
   width: 0;
   height: 0;
-  margin-left:-125px;
+  margin-left:22px;
   top: -6px;
   border-style: solid;
   border-width: 6px;
-  border-color: red;
-  box-shadow: -1px -1px 0 0 rgba(0, 0, 0, .15);
+  border-color: white;
+  box-shadow: -2px -2px 0 0 rgba(0, 0, 0, 0.15);
   transform: rotate(45deg);
+}
+
+.message-text{
+  span{
+    font-size: 15px;
+    font-weight: 500;
+  }
 }
 

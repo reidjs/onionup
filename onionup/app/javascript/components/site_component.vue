@@ -29,7 +29,7 @@
       </div>
       <div class="site-updated left-indent-30">
         <p class="data-title ">Updated at:</p>
-        <p>{{lastPing.created_at}}</p>
+        <p>{{new Date(lastPing.created_at).toLocaleString()}}</p>
       </div>
     </div>
     <div v-else class="site-inner-wrapper">
@@ -72,14 +72,15 @@
       lastPing: function(){
         
         const lastping = this.pings[this.pings.length-1]
-        console.log('lastping', lastping, "this:", this)
+        let temp = new Date(lastping.created_at)
+        console.log(temp.toLocaleString());
         return lastping
-        // this.LastPing=lastping;
       },
       pings: function(){
-        console.log("pings calculation")
         //get every ping in the global store whos id is included in the  ping_id array of the site prop
-        return Object.values(this.$store.state.pings).filter( (ping) => this.siteProp.ping_ids.includes(ping.id) )
+        const allPings = Object.values(this.$store.state.pings)
+        const myPings = allPings.filter( (ping) => this.siteProp.ping_ids.includes(ping.id) )
+        return myPings
       }
 
     }
