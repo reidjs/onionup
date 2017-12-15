@@ -1,9 +1,9 @@
 <template >
   <div v-if="currentUser" class="sidebar">
     <div class="sidebar-logo">
+      <div class="logo-image-onion"></div>
       <p class="logo-image">
         <router-link to="/">OnionUp</router-link>
-        
       </p>
     </div>
     <div>
