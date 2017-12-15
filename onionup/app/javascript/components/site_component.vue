@@ -29,7 +29,7 @@
       </div>
       <div class="site-updated left-indent-30">
         <p class="data-title ">Updated at:</p>
-        <p>{{lastPing.created_at}}</p>
+        <p>{{new Date(lastPing.created_at).toLocaleString()}}</p>
       </div>
     </div>
     <div v-else class="site-inner-wrapper">
@@ -72,6 +72,8 @@
       lastPing: function(){
         
         const lastping = this.pings[this.pings.length-1]
+        let temp = new Date(lastping.created_at)
+        console.log(temp.toLocaleString());
         return lastping
       },
       pings: function(){
