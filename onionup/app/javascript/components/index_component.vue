@@ -4,12 +4,11 @@
       <h1>
         <span class="index-header-title hover-message">    
           <i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;Uptime Checks
-          
-            <p class="message-text"> 
-              message box 
-            </p>
-          
-
+          <p class="message-text"> 
+            <span>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </span>
+          </p>
         </span>
         <div class="pinger-holder">
           <transition name="fade">
@@ -19,7 +18,6 @@
             <h1 v-else class="loader"></h1>
           </transition>
         </div>
-
       </h1>
     </div>
 
@@ -63,12 +61,8 @@
                 <p :class= "{'control': true }">
                   <!-- <v-text-field v-validate="'url'" :class="{ 'input': true, 'is-danger': errors.has('url') }" name="url" label="Add a Site" type="text"></v-text-field>
                   <span v-show="errors.has('url')" class="help is-danger">{{ errors.first('url') }}</span> -->
-<<<<<<< HEAD
-                  <!-- <v-text-field name="alias-field" type="text" placeholder="alias" v-model="site.alias"></v-text-field>  -->
-=======
                   <v-text-field name="alias-field" type="text" placeholder="alias"></v-text-field> 
                   <!-- v-model="site.alias" -->
->>>>>>> master
                   <v-text-field v-validate="'url:require_protocol'" data-vv-as="field" :class="{'input': true, 'is-danger': frontendErrors.has('url_field') }" name="url_field" type="text" placeholder="url"></v-text-field> 
                   <span v-show="frontendErrors.has('url_field')" class="help is-danger">{{ frontendErrors.first('url_field') }}</span>
                 </p>
