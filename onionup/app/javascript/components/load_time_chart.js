@@ -3,7 +3,7 @@ import { Line, mixins } from 'vue-chartjs';
 //THIS MUST RECEIVE CHARTDATA AS A PROP. NO OTHER NAME IS ALLOWED
 export default {
   extends: Line,
-  props: ['pings', 'options'],
+  props: ['pings'],
   mounted () {
     this.renderChart({
       labels: ['Data Incoming'],
@@ -24,10 +24,11 @@ export default {
         datasets: [
           {
             label: 'Load Times',
-            backgroundColor: "rgba(255,26,14,0.2)",
+            backgroundColor: "#9ae944",
             data: newData.loadTimes
           }
-        ]
+        ],
+        options: newData.options
       });
     },
     deep: true //because we are sending an object
