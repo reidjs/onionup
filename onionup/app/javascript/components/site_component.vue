@@ -1,7 +1,7 @@
 <template>
   <div  class="site">
-    <div v-if="lastPing">
-      <div>
+    <div v-if="lastPing" class="site-inner-wrapper site-status">
+      <div >
         <p v-if="lastPing.status" class="site-fa">
           <i class="fa fa-arrow-circle-up up" aria-hidden="true"></i>
         </p>
@@ -9,23 +9,32 @@
           <i class="fa fa-arrow-circle-down down" aria-hidden="true"></i>
         </p>
       </div>
-      <div>
-        <p>Site url:</p>
+      <div class="site-url">
+        <p class="data-title">Site url:</p>
         <p id="url">{{site.url}}</p>
       </div>
-      <div>
-        <p>Response Time:</p>
-        <p id="response">{{lastPing.responseTime}}</p>
-        <p id="unit">ms</p>
+      <div class="site-response">
+        <p class="data-title">Response Time:</p>
+        <div class="site-stat">
+          <p id="response">{{lastPing.responseTime}}</p>
+          <p id="unit">ms</p>
+        </div>
       </div>
-      <div>
-        <p>Updated at:</p>
-        <p>{{lastPing.created_at}}</p>
+       <div class="site-load">
+        <p class="data-title ">HTTP Load:</p>
+        <div class="site-stat">
+          <p id="response">{{lastPing.loadTime}}</p>
+          <p id="unit">ms</p>
+        </div>
+      </div>
+      <div class="site-updated left-indent-30">
+        <p class="data-title ">Updated at:</p>
+        <p>{{new Date(lastPing.created_at).toLocaleString()}}</p>
       </div>
     </div>
-    <div v-else>
+    <div v-else class="site-inner-wrapper">
       <div>
-        <p>Site url:</p>
+        <p class="data-title ">Site url:</p>
         <p id="url">{{site.url}}</p>
       </div>
     </div>
@@ -63,6 +72,8 @@
       lastPing: function(){
         
         const lastping = this.pings[this.pings.length-1]
+        let temp = new Date(lastping.created_at)
+        console.log(temp.toLocaleString());
         return lastping
       },
       pings: function(){

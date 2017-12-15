@@ -7,7 +7,6 @@
     <div id="chart">
       <ResponseTimeChart
         :pings="pings"
-        :options="options"
       >
       </ResponseTimeChart>
     </div>
@@ -32,7 +31,6 @@
     <div id="chart">
       <LoadTimeChart
         :pings="pings"
-        :options="options"
       >
       </LoadTimeChart>
     </div>
@@ -79,8 +77,8 @@
     props:['id'],
     mounted() {
       // console.log('mounted')
-      this.$store.dispatch("clearSites");
-      this.$store.dispatch("clearPings");
+      // this.$store.dispatch("clearSites");
+      // this.$store.dispatch("clearPings");
       this.$store.dispatch("getSite", this.id);
       this.$store.dispatch("pingSite", this.id);
       // console.log(this.$store.state.pings)
@@ -93,20 +91,7 @@
       // this.pings()
       // console.log(data)
       return {
-        options: {
-          scales: {
-              xAxes: [{
-                  ticks: {
-                      beginAtZero:false,
-                      lineWidth:3,
-                      fontSize:18
-                  }
-              }]
-          },
-          responsive: false,
-          maintainAspectRatio: true
-        }
-
+    
       }
     },
     components: {
@@ -129,12 +114,32 @@
           responsive: false,
           maintainAspectRatio: true
         }
-        let pings = this.$store.state.pings;
+        // let pings = this.$store.state.pings;
+        let pings = [];
+        let id = Number(this.id);
+        let ping_ids = []
+        //make sure site is loaded in
+        if (this.$store.state.sites[id]) {
+          ping_ids = this.$store.state.sites[id].ping_ids;
+        } else {
+          return []
+        }
+        // console.log(ping_ids, this.$store.state.pings)
+        if (ping_ids) {
+          ping_ids.map(p_id => {
+            pings.push(this.$store.state.pings[p_id])
+          })
+        }
+        // console.log('my pings', pings)
+        // debugger
+        // let mypings = this.$store.state.site.
+        // debugger 
         // console.log('trying to send pings', pings)
         if (pings === undefined) 
           return [];
         let responseTimes = [];
         let times = [];
+        let dates = [];
         let loadTimes = [];
         let averageLoadTime = 0;
         // console.log(values(pings))
@@ -144,6 +149,8 @@
         let maxLoadTime = 0;
         let minResponseTime = null;
         let minLoadTime = null;
+        let latestPingDate;
+        let latestPingTime;
         let i = 0;
         values(pings).map(ping => {
           if (ping.responseTime === null) {
@@ -164,16 +171,17 @@
             minResponseTime = ping.responseTime
           if (ping.loadTime < minLoadTime || minLoadTime === null)
             minLoadTime = ping.loadTime
-          let time = new Date(ping.created_at)
-          times.push(time.toLocaleString())
+          let datetime = new Date(ping.created_at)
+          times.push(datetime.toLocaleTimeString())
+          dates.push(datetime.toLocaleDateString())
           labels.push(i)
           i++;
         })
         // console.log('res', responseTimes)
         // console.log('sending', responseTimes)
         if (pings.length > 0) {
-          averageResponseTime = averageResponseTime/pings.length
-          averageLoadTime = averageLoadTime/pings.length
+          averageResponseTime = Math.floor(averageResponseTime/pings.length)
+          averageLoadTime = Math.floor(averageLoadTime/pings.length)
         }
         return {
           responseTimes,
@@ -181,6 +189,8 @@
           labels,
           loadTimes,
           options,
+          latestPingDate,
+          latestPingTime,
           averageResponseTime,
           averageLoadTime,
           maxResponseTime,
@@ -193,11 +203,13 @@
         return this.$store.state.sites
       },
       siteData: function(){
-        const sites = values(this.$store.state.sites)
-        if (sites[0]) {
-          return sites[0]
+        // console.log('site id', this.id)
+        const site = this.$store.state.sites[this.id]
+        // console.log('site:', site)
+        if (site) {
+          return site
         } else {
-          return "Loading site data"
+          return {}
         }
       }
     }
