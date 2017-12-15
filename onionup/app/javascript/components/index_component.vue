@@ -61,15 +61,16 @@
                 <p :class= "{'control': true }">
                   <!-- <v-text-field v-validate="'url'" :class="{ 'input': true, 'is-danger': errors.has('url') }" name="url" label="Add a Site" type="text"></v-text-field>
                   <span v-show="errors.has('url')" class="help is-danger">{{ errors.first('url') }}</span> -->
+
                   <v-text-field name="alias-field" type="text" placeholder="alias"></v-text-field> 
                   <!-- v-model="site.alias" -->
-                  <v-text-field v-validate="'url:require_protocol'" data-vv-as="field" :class="{'input': true, 'is-danger': frontendErrors.has('url_field') }" name="url_field" type="text" placeholder="url"></v-text-field> 
+                  <v-text-field v-model="siteURL" v-validate="'url:require_protocol'" data-vv-as="field" :class="{'input': true, 'is-danger': frontendErrors.has('url_field') }" name="url_field" type="text" placeholder="url"></v-text-field> 
                   <span v-show="frontendErrors.has('url_field')" class="help is-danger">{{ frontendErrors.first('url_field') }}</span>
                 </p>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn flat color="primary" @click.native="dialog = false">Create</v-btn>
+                <v-btn flat color="primary" v-on:click="postSite">Create</v-btn>
               </v-card-actions>
               </v-card>
             </v-dialog>
@@ -134,7 +135,7 @@
       return{
         dialog: false,
         loading: false,
-
+        siteURL: "http://www.YourSiteHere"
 
       }
     },
@@ -170,6 +171,16 @@
       pingSites: function(){
           this.loading = true;
           this.$store.dispatch("pingSites").then(()=> this.loading = false)
+      },
+      postSite: function(){
+        this.$store.dispatch("postSite",this.siteURL).then((ok)=> {
+            if (ok){
+              this.dialog = false;
+              this.siteURL = "http://www.YourSiteHere";
+
+   
+            }
+          })
       }
         
   }
