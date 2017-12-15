@@ -1,15 +1,36 @@
 <template>
   <div class="site-show-container">
-    <h1>{{siteData.url}}</h1>
+    <h1 v-if="siteData.alias">{{siteData.alias}}</h1>
+    <h2>{{siteData.url}}</h2>
     <!-- <h2 v-if="loading">Loading</h2> -->
-    <div id="show-chart">
-      <LineChart
+    <div id="response-chart">
+      <ResponseTimeChart
         :pings="pings"
         :options="options"
       >
-      </LineChart>
+      </ResponseTimeChart>
+      <div class="data-box">
+        <h2>Average Response Time</h2>
+        <p>{{pings.averageResponseTime}}</p>
+      </div>
     </div>
+    <div id="load-chart">
+      <LoadTimeChart
+        :pings="pings"
+        :options="options"
+      >
+      </LoadTimeChart>
+    </div>
+    <div class="data-box">
+        <h2>Average Load Time</h2>
+        <p>{{pings.averageLoadTime}}</p>
+      </div>
     <h1>Received: {{pings}}</h1>
+    <DualChart
+      :pings="pings"
+      :options="options"
+    >
+    </DualChart>
   </div>
 </template>
 
@@ -18,7 +39,9 @@
   // https://github.com/apertureless/vue-chartjs/issues/44
   // debugger
   //SHould show spinner until site data is loaded in
-  import LineChart from './line_chart'
+  import DualChart from './dual_chart'
+  import LoadTimeChart from './load_time_chart'
+  import ResponseTimeChart from './response_time_chart'
   import values from 'lodash/values'
   // let data = [20, 10, 30]
   // let loading = true
@@ -45,7 +68,9 @@
           scales: {
               xAxes: [{
                   ticks: {
-                      beginAtZero:false
+                      beginAtZero:false,
+                      lineWidth:3,
+                      fontSize:18
                   }
               }]
           },
@@ -56,7 +81,9 @@
       }
     },
     components: {
-      LineChart 
+      LoadTimeChart,
+      DualChart,
+      ResponseTimeChart 
     },
     computed: {
       pings: function(){
@@ -67,7 +94,9 @@
         let responseTimes = []
         let labels = []
         let loadTimes = []
-        console.log(values(pings))
+        let averageLoadTime = 0;
+        // console.log(values(pings))
+        let averageResponseTime = 0;
         values(pings).map(ping => {
           if (ping.responseTime === null) {
             responseTimes.push(0)
@@ -77,14 +106,23 @@
             responseTimes.push(ping.responseTime)
             loadTimes.push(ping.loadTime)
           }
-          labels.push(ping.created_at)
+          averageResponseTime += ping.responseTime
+          averageLoadTime += ping.loadTime
+          let time = new Date(ping.created_at)
+          labels.push(time.toLocaleString())
         })
         // console.log('res', responseTimes)
         // console.log('sending', responseTimes)
+        if (pings.length > 0) {
+          averageResponseTime = averageResponseTime/pings.length
+          averageLoadTime = averageLoadTime/pings.length
+        }
         return {
           responseTimes,
           labels,
-          loadTimes
+          loadTimes,
+          averageResponseTime,
+          averageLoadTime
         }
       },
       sites: function(){
@@ -92,10 +130,11 @@
       },
       siteData: function(){
         const sites = values(this.$store.state.sites)
-        if (sites[0])
+        if (sites[0]) {
           return sites[0]
-        else 
+        } else {
           return "Loading site data"
+        }
       }
     }
   }
