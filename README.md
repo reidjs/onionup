@@ -12,3 +12,13 @@ OnionUp users can:
 - Add clearnet or onion sites to their account
 - Track the ping response latency or page load time of any given site 
 - Alias cryptic onion site names with readable nicknames
+
+### Technology
+
+#### Frontend 
+
+OnionUp's frontend was developed as a Vue single page web application to provide a seamless and responsive UX. 
+
+#### Backend
+
+OnionUp's backend leverages Ruby on Rails concurrency using Rails ActiveJobs to ensure multiple sites can be pinged as a background task.
