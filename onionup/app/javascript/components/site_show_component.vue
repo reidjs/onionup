@@ -205,7 +205,7 @@
       siteData: function(){
         // console.log('site id', this.id)
         const site = this.$store.state.sites[this.id]
-        // console.log('site:', site)
+        console.log('site:', site)
         if (site) {
           return site
         } else {
