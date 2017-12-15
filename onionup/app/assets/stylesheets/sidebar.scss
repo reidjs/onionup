@@ -4,13 +4,16 @@
   min-height: 65px;
   height: 65px;
   background-color: $orange;
+  display: flex;
+  justify-content: center;
 }
 
 .logo-image{
-  margin: auto;
   font-size: 2rem;
   text-align: center;
-  margin-top:13px;
+  display: flex;
+  margin-top: 16px;
+  width: fit-content;
 }
 .main-content{
     display:flex;
@@ -81,6 +84,14 @@
 /* .component-fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 
+}
+
+.logo-image-onion {
+  background-image: url('http://res.cloudinary.com/dmzulpcul/image/upload/c_scale,h_50/v1513286922/noun_35970_c9roof.png');
+  width: 50px;
+  height: 50px;
+  display: flex;
+  margin-top: 3px;
 }
 
 
