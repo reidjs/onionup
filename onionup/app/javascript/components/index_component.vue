@@ -1,25 +1,28 @@
 <template>
   <div id="main" class="index-main">
     <div class="content-header">
-      <h1><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;Uptime Checks</h1>
+      <h1>
+        <span class="index-header-title hover-message">    
+          <i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;Uptime Checks
+          <p class="message-text"> 
+            <span>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </span>
+          </p>
+        </span>
+        <div class="pinger-holder">
+          <transition name="fade">
+            <button class='pinger' v-on:click="pingSites" v-if="!loading">
+              <i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;Refresh
+            </button>
+            <h1 v-else class="loader"></h1>
+          </transition>
+        </div>
+      </h1>
     </div>
-    
 
     <div class="index-wrapper">
-      <div class="cards-toolbar">
-        <select>
-          <option value="24">Last 24 hours</option>
-          <option value="7">Last 7 days</option>
-          <option value="30">Last 30 daysl</option>
-          <option value="all">All history</option>
-        </select>
-      </div>
-      <div class="pinger-holder">
-        <transition name="fade">
-          <button class='pinger' v-on:click="pingSites" v-if="!loading">pinger</button>
-          <h1 v-else class="loader"></h1>
-        </transition>
-      </div>
+      
       <div class="cards-wrapper">
         <ul v-if="siteKeys && siteKeys.length">
           <li v-for="key in siteKeys" v-bind:key="key">
@@ -58,13 +61,15 @@
                 <p :class= "{'control': true }">
                   <!-- <v-text-field v-validate="'url'" :class="{ 'input': true, 'is-danger': errors.has('url') }" name="url" label="Add a Site" type="text"></v-text-field>
                   <span v-show="errors.has('url')" class="help is-danger">{{ errors.first('url') }}</span> -->
-                  <v-text-field v-validate="'url:require_protocol'" data-vv-as="field" :class="{'input': true, 'is-danger': frontendErrors.has('url_field') }" name="url_field" type="text" placeholder="url"></v-text-field> 
+
+                  <v-text-field name="alias-field" type="text" placeholder="alias" v-model="site.alias"></v-text-field> 
+                  <v-text-field v-model="site.url" v-validate="'url:require_protocol'" data-vv-as="field" :class="{'input': true, 'is-danger': frontendErrors.has('url_field') }" name="url_field" type="text" placeholder="url"></v-text-field> 
                   <span v-show="frontendErrors.has('url_field')" class="help is-danger">{{ frontendErrors.first('url_field') }}</span>
                 </p>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn flat color="primary" @click.native="dialog = false">Create</v-btn>
+                <v-btn flat color="primary" v-on:click="postSite">Create</v-btn>
               </v-card-actions>
               </v-card>
             </v-dialog>
@@ -73,6 +78,7 @@
       </v-layout>
 
     </div>
+
   </div>
   
 </template>
@@ -87,7 +93,11 @@
       return{
         dialog: false,
         loading: false,
-
+        site: {
+          url: "http://www.YourSiteHere",
+          alias: ""
+        }
+        
 
       }
     },
@@ -123,6 +133,16 @@
       pingSites: function(){
           this.loading = true;
           this.$store.dispatch("pingSites").then(()=> this.loading = false)
+      },
+      postSite: function(){
+        this.$store.dispatch("postSite",this.site).then((ok)=> {
+            if (ok){
+              this.dialog = false;
+              this.site.url = "http://www.YourSiteHere";
+
+   
+            }
+          })
       }
         
   }

@@ -1,7 +1,7 @@
 <template>
   <div  class="site">
-    <div v-if="lastPing">
-      <div>
+    <div v-if="lastPing" class="site-inner-wrapper site-status">
+      <div >
         <p v-if="lastPing.status" class="site-fa">
           <i class="fa fa-arrow-circle-up up" aria-hidden="true"></i>
         </p>
@@ -9,23 +9,32 @@
           <i class="fa fa-arrow-circle-down down" aria-hidden="true"></i>
         </p>
       </div>
-      <div>
-        <p>Site url:</p>
+      <div class="site-url">
+        <p class="data-title">Site url:</p>
         <p id="url">{{site.url}}</p>
       </div>
-      <div>
-        <p>Response Time:</p>
-        <p id="response">{{lastPing.responseTime}}</p>
-        <p id="unit">ms</p>
+      <div class="site-response">
+        <p class="data-title">Response Time:</p>
+        <div class="site-stat">
+          <p id="response">{{lastPing.responseTime}}</p>
+          <p id="unit">ms</p>
+        </div>
       </div>
-      <div>
-        <p>Updated at:</p>
-        <p>{{lastPing.created_at}}</p>
+       <div class="site-load">
+        <p class="data-title ">HTTP Load:</p>
+        <div class="site-stat">
+          <p id="response">{{lastPing.loadTime}}</p>
+          <p id="unit">ms</p>
+        </div>
+      </div>
+      <div class="site-updated left-indent-30">
+        <p class="data-title ">Updated at:</p>
+        <p>{{new Date(lastPing.created_at).toLocaleString()}}</p>
       </div>
     </div>
-    <div v-else>
+    <div v-else class="site-inner-wrapper">
       <div>
-        <p>Site url:</p>
+        <p class="data-title ">Site url:</p>
         <p id="url">{{site.url}}</p>
       </div>
     </div>
@@ -63,14 +72,15 @@
       lastPing: function(){
         
         const lastping = this.pings[this.pings.length-1]
-        console.log('lastping', lastping, "this:", this)
+        // let temp = new Date(lastping.created_at)
+        // console.log(temp.toLocaleString());
         return lastping
-        // this.LastPing=lastping;
       },
       pings: function(){
-        console.log("pings calculation")
         //get every ping in the global store whos id is included in the  ping_id array of the site prop
-        return Object.values(this.$store.state.pings).filter( (ping) => this.siteProp.ping_ids.includes(ping.id) )
+        const allPings = Object.values(this.$store.state.pings)
+        const myPings = allPings.filter( (ping) => this.siteProp.ping_ids.includes(ping.id) )
+        return myPings
       }
 
     }

@@ -4,13 +4,17 @@
   min-height: 65px;
   height: 65px;
   background-color: $orange;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 55px;
 }
 
 .logo-image{
-  margin: auto;
   font-size: 2rem;
   text-align: center;
-  margin-top:13px;
+  display: flex;
+  margin-top: 16px;
+  width: fit-content;
 }
 .main-content{
     display:flex;
@@ -41,16 +45,41 @@
   }
 }
 .menu-inner-wrapper{
-  padding: 19px 22px;
+  padding: 17px 22px;
   display: flex;
   font-size: 1.2rem;
   font-weight: 400;
+  transition-duration: 0.3s;
+
+  p{
+    margin:0;
+  }
+}
+
+.menu-inner-wrapper:hover{
+  background: $light-grey-2;
+  transition-duration: 0.3s;
+}
+
+.site-link:hover{
+  background: $light-grey-2;
+  transition-duration: 0.2s;
+}
+
+.logout-div{
+  margin-left: 2px !important;
+}
+
+.user-fa{
+  
+  margin-left: 3px !important;
+  font-size: 19px;
 }
 
 .menu-list{
   display: block;
   overflow-y: hidden;
-  height: 100px;
+  height: 94px;
 	// max-height: 500px; /* approximate max height */
 
 	transition-property: all;
@@ -67,6 +96,7 @@
   }
 }
 
+
 .hidden{
   height: 0;
   transition-duration: .4s;
@@ -81,6 +111,14 @@
 /* .component-fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 
+}
+
+.logo-image-onion {
+  background-image: url('http://res.cloudinary.com/dmzulpcul/image/upload/c_scale,h_50/v1513286922/noun_35970_c9roof.png');
+  width: 50px;
+  height: 50px;
+  display: flex;
+  margin-top: 3px;
 }
 
 

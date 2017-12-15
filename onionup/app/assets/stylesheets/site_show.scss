@@ -18,22 +18,22 @@ div.site-show-container > h2 {
   margin-bottom: 15px;
 }
 div#chart{
-  width: 700px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   overflow: hidden
 }
 
 
 // need important tags because chartjs has inline styles
 canvas#line-chart {
-  width: 700px !important;
-  height: 400px !important; 
+  width: 500px !important;
+  height: 500px !important; 
 }
 
 div.data-box-container {
   padding: 10px 10px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 
   div.data-box {
     display: flex;

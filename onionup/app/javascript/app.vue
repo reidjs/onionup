@@ -9,10 +9,50 @@
         <router-view></router-view>
       </transition>
     </main>
+        <footer class="index">
+      <div class="profile">
+        <h2>Artem</h2>
+        <div class="links">
+          <a href="https://www.linkedin.com/in/"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
+
+</a>
+          <a href="https://www.github.com/"><i class="fa fa-github-alt" aria-hidden="true"></i>
+</a>
+        </div>
+      </div>
+      <div class="profile">
+        <h2>Chris</h2>
+        <div class="links">
+          <a href="https://www.linkedin.com/in/"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
+
+</a>
+          <a href="https://www.github.com/"><i class="fa fa-github-alt" aria-hidden="true"></i>
+</a>
+        </div>
+      </div>
+      <div class="profile">
+        <h2>Jay</h2>
+        <div class="links">
+          <a href="https://www.linkedin.com/in/"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
+
+</a>
+          <a href="https://www.github.com/"><i class="fa fa-github-alt" aria-hidden="true"></i>
+</a>
+        </div>
+      </div>
+      <div class="profile">
+        <h2>Reid</h2>
+        <div class="links">
+          <a href="https://www.linkedin.com/in/reidsherman"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
+
+</a>
+          <a href="https://www.github.com/reidjs"><i class="fa fa-github-alt" aria-hidden="true"></i>
+</a>
+        </div>
+      </div>
+    </footer>
   </div>
 
-
-  </div>
 </template>
 
 <script>
@@ -45,7 +85,6 @@
 
   import { store } from './store';
 
-  console.log("APP",window.currentUser);
 
   const routes = [
     
@@ -62,7 +101,6 @@
   })
 
 router.beforeEach((to, from, next) => {
-  console.log("before each", to , from)
   if (to.matched.some(record => record.meta.requiresAuth)) {
 
     if (!store.state.session.currentUser ) {
