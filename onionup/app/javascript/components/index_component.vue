@@ -39,7 +39,7 @@
     </div>
     <br/>  
     <!-- Vuetify button -->
-    <div>
+    <div data-app="true">
       
       <v-layout row>
         <v-flex xs12 sm6 offset-sm11>
