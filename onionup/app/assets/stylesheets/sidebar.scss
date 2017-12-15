@@ -41,10 +41,23 @@
   }
 }
 .menu-inner-wrapper{
-  padding: 19px 22px;
+  padding: 17px 22px;
   display: flex;
   font-size: 1.2rem;
   font-weight: 400;
+  p{
+    margin:0;
+  }
+}
+
+.logout-div{
+  margin-left: 2px !important;
+}
+
+.user-fa{
+  
+  margin-left: 3px !important;
+  font-size: 19px;
 }
 
 .menu-list{

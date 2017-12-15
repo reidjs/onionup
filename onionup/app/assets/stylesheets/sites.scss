@@ -6,6 +6,10 @@
   }
 }
 
+.site-inner-wrapper{
+  display: flex;
+}
+
 .up{
   color: $status-up;
   -webkit-text-stroke-width: 1px;

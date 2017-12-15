@@ -1,7 +1,7 @@
 <template>
   <div  class="site">
-    <div v-if="lastPing">
-      <div>
+    <div v-if="lastPing" class="site-inner-wrapper">
+      <div >
         <p v-if="lastPing.status" class="site-fa">
           <i class="fa fa-arrow-circle-up up" aria-hidden="true"></i>
         </p>
@@ -18,12 +18,17 @@
         <p id="response">{{lastPing.responseTime}}</p>
         <p id="unit">ms</p>
       </div>
+       <div>
+        <p>HTTP Load:</p>
+        <p id="response">{{lastPing.loadTime}}</p>
+        <p id="unit">ms</p>
+      </div>
       <div>
         <p>Updated at:</p>
         <p>{{lastPing.created_at}}</p>
       </div>
     </div>
-    <div v-else>
+    <div v-else class="site-inner-wrapper">
       <div>
         <p>Site url:</p>
         <p id="url">{{site.url}}</p>
