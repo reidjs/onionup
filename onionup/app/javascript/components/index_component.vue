@@ -4,11 +4,12 @@
       <h1>
         <span class="index-header-title hover-message">    
           <i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;Uptime Checks
-          <div class="message-text">
-            <span> 
+          
+            <p class="message-text"> 
               message box 
-            </span>
-          </div>
+            </p>
+          
+
         </span>
         <div class="pinger-holder">
           <transition name="fade">
@@ -18,6 +19,7 @@
             <h1 v-else class="loader"></h1>
           </transition>
         </div>
+
       </h1>
     </div>
 

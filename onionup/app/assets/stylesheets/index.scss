@@ -127,7 +127,29 @@ div.profile:hover div.links > a:last-child{
 }
 
 .hover-message:hover .message-text{
-  border: 1px solid black;
-  position: absolute;
+   opacity: 1;
+  transition: all 0.2s ease-in-out;
+  border-radius: 3px;
   display: block;
+  box-shadow: 0 0 0 0 rgba(0,0,0,.15); 
+  top: 69px;
+  margin-left:-125px;
+  border: 1px solid #dddddd;
+  background-color: green;
+  
 }
+
+.message-text:before{
+   content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  margin-left:-125px;
+  top: -6px;
+  border-style: solid;
+  border-width: 6px;
+  border-color: red;
+  box-shadow: -1px -1px 0 0 rgba(0, 0, 0, .15);
+  transform: rotate(45deg);
+}
+
