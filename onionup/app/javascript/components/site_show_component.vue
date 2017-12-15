@@ -3,8 +3,8 @@
     <h1 v-if="siteData.alias">{{siteData.alias}}</h1>
     <h2>{{siteData.url}}</h2>
     <!-- <h2 v-if="loading">Loading</h2> -->
-    <div id="response-chart">
-      <h1>HTTP Response (Through Tor)</h1>
+    <h1>HTTP Response (Through Tor)</h1>
+    <div id="chart">
       <ResponseTimeChart
         :pings="pings"
         :options="options"
@@ -28,8 +28,8 @@
         <footer>ms</footer>
       </div>
     </div>
-    <div id="load-chart">
-      <h1>Page Load (Through Tor) </h1>
+    <h1>Page Load (Through Tor) </h1>
+    <div id="chart">
       <LoadTimeChart
         :pings="pings"
         :options="options"
@@ -53,8 +53,8 @@
         <footer>ms</footer>
       </div>
     </div>
-    <div id="dual-chart">
-      <h1>Combined</h1>
+    <h1>Combined</h1>
+    <div id="chart">
       <DualChart
         :pings="pings"
         :options="options"

@@ -1,10 +1,10 @@
 @import "variables";
 
 div.site-show-container{
-  padding-left: 10px;
+  padding-left: 25px;
 }
 
-div.site-show-container > h1, div.site-show-container > h2 {
+div.site-show-container > h1:first-child, div.site-show-container > h2 {
   text-align: center;
   font-size: 22px;
   
@@ -17,7 +17,7 @@ div.site-show-container > h2 {
   padding-top: 5px;
   margin-bottom: 15px;
 }
-div#response-chart, div#load-chart{
+div#chart{
   width: 700px;
   height: 400px;
   overflow: hidden
