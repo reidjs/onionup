@@ -13,6 +13,14 @@
         <h2>Average Response Time</h2>
         <p>{{pings.averageResponseTime}}</p>
       </div>
+      <div class="data-box">
+        <h2>Max Response Time</h2>
+        <p>{{pings.maxResponseTime}}</p>
+      </div>
+      <div class="data-box">
+        <h2>Min Response Time</h2>
+        <p>{{pings.minResponseTime}}</p>
+      </div>
     </div>
     <div id="load-chart">
       <LoadTimeChart
@@ -22,9 +30,17 @@
       </LoadTimeChart>
     </div>
     <div class="data-box">
-        <h2>Average Load Time</h2>
-        <p>{{pings.averageLoadTime}}</p>
-      </div>
+      <h2>Average Load Time</h2>
+      <p>{{pings.averageLoadTime}}</p>
+    </div>
+    <div class="data-box">
+      <h2>Max Load Time</h2>
+      <p>{{pings.maxLoadTime}}</p>
+    </div>
+    <div class="data-box">
+      <h2>Min Load Time</h2>
+      <p>{{pings.minLoadTime}}</p>
+    </div>
     <h1>Received: {{pings}}</h1>
     <DualChart
       :pings="pings"
@@ -97,6 +113,10 @@
         let averageLoadTime = 0;
         // console.log(values(pings))
         let averageResponseTime = 0;
+        let maxResponseTime = 0;
+        let maxLoadTime = 0;
+        let minResponseTime = null;
+        let minLoadTime = null;
         values(pings).map(ping => {
           if (ping.responseTime === null) {
             responseTimes.push(0)
@@ -108,6 +128,14 @@
           }
           averageResponseTime += ping.responseTime
           averageLoadTime += ping.loadTime
+          if (ping.responseTime > maxResponseTime)
+            maxResponseTime = ping.responseTime
+          if (ping.loadTime > maxLoadTime)
+            maxLoadTime = ping.loadTime
+          if (ping.responseTime < minResponseTime || minResponseTime === null)
+            minResponseTime = ping.responseTime
+          if (ping.loadTime < minLoadTime || minLoadTime === null)
+            minLoadTime = ping.loadTime
           let time = new Date(ping.created_at)
           labels.push(time.toLocaleString())
         })
@@ -122,7 +150,11 @@
           labels,
           loadTimes,
           averageResponseTime,
-          averageLoadTime
+          averageLoadTime,
+          maxResponseTime,
+          maxLoadTime,
+          minResponseTime,
+          minLoadTime
         }
       },
       sites: function(){
