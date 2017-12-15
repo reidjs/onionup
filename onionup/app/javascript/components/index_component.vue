@@ -128,7 +128,7 @@
         this.$store.dispatch("postSite",this.siteURL).then((ok)=> {
             if (ok){
                this.dialog = false;
-               this.siteURL = "http://www.";
+               this.siteURL = "http://www.YourSiteHere";
             }
           })
       }

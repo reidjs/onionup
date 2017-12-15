@@ -80,7 +80,7 @@ export const store = new Vuex.Store({
     postSite(context, site) {
       return axios.post(`api/sites`, {site : {url:site}})
         .then(res => {
-          console.log("res",res)
+          // console.log("res",res)
           context.commit('ADD_SITES', res.data)
           return (res)
         })
