@@ -77,6 +77,21 @@ li{
   padding-bottom: 1px;
 }
 
+.site-status{
+  div{
+    margin: auto;
+  }
+}
+
+.site-stat{
+  display: flex;
+}
+
+.data-title{
+  font-size: 11px;
+  color: #838181;
+}
+
 footer.index{
   margin: 30px 0;
   display: flex;
@@ -104,17 +119,15 @@ div.profile:hover div.links > a:last-child{
   color: $status-up
 }
 
-.site-status{
-  div{
-    margin: auto;
-  }
+
+
+// Hover message for 'i' font-awesome in index header
+.hover-message .message-text{
+  display: none;
 }
 
-.site-stat{
-  display: flex;
-}
-
-.data-title{
-  font-size: 11px;
-  color: #838181;
+.hover-message:hover .message-text{
+  border: 1px solid black;
+  position: absolute;
+  display: block;
 }

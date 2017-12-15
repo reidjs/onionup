@@ -14,14 +14,14 @@
         <p id="url">{{site.url}}</p>
       </div>
       <div class="site-response">
-        <p class="data-title left-indent-50">Response Time:</p>
+        <p class="data-title">Response Time:</p>
         <div class="site-stat">
           <p id="response">{{lastPing.responseTime}}</p>
           <p id="unit">ms</p>
         </div>
       </div>
        <div class="site-load">
-        <p class="data-title left-indent-50">HTTP Load:</p>
+        <p class="data-title ">HTTP Load:</p>
         <div class="site-stat">
           <p id="response">{{lastPing.loadTime}}</p>
           <p id="unit">ms</p>

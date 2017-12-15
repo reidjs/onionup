@@ -2,8 +2,13 @@
   <div id="main" class="index-main">
     <div class="content-header">
       <h1>
-        <span class="index-header-title">    
+        <span class="index-header-title hover-message">    
           <i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;Uptime Checks
+          <div class="message-text">
+            <span> 
+              message box 
+            </span>
+          </div>
         </span>
         <div class="pinger-holder">
           <transition name="fade">
