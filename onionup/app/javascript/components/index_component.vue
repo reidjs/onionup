@@ -58,6 +58,9 @@
                 <p :class= "{'control': true }">
                   <!-- <v-text-field v-validate="'url'" :class="{ 'input': true, 'is-danger': errors.has('url') }" name="url" label="Add a Site" type="text"></v-text-field>
                   <span v-show="errors.has('url')" class="help is-danger">{{ errors.first('url') }}</span> -->
+
+                  <v-text-field name="alias-field" type="text" placeholder="alias"></v-text-field> 
+                  <!-- v-model="site.alias" -->
                   <v-text-field v-model="siteURL" v-validate="'url:require_protocol'" data-vv-as="field" :class="{'input': true, 'is-danger': frontendErrors.has('url_field') }" name="url_field" type="text" placeholder="url"></v-text-field> 
                   <span v-show="frontendErrors.has('url_field')" class="help is-danger">{{ frontendErrors.first('url_field') }}</span>
                 </p>
@@ -73,6 +76,48 @@
       </v-layout>
 
     </div>
+    <footer class="index">
+      <div class="profile">
+        <h2>Artem</h2>
+        <div class="links">
+          <a href="https://www.linkedin.com/in/"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
+
+</a>
+          <a href="https://www.github.com/"><i class="fa fa-github-alt" aria-hidden="true"></i>
+</a>
+        </div>
+      </div>
+      <div class="profile">
+        <h2>Chris</h2>
+        <div class="links">
+          <a href="https://www.linkedin.com/in/"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
+
+</a>
+          <a href="https://www.github.com/"><i class="fa fa-github-alt" aria-hidden="true"></i>
+</a>
+        </div>
+      </div>
+      <div class="profile">
+        <h2>Jay</h2>
+        <div class="links">
+          <a href="https://www.linkedin.com/in/"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
+
+</a>
+          <a href="https://www.github.com/"><i class="fa fa-github-alt" aria-hidden="true"></i>
+</a>
+        </div>
+      </div>
+      <div class="profile">
+        <h2>Reid</h2>
+        <div class="links">
+          <a href="https://www.linkedin.com/in/reidsherman"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
+
+</a>
+          <a href="https://www.github.com/reidjs"><i class="fa fa-github-alt" aria-hidden="true"></i>
+</a>
+        </div>
+      </div>
+    </footer>
   </div>
   
 </template>

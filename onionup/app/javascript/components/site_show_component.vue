@@ -57,7 +57,6 @@
     <div id="chart">
       <DualChart
         :pings="pings"
-        :options="options"
       >
       </DualChart>
     </div>
@@ -105,7 +104,7 @@
               }]
           },
           responsive: false,
-          maintainAspectRatio: false
+          maintainAspectRatio: true
         }
 
       }
@@ -117,20 +116,35 @@
     },
     computed: {
       pings: function(){
-        let pings = this.$store.state.pings
+        let options = {
+          scales: {
+              xAxes: [{
+                  ticks: {
+                      beginAtZero:false,
+                      lineWidth:3,
+                      fontSize:18
+                  }
+              }]
+          },
+          responsive: false,
+          maintainAspectRatio: true
+        }
+        let pings = this.$store.state.pings;
         // console.log('trying to send pings', pings)
         if (pings === undefined) 
-          return []
-        let responseTimes = []
-        let labels = []
-        let loadTimes = []
+          return [];
+        let responseTimes = [];
+        let times = [];
+        let loadTimes = [];
         let averageLoadTime = 0;
         // console.log(values(pings))
         let averageResponseTime = 0;
         let maxResponseTime = 0;
+        let labels = [];
         let maxLoadTime = 0;
         let minResponseTime = null;
         let minLoadTime = null;
+        let i = 0;
         values(pings).map(ping => {
           if (ping.responseTime === null) {
             responseTimes.push(0)
@@ -151,7 +165,9 @@
           if (ping.loadTime < minLoadTime || minLoadTime === null)
             minLoadTime = ping.loadTime
           let time = new Date(ping.created_at)
-          labels.push(time.toLocaleString())
+          times.push(time.toLocaleString())
+          labels.push(i)
+          i++;
         })
         // console.log('res', responseTimes)
         // console.log('sending', responseTimes)
@@ -161,8 +177,10 @@
         }
         return {
           responseTimes,
+          times,
           labels,
           loadTimes,
+          options,
           averageResponseTime,
           averageLoadTime,
           maxResponseTime,
