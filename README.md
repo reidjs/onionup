@@ -18,14 +18,14 @@ OnionUp users can:
 
 #### Frontend 
 
-OnionUp's frontend was developed as a Vue single page web application to provide a seamless and responsive UX. 
+OnionUp's frontend was developed using Vue with Vuetify to create a Single Page Application (SPA) that provides a seamless, responsive, and beautiful UX.
 
-- show vuetify
+| Add Sites | Ping Sites |
+| ---------- | --------- |
+| ![Add Sites](https://media.giphy.com/media/xT0xeJQt00hGlLOpoc/giphy.gif) | ![Ping Sites](https://media.giphy.com/media/xT0xei2Vk2njAvdBle/giphy.gif) |
 
-- show graphs 
 
-
-Frontend routing of our SPA (Single Page App) was accomplished using the Vue Router. These are OnionUp's frontend routes:
+Frontend routing of our SPA was accomplished using the Vue Router. These are OnionUp's frontend routes:
 
 - `/` Index
 - `/sites/:id` Site show page
@@ -41,6 +41,12 @@ To ensure data consistency, we utilized flux architecture by integrating Vue wit
     errors: null
   }
 ```
+
+
+| Navigate Easily | View Site Stats |
+| --------------- | --------------- |
+| ![Navigate Easily](https://media.giphy.com/media/3o6fIT1NdOEHKgoRJ6/giphy.gif) | ![View Site Statistics](https://media.giphy.com/media/3o6fIV05Vw1KJZCMtW/giphy.gif) |
+
 
 #### Backend
 
