@@ -18,19 +18,20 @@ OnionUp users can:
 
 #### Frontend 
 
-OnionUp's frontend was developed using Vue with Vuetify to create a Single Page Application (SPA) that provides a seamless, responsive, and beautiful UX.
+OnionUp's frontend was developed using Vue with VueX to create a Single Page Application (SPA) that provides a seamless, responsive, and beautiful UX. 
 
 | Add Sites | Ping Sites |
 | ---------- | --------- |
 | ![Add Sites](https://media.giphy.com/media/xT0xeJQt00hGlLOpoc/giphy.gif) | ![Ping Sites](https://media.giphy.com/media/xT0xei2Vk2njAvdBle/giphy.gif) |
 
 
-Frontend routing of our SPA was accomplished using the Vue Router. These are OnionUp's frontend routes:
+Frontend routing of our SPA was accomplished using the Vue Router. We also implimented Vue Routers meta tag's and NavigationGaurds to navigate unsigned users to the login page. These are OnionUp's frontend routes:
 
 - `/` Index
-- `/sites/:id` Site show page
+- `/sites/:id` Site show page (protected)
 - `/login` Login form
 - `/signup` Signup form
+
 
 To ensure data consistency, we utilized flux architecture by integrating Vue with Vuex. This simplified our state to this simple object
 ```
@@ -83,6 +84,47 @@ uri = URI.parse(self.url)
     
 ```
 
+To make sure that a user can ping all of his sites in a reasonable time we used ruby threads to make concurrent requests
+```
+    #make a new thread for every site and record the results of attempting a socksify connection.
+    # save pings to thread safe finished_ping queue and save after all threads are done.
+    threads = @sites.map do |site|
+      Thread.new do
+          Ping.new
+          ping = pings.pop
+          ping.site_id = site.id
+          res = site.ping
+          p res
+          ping.responseTime = res[:responseTime]
+          ping.status = res[:status]
+          ping.loaded = res[:loaded]
+          ping.loadTime = res[:loadTime]
+          finished_pings.push(ping)
+      end
+    end
+    
+    #wait for threads to finish then save pings
+    threads.each{|thr| thr.join}    
+    while (!finished_pings.empty?)
+      finished_pings.pop(true).save!
+    end
+```
+
+we also set up automatic updating and cleaning of the database using rake tasks and heroku's scheduler. We set the logic up in rails ActiveJobs to allow us to be flexible in our choice of scheduler. The following code is a rake task that takes in a parameter of oldest ping to keep, selects all ping created before that, and deletes them. 
+
+```  
+  def perform(oldestPermitted)
+    time = DateTime.now-oldestPermitted
+    oldPings = Ping.where("created_at <= ?",time)
+    oldPings.each{|ping| ping.delete}
+  end
+
+    desc "delete all pings older than parameter. Call like clean:older_than[30] to delete all older than 30 days"
+    task :older_than,[:day] => :environment do |t,args|
+        days= args[:day].to_i
+        RemoveOldPingsJob.new.perform(days)
+    end
+  ```
 
 ### Future Additions
 
