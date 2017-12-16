@@ -10,6 +10,9 @@
         </p>
       </div>
       <div class="site-url">
+        <p v-if="site.alias" class="data-title">alias:</p>
+        <p v-if="site.alias" id="url">{{site.alias}}</p>
+        <hr v-if="site.alias" />
         <p class="data-title">Site url:</p>
         <p id="url">{{site.url}}</p>
       </div>
@@ -69,11 +72,8 @@
   
     },
     computed: {
-      lastPing: function(){
-        
+      lastPing: function(){    
         const lastping = this.pings[this.pings.length-1]
-        // let temp = new Date(lastping.created_at)
-        // console.log(temp.toLocaleString());
         return lastping
       },
       pings: function(){
