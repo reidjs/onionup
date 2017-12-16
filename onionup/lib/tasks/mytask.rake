@@ -14,7 +14,7 @@ end
 namespace :clean do
     desc "delete all pings older than parameter. Call like clean:older_than[30] to delete all older than 30 days"
     task :older_than,[:day] => :environment do |t,args|
-        days= args[:day].to_i==2
+        days = args[:day].to_i
         RemoveOldPingsJob.new.perform(days)
     end
 
@@ -29,7 +29,7 @@ namespace :clean do
         puts "this"
         RemoveOldPingsJob.new.perform(1)
     end
-    
+
     desc "delete all pings older than 30 days"
     task :month => :environment do
         puts "this"
