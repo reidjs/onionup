@@ -6,171 +6,135 @@
 
 Onion services are websites that are accessible through the Tor anonymity network. These services are gaining popularity among journalists and people in repressive countries. In fact, major companies like the [New York Times](https://www.nytimes3xbfgragh.onion/) and [Facebook](https://facebookcorewwi.onion/) recently launched Onion services for their content. By going through Tor, users gain superior encryption relative to unencrypted, or "clearnet," websites. In order to maintain anonymity, there are certain tradeoffs Tor users are accustomed to. Onion services are much slower than their clearnet counterparts and they go offline frequently. Thus, Tor users would benefit from a utility to check which sites are online before they devote a substantial amount of time and effort connecting. OnionUp is a Pingdom-inspired uptime checker that displays the health of both Onion services and clearnet websites. As an added feature, OnionUp will allow users to easily keep track of their favorite Onion services.
 
+### Functionality
+
+OnionUp users can:
+- Add clearnet or onion sites to their account
+- Track the ping response latency or page load time of any given site 
+- Alias cryptic onion site names with readable nicknames
+- View graphical representations and statistical analyses to forecast site reliability
+
+### Technology
+
+#### Frontend 
+
+OnionUp's frontend was developed using Vue with VueX to create a Single Page Application (SPA) that provides a seamless, responsive, and beautiful UX. 
+
+| Add Sites | Ping Sites |
+| ---------- | --------- |
+| ![Add Sites](https://media.giphy.com/media/xT0xeJQt00hGlLOpoc/giphy.gif) | ![Ping Sites](https://media.giphy.com/media/xT0xei2Vk2njAvdBle/giphy.gif) |
+
+
+Frontend routing of our SPA was accomplished using the Vue Router. We also implimented Vue Routers meta tag's and NavigationGaurds to navigate unsigned users to the login page. These are OnionUp's frontend routes:
+
+- `/` Index
+- `/sites/:id` Site show page (protected)
+- `/login` Login form
+- `/signup` Signup form
+
+
+To ensure data consistency, we utilized flux architecture by integrating Vue with Vuex. This simplified our state to this simple object
+```
+  state: {
+    sites: {},
+    pings: {},
+    session: { currentUser:getUser},
+    errors: null
+  }
+```
+
+
+| Navigate Easily | View Site Stats |
+| --------------- | --------------- |
+| ![Navigate Easily](https://media.giphy.com/media/3o6fIT1NdOEHKgoRJ6/giphy.gif) | ![View Site Statistics](https://media.giphy.com/media/3o6fIV05Vw1KJZCMtW/giphy.gif) |
+
+
+#### Backend
+
+OnionUp's backend leverages Ruby on Rails concurrency using Rails ActiveJobs to ensure multiple sites can be pinged as a background task.
+
+
+To ping Tor sites, we used `socksify/http` to route traffic through a SOCKS5 proxy. The following ruby code allowed us to retrieve both the HTTP Response and the load time of any onion or clearnet site. 
+
+```
+uri = URI.parse(self.url)
+      begin
+        puts "started socks request!  url: " + self.url
+        a = Time.now
+        Net::HTTP.SOCKSProxy(ENV['TOR_IP'], 9050).start(uri.host, uri.port, open_timeout:10) do |http|
+          b = Time.now
+          status = true
+          responseTime =  (b-a)*1000
+          http.read_timeout = 10
+          http.open_timeout = 10
+          begin
+            a = Time.now
+            res = http.get(uri)
+            b = Time.now
+            loaded = true
+            loadTime = (b-a)*1000
+          rescue
+            return {responseTime:responseTime, loadTime:loadTime, status: status, loaded:loaded}
+          end 
+        end
+        return {responseTime:responseTime, loadTime:loadTime, status: status, loaded:status}
+      rescue
+        puts "Host unreachable error"
+      end
+    
+```
+| multi-threaded-pinging | single-threaded-pinging |
+| --------------- | --------------- |
+| ![multi-threaded-pinging](https://res.cloudinary.com/flyakite/image/upload/v1513404952/ezgif.com-crop_1_owjbdj.gif) | ![single-threaded-pinging](http://res.cloudinary.com/flyakite/image/upload/v1513404956/ezgif.com-crop_2_a1kt65.gif) |
+
+To make sure that a user can ping all of his sites in a reasonable time we used ruby threads to make concurrent requests. This cuts users' wait times to half to a third of synchronous requests
+```
+    #make a new thread for every site and record the results of attempting a socksify connection.
+    # save pings to thread safe finished_ping queue and save after all threads are done.im
+    threads = @sites.map do |site|
+      Thread.new do
+          Ping.new
+          ping = pings.pop
+          ping.site_id = site.id
+          res = site.ping
+          p res
+          ping.responseTime = res[:responseTime]
+          ping.status = res[:status]
+          ping.loaded = res[:loaded]
+          ping.loadTime = res[:loadTime]
+          finished_pings.push(ping)
+      end
+    end
+    
+    #wait for threads to finish then save pings
+    threads.each{|thr| thr.join}    
+    while (!finished_pings.empty?)
+      finished_pings.pop(true).save!
+    end
+```
 
-### Functionality & MVP 
+we also set up automatic updating and cleaning of the database using rake tasks and heroku's scheduler. We set the logic up in rails ActiveJobs to allow us to be flexible in our choice of scheduler. The following code is a rake task that takes in a parameter of oldest ping to keep, selects all ping created before that, and deletes them. 
 
-Users can 
+```  
+  def perform(oldestPermitted)
+    time = DateTime.now-oldestPermitted
+    oldPings = Ping.where("created_at <= ?",time)
+    oldPings.each{|ping| ping.delete}
+  end
 
-- [ ] Sign in/Sign out 
-- [ ] Add sites to track
-- [ ] View index of sites. Each site will show the health (up or down), ping time, and a live graph
-- [ ] View specific site details and remove site from their tracker.
-- [ ] Edit site specifics such as a site alias and descriptions.
+    desc "delete all pings older than parameter. Call like clean:older_than[30] to delete all older than 30 days"
+    task :older_than,[:day] => :environment do |t,args|
+        days= args[:day].to_i
+        RemoveOldPingsJob.new.perform(days)
+    end
+  ```
 
-### Wireframes
+### Future Additions
 
-Index of sites 
+- Use websockets to allow for realtime data updates.
 
-![Index](https://github.com/reidjs/onionup/blob/master/wireframes/index_view.png)
+- Delete sites without widowing data (such as pings attached to that site)
 
-Log in modal 
+- Edit user accounts
 
-![Session Modal](https://github.com/reidjs/onionup/blob/master/wireframes/session_modal.png)
-
-Site view 
-
-![Site View](https://github.com/reidjs/onionup/blob/master/wireframes/site_view.png)
-
-### Technologies and Technical Challenges
-
-This will be implemented using a Ruby on Rails backend with a vue frontend. 
-
-Primary technical challenges:
-
-* Pinging Tor sites from an Amazon EC2 Instance
-* Deploying to heroku (heroku uses dynamic ips which will cause issues with the tor proxy)
-* Linking Vue with the Ruby on Rails backend
-* Building live graphs with D3
-* User authentication 
-
-### Things we accomplished this weekend.
-
-1. Opened Amazon ec2 port successfully 
-2. Set up multi-threaded pinger
-3. (Hopefully) integrated vue frontend with rails backend
-
-### Group Members and Work Breakdown
-
-Our group consists of four members, Chris Bigelow, Jay Park, Artem Kharshan, Reid Sherman
-
-Primary Responsibilities
-
-Chris:
-
-* Amazon server setup
-* Heroku deployment
-* Tor port setup
-
-Jay: 
-
-* Wireframes
-* Vue frontend components 
-* Devise auth 
-
-Artem: 
-
-* Running multiple threads to ping many sites at once
-* Setting up sidekiq/jobs
-* Sending data from backend to frontend 
-
-Reid:
-
-* Writing Readme 
-* D3 for graphs 
-* Integrating rails with vue 
-* Vue frontend components
-
-## Monday
-
-**Reid**
-
-- [ ] Site show page 
-- [ ] User show page
-- [ ] Settings show page 
-
-**Jay**
-
-- [ ] Index Component 
-- [ ] Sidebar/page styling, navigation
-
-**Chris** 
-- [ ] Have rails server running concurrently with onion proxy able to make ping requests
-- [ ] Bootup tor and rails with one command 
-
-**Artem**
-
-- [ ] Making APIs for frontend to get information 
-- [ ] Timestamped data for graphs
-
-## Tuesday
-
-**Reid**
-
-- [ ] Graphing ping data in d3
-
-**Jay**
-
-- [ ] Create site card component for index 
-
-**Chris** 
-
-- [ ] Store ping data in database and requesting data 
-
-**Artem**
-
-- [ ] Look into websockets (Application Cable) connecting front and backend
-
-## Wednesday
-
-**Reid**
-
-- [ ] Display historical data from backend to frontend
-
-**Jay**
-
-- [ ] Create site cards in vue
-
-**Chris** 
-
-- [ ] Display historical data from backend to frontend 
-
-**Artem**
-
-- [ ] Work on concurrency in backend
-
-## Thursday
-
-**Reid**
-
-- [ ] Polish frontend user accounts
-
-**Jay**
-
-- [ ] Polish frontend sites page
-
-**Chris** 
-
-- [ ] Launch to Heroku
-
-**Artem**
-
-- [ ] Optimize pinging algorithm
-
-## Friday
-
-**Reid**
-
-- [ ] Write production readme
-
-**Jay**
-
-- [ ] Ensure frontend is responsive for different screen sizes
-
-**Chris** 
-
-- [ ] Deploy to heroku
-
-**Artem**
-
-- [ ] Deploy to heroku
-
+- Devise Authentication/Oauth

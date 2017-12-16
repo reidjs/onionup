@@ -6,7 +6,7 @@
           <i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;Uptime Checks
           <p class="message-text"> 
             <span>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+              OnionUp is a service that tracks uptime, downtime, and performance metrics for <a class="tor-link-service" href="https://www.torproject.org/docs/onion-services.html.en">Tor onion services</a> (.onion domain). Note: The slow load times are inherent to the Tor architecture. Click the ping button to get fresh metrics for your sites or add a new site below. 
             </span>
           </p>
         </span>
@@ -39,7 +39,7 @@
     </div>
     <br/>  
     <!-- Vuetify button -->
-    <div>
+    <div data-app="true">
       
       <v-layout row>
         <v-flex xs12 sm6 offset-sm11>

@@ -1,9 +1,9 @@
 <template >
   <div v-if="currentUser" class="sidebar">
     <div class="sidebar-logo">
-      <div class="logo-image-onion"></div>
       <p class="logo-image">
         <router-link to="/">OnionUp</router-link>
+        
       </p>
     </div>
     <div>
@@ -24,24 +24,20 @@
               <i class="fa fa-window-restore" aria-hidden="true"></i>
               Sites
             </p>
-            <i id="arrow" class="fa fa-angle-up" aria-hidden="true"></i>
+            <i id="arrow" class="fa fa-angle-down" aria-hidden="true"></i>
           </div>
       </div>
       <div id="menu-list-1" class="menu-list hidden">
         <div>
-        <ul class="dropdown">
-          <router-link to="sites/1">
-            <li class="site-link">
-            site 1
+          <ul v-if="sites && sites.length" class="dropdown">
+            
+            <li v-for="site in sites" v-bind:key="site.id" class="site-link">
+                <a :href="'/#/sites/' + site.id">
+                  {{site.alias ? site.alias : site.url}}
+                </a>
             </li>
-          </router-link>
-          <router-link to="site/2">
-            <li class="site-link">
-            site 2
-            </li>
-          </router-link>
-        </ul>
-      </div>
+          </ul>
+        </div>
       </div>
      
       <div class="sidebar-menu">
@@ -66,6 +62,9 @@ export default {
   computed: {
     currentUser() {
       return this.$store.state.session.currentUser;
+    },
+    sites(){
+      return Object.values(this.$store.state.sites);
     }
   },
   methods: {
@@ -75,9 +74,16 @@ export default {
     },
     toggleMenu: function(i) {
       const el = document.getElementById(`menu-list-${i}`);
-      el.classList.contains("hidden")
-        ? el.classList.remove("hidden")
-        : el.classList.add("hidden");
+      const siteListLength = Object.values(this.$store.state.sites).length;
+      console.log(siteListLength)
+      if (el.classList.contains("hidden")){
+        el.style.height = `${47*siteListLength}px`;
+        el.classList.remove("hidden")
+      } else {
+        el.style.height = '0px';
+        el.classList.add("hidden");
+      }
+      
       const fa = document.getElementById("arrow");
       if (fa.classList.contains("fa-angle-down")) {
         fa.classList.remove("fa-angle-down");
@@ -88,8 +94,13 @@ export default {
       }
     }
   },
+  created(){
+    console.log('created')
+   console.log((this.$store.getters.sites))
+  },
   data() {
     return {
+
       // currentUser: Boolean(window.currentUser)
     };
   }
