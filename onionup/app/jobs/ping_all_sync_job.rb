@@ -3,7 +3,6 @@ class PingAllSyncJob < ApplicationJob
 
   def perform()
     sites = Site.all
-    #make threadsafe pings queueMultithreads didnt like me instantiating Ping.new() inside a thread
     sites.each do |site|
         Ping.new
         ping = Ping.new
