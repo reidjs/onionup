@@ -31,7 +31,7 @@
     flex-direction: column;
     min-width: 300px;
     max-width: 300px;
-    height: 100vh;
+    // height: 100vh;
     background-color: $light-grey;
     color: white
 }
@@ -83,7 +83,7 @@
 .menu-list{
   display: block;
   overflow-y: hidden;
-  height: 94px;
+  height: 0px;
 	// max-height: 500px; /* approximate max height */
 
 	transition-property: all;
@@ -96,6 +96,10 @@
   li{
     background-color: $dark-grey;
     height: 47px;
+    a{
+      display: block;
+      height: 100%;
+    }
 
   }
 }
