@@ -83,11 +83,14 @@ uri = URI.parse(self.url)
       end
     
 ```
+| multi-threaded-pinging | single-threaded-pinging |
+| --------------- | --------------- |
+| ![multi-threaded-pinging](https://res.cloudinary.com/flyakite/image/upload/v1513404952/ezgif.com-crop_1_owjbdj.gif) | ![single-threaded-pinging](http://res.cloudinary.com/flyakite/image/upload/v1513404956/ezgif.com-crop_2_a1kt65.gif) |
 
-To make sure that a user can ping all of his sites in a reasonable time we used ruby threads to make concurrent requests
+To make sure that a user can ping all of his sites in a reasonable time we used ruby threads to make concurrent requests. This cuts users' wait times to half to a third of synchronous requests
 ```
     #make a new thread for every site and record the results of attempting a socksify connection.
-    # save pings to thread safe finished_ping queue and save after all threads are done.
+    # save pings to thread safe finished_ping queue and save after all threads are done.im
     threads = @sites.map do |site|
       Thread.new do
           Ping.new
