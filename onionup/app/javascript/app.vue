@@ -13,10 +13,10 @@
       <div class="profile">
         <h2>Artem</h2>
         <div class="links">
-          <a href="https://www.linkedin.com/in/"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
+          <a href="www.linkedin.com/in/artem-kharshan"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
 
 </a>
-          <a href="https://www.github.com/"><i class="fa fa-github-alt" aria-hidden="true"></i>
+          <a href="https://github.com/snorkleboy"><i class="fa fa-github-alt" aria-hidden="true"></i>
 </a>
         </div>
       </div>
