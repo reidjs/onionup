@@ -171,14 +171,15 @@
             minResponseTime = ping.responseTime
           if (ping.loadTime < minLoadTime || minLoadTime === null)
             minLoadTime = ping.loadTime
-          let datetime = new Date(ping.created_at)
-          times.push(datetime.toLocaleTimeString())
-          dates.push(datetime.toLocaleDateString())
-          labels.push(i)
-          i++;
+
+          let datetime = (new Date(ping.created_at))
+          times.push(datetime.toDateString())
+          
+            dates.push(`${datetime.getDay()}/${datetime.getMonth()} ${datetime.toLocaleTimeString('en-US',{ hour12: false })} `)
+
+          labels = dates
         })
-        // console.log('res', responseTimes)
-        // console.log('sending', responseTimes)
+
         if (pings.length > 0) {
           averageResponseTime = Math.floor(averageResponseTime/pings.length)
           averageLoadTime = Math.floor(averageLoadTime/pings.length)
@@ -189,6 +190,7 @@
           labels,
           loadTimes,
           options,
+          dates,
           latestPingDate,
           latestPingTime,
           averageResponseTime,
@@ -205,7 +207,7 @@
       siteData: function(){
         // console.log('site id', this.id)
         const site = this.$store.state.sites[this.id]
-        console.log('site:', site)
+        // console.log('site:', site)
         if (site) {
           return site
         } else {
