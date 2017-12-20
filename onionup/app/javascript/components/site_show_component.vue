@@ -76,15 +76,8 @@
     name: 'graph',
     props:['id'],
     mounted() {
-      // console.log('mounted')
-      // this.$store.dispatch("clearSites");
-      // this.$store.dispatch("clearPings");
+
       this.$store.dispatch("getSite", this.id);
-      // this.$store.dispatch("pingSite", this.id);
-      // console.log(this.$store.state.pings)
-      // console.log(this.pings)
-      // console.log(this.$store.state)
-      // console.log(this.$store.state.pings)
     },
     data() {
       let data = values(this.$store.state.pings);
@@ -127,7 +120,7 @@
         // console.log(ping_ids, this.$store.state.pings)
         if (ping_ids) {
           ping_ids.map(p_id => {
-            pings.push(this.$store.state.pings[p_id])
+            if(this.$store.state.pings[p_id]) pings.push(this.$store.state.pings[p_id])
           })
         }
         // console.log('my pings', pings)
@@ -135,8 +128,7 @@
         // let mypings = this.$store.state.site.
         // debugger 
         // console.log('trying to send pings', pings)
-        if (pings === undefined) 
-          return [];
+
         let responseTimes = [];
         let times = [];
         let dates = [];
@@ -152,37 +144,43 @@
         let latestPingDate;
         let latestPingTime;
         let i = 0;
-        values(pings).map(ping => {
-          if (ping.responseTime === null) {
-            responseTimes.push(0)
-            loadTimes.push(0)
-          }
-          else {
-            responseTimes.push(ping.responseTime)
-            loadTimes.push(ping.loadTime)
-          }
-          averageResponseTime += ping.responseTime
-          averageLoadTime += ping.loadTime
-          if (ping.responseTime > maxResponseTime)
-            maxResponseTime = ping.responseTime
-          if (ping.loadTime > maxLoadTime)
-            maxLoadTime = ping.loadTime
-          if (ping.responseTime < minResponseTime || minResponseTime === null)
-            minResponseTime = ping.responseTime
-          if (ping.loadTime < minLoadTime || minLoadTime === null)
-            minLoadTime = ping.loadTime
-          let datetime = new Date(ping.created_at)
-          times.push(datetime.toLocaleTimeString())
-          dates.push(datetime.toLocaleDateString())
-          labels.push(i)
-          i++;
-        })
-        // console.log('res', responseTimes)
-        // console.log('sending', responseTimes)
-        if (pings.length > 0) {
+
+        if (pings !== undefined) {
+          console.log("pings",pings)
+          values(pings).map(ping => {
+            if (ping.responseTime === null) {
+              responseTimes.push(0)
+              loadTimes.push(0)
+            }
+            else {
+              responseTimes.push(ping.responseTime)
+              loadTimes.push(ping.loadTime)
+            }
+            averageResponseTime += ping.responseTime
+            averageLoadTime += ping.loadTime
+            if (ping.responseTime > maxResponseTime)
+              maxResponseTime = ping.responseTime
+            if (ping.loadTime > maxLoadTime)
+              maxLoadTime = ping.loadTime
+            if (ping.responseTime < minResponseTime || minResponseTime === null)
+              minResponseTime = ping.responseTime
+            if (ping.loadTime < minLoadTime || minLoadTime === null)
+              minLoadTime = ping.loadTime
+            let datetime = new Date(ping.created_at)
+            times.push(datetime.toLocaleTimeString())
+            dates.push(datetime.toLocaleDateString())
+            labels.push(i)
+            i++;
+          })
+
+          if (pings.length > 0) {
           averageResponseTime = Math.floor(averageResponseTime/pings.length)
           averageLoadTime = Math.floor(averageLoadTime/pings.length)
+          }
         }
+        // console.log('res', responseTimes)
+        // console.log('sending', responseTimes)
+
         return {
           responseTimes,
           times,

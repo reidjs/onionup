@@ -10,7 +10,7 @@ json.sites do
         end
     end
 end
-pings = @sites.map{|site| site.pings}
+pings = @sites.map{|site| site.pings.last}
 json.pings do 
     pings.flatten.each do |ping|
         json.set! ping.id do
