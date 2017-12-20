@@ -80,7 +80,7 @@
       // this.$store.dispatch("clearSites");
       // this.$store.dispatch("clearPings");
       this.$store.dispatch("getSite", this.id);
-      this.$store.dispatch("pingSite", this.id);
+      // this.$store.dispatch("pingSite", this.id);
       // console.log(this.$store.state.pings)
       // console.log(this.pings)
       // console.log(this.$store.state)
