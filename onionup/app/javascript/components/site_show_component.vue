@@ -146,7 +146,7 @@
         let i = 0;
 
         if (pings !== undefined) {
-          console.log("pings",pings)
+          // console.log("pings",pings)
           values(pings).map(ping => {
             if (ping.responseTime === null) {
               responseTimes.push(0)
@@ -166,11 +166,13 @@
               minResponseTime = ping.responseTime
             if (ping.loadTime < minLoadTime || minLoadTime === null)
               minLoadTime = ping.loadTime
-            let datetime = new Date(ping.created_at)
-            times.push(datetime.toLocaleTimeString())
-            dates.push(datetime.toLocaleDateString())
-            labels.push(i)
-            i++;
+
+            let datetime = (new Date(ping.created_at))
+            times.push(datetime.toDateString())
+          
+            dates.push(`${datetime.getDay()}/${datetime.getMonth()} ${datetime.toLocaleTimeString('en-US',{ hour12: false })} `)
+
+            labels = dates
           })
 
           if (pings.length > 0) {
@@ -187,6 +189,7 @@
           labels,
           loadTimes,
           options,
+          dates,
           latestPingDate,
           latestPingTime,
           averageResponseTime,
@@ -203,7 +206,7 @@
       siteData: function(){
         // console.log('site id', this.id)
         const site = this.$store.state.sites[this.id]
-        console.log('site:', site)
+        // console.log('site:', site)
         if (site) {
           return site
         } else {
