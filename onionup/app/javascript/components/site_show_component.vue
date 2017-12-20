@@ -145,7 +145,7 @@
         let latestPingTime;
         let i = 0;
 
-        if (pings !== undefined) {
+        if (pings !== undefined && pings.length > 0) {
           // console.log("pings",pings)
           values(pings).map(ping => {
             if (ping.responseTime === null) {
@@ -167,18 +167,16 @@
             if (ping.loadTime < minLoadTime || minLoadTime === null)
               minLoadTime = ping.loadTime
 
+            
+
+
             let datetime = (new Date(ping.created_at))
-            times.push(datetime.toDateString())
-          
-            dates.push(`${datetime.getDay()}/${datetime.getMonth()} ${datetime.toLocaleTimeString('en-US',{ hour12: false })} `)
+            dates.push(`${datetime.getMonth()+1}/${datetime.getDay()+1} | ${datetime.toLocaleTimeString('en-US',{ hour12: false }).slice(0,-3)} `)
 
             labels = dates
           })
-
-          if (pings.length > 0) {
           averageResponseTime = Math.floor(averageResponseTime/pings.length)
           averageLoadTime = Math.floor(averageLoadTime/pings.length)
-          }
         }
         // console.log('res', responseTimes)
         // console.log('sending', responseTimes)
