@@ -12,10 +12,9 @@
         </span>
         <div class="pinger-holder">
           <transition name="fade">
-            <button class='pinger' v-on:click="pingSites" v-if="!loading">
-              <i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;Refresh
+            <button class='pinger' v-bind:class="{loader: loading}" v-on:click="pingSites" >
+              <i class="fa fa-refresh" ></i>&nbsp;Refresh
             </button>
-            <h1 v-else class="loader"></h1>
           </transition>
         </div>
       </h1>

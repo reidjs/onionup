@@ -1,14 +1,14 @@
 .loader {
   border-radius: 5px;
-  height: 100%;
-  width: 70%;
+  /* height: 100%; */
+  /* width: 70%; */
   
   /* background-color: #eea320; */
   background-color: #80d02a;
   -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
   animation: sk-rotateplane 1.2s infinite ease-in-out;
 
-  position: relative;
+  /* position: relative; */
   /* left: 16px; */
 }
 
