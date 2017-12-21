@@ -76,15 +76,12 @@
     name: 'graph',
     props:['id'],
     mounted() {
-
+      console.log('this', this)
       this.$store.dispatch("getSite", this.id);
     },
-    data() {
-      let data = values(this.$store.state.pings);
-      // this.pings()
-      // console.log(data)
-      return {
-    
+    watch: {
+      route: function(newRoute) {
+        this.$store.dispatch("getSite", newRoute.params.id);
       }
     },
     components: {
@@ -210,7 +207,8 @@
         } else {
           return {}
         }
-      }
+      },
+      route: function(){return this.$route}
     }
   }
 </script>
