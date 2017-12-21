@@ -12,7 +12,7 @@
         </span>
         <div class="pinger-holder">
           <transition name="fade">
-            <button class='pinger' v-bind:class="{loader: loading}" v-on:click="pingSites" >
+            <button :disabled="loading" class='pinger' v-bind:class="{loader: loading}" v-on:click="pingSites" >
               <i class="fa fa-refresh" ></i>&nbsp;Refresh
             </button>
           </transition>
