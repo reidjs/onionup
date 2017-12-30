@@ -2,6 +2,10 @@
 
 div.site-show-container{
   padding-left: 25px;
+  display: flex;
+  flex-direction: column;
+  width:100%;
+  align-items: center;
 }
 
 div.site-show-container > h1:first-child, div.site-show-container > h2 {

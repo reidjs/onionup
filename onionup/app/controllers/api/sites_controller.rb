@@ -17,7 +17,7 @@ class Api::SitesController < ApplicationController
   end
 
   def index
-    @sites = current_user.sites.includes(:pings);
+    @sites = current_user.sites;
 
   end
 

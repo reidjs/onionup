@@ -114,10 +114,9 @@
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .2s ease, position .2s;
+  transition: opacity .4s ease, position .2s;
 }
-.fade-enter, .fade-leave-to
-/* .component-fade-leave-active below version 2.1.8 */ {
+.fade-enter, .fade-leave-to {
   opacity: 0;
 
 }

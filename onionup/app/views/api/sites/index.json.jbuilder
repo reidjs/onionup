@@ -1,3 +1,4 @@
+
 json.sites do 
     @sites.each do |site|
         json.set! site.id do
@@ -5,12 +6,12 @@ json.sites do
             json.url site.url
             json.alias site.alias
             json.ping_ids do
-                json.array! site.pings.map{|ping| ping.id}
+                json.array! [site.pings.last.id]
             end
         end
     end
 end
-pings = @sites.map{|site| site.pings}
+pings = @pings || @sites.map{|site| site.pings.last}
 json.pings do 
     pings.flatten.each do |ping|
         json.set! ping.id do
@@ -24,3 +25,5 @@ json.pings do
         end
     end
 end
+
+

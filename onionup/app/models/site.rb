@@ -5,7 +5,8 @@ class Site < ApplicationRecord
   
   belongs_to :user
   has_many :pings
-
+ 
+  
   def ping
     responseTime = 0
     loadTime = 0

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-
+<transition name="fade" mode="out-in">
     <main class='main-content'>
       <transition name="fade" mode="out-in">
         <Sidebar></Sidebar>
@@ -9,48 +9,39 @@
         <router-view></router-view>
       </transition>
     </main>
-        <footer class="index">
+</transition>
+<transition name="fade" mode="out-in">
+<footer class="index">
       <div class="profile">
         <h2>Artem</h2>
         <div class="links">
-          <a href="www.linkedin.com/in/artem-kharshan"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
-
-</a>
-          <a href="https://github.com/snorkleboy"><i class="fa fa-github-alt" aria-hidden="true"></i>
-</a>
+          <a href="www.linkedin.com/in/artem-kharshan"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+          <a href="https://github.com/snorkleboy"><i class="fa fa-github-alt" aria-hidden="true"></i></a>
         </div>
       </div>
       <div class="profile">
         <h2>Chris</h2>
         <div class="links">
-          <a href="https://www.linkedin.com/in/"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
-
-</a>
-          <a href="https://www.github.com/"><i class="fa fa-github-alt" aria-hidden="true"></i>
-</a>
+          <a href="https://www.linkedin.com/in/"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+          <a href="https://www.github.com/"><i class="fa fa-github-alt" aria-hidden="true"></i></a>
         </div>
       </div>
       <div class="profile">
         <h2>Jay</h2>
         <div class="links">
-          <a href="https://www.linkedin.com/in/"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
-
-</a>
-          <a href="https://www.github.com/"><i class="fa fa-github-alt" aria-hidden="true"></i>
-</a>
+          <a href="https://www.linkedin.com/in/"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+          <a href="https://www.github.com/"><i class="fa fa-github-alt" aria-hidden="true"></i></a>
         </div>
       </div>
       <div class="profile">
         <h2>Reid</h2>
         <div class="links">
-          <a href="https://www.linkedin.com/in/reidsherman"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
-
-</a>
-          <a href="https://www.github.com/reidjs"><i class="fa fa-github-alt" aria-hidden="true"></i>
-</a>
+          <a href="https://www.linkedin.com/in/reidsherman"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+          <a href="https://www.github.com/reidjs"><i class="fa fa-github-alt" aria-hidden="true"></i></a>
         </div>
       </div>
     </footer>
+    </transition>
   </div>
 
 </template>
