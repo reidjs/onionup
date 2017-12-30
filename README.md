@@ -25,7 +25,7 @@ OnionUp's frontend was developed using Vue with VueX to create a Single Page App
 | ![Add Sites](https://media.giphy.com/media/xT0xeJQt00hGlLOpoc/giphy.gif) | ![Ping Sites](https://media.giphy.com/media/xT0xei2Vk2njAvdBle/giphy.gif) |
 
 
-Frontend routing of our SPA was accomplished using the Vue Router. We also implimented Vue Routers meta tag's and NavigationGaurds to navigate unsigned users to the login page. These are OnionUp's frontend routes:
+Frontend routing of our SPA was accomplished using the Vue Router. We also implemented Vue Routers meta tags and NavigationGuards to navigate unsigned users to the login page. These are OnionUp's frontend routes:
 
 - `/` Index
 - `/sites/:id` Site show page (protected)
