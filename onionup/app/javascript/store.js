@@ -131,7 +131,7 @@ export const store = new Vuex.Store({
           // alert(`logged in as ${res.data.username}`)
         })
         .catch(e => {
-          console.log(e);
+          // console.log(e);
           context.commit('SET_ERRORS', e.response.data[0]);
         });
 

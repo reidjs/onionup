@@ -70,12 +70,12 @@ export default {
   methods: {
     logout: function() {
       this.$store.dispatch("logout").then(() => this.$router.push("login"));
-      console.log("logout");
+      // console.log("logout");
     },
     toggleMenu: function(i) {
       const el = document.getElementById(`menu-list-${i}`);
       const siteListLength = Object.values(this.$store.state.sites).length;
-      console.log(siteListLength)
+      // console.log(siteListLength)
       if (el.classList.contains("hidden")){
         el.style.height = `${47*siteListLength}px`;
         el.classList.remove("hidden")
@@ -95,8 +95,8 @@ export default {
     }
   },
   created(){
-    console.log('created')
-   console.log((this.$store.getters.sites))
+    // console.log('created')
+  //  console.log((this.$store.getters.sites))
   },
   data() {
     return {

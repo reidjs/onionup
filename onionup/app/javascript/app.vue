@@ -15,7 +15,7 @@
       <div class="profile">
         <h2>Artem</h2>
         <div class="links">
-          <a href="www.linkedin.com/in/artem-kharshan"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/artem-kharshan/"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
           <a href="https://github.com/snorkleboy"><i class="fa fa-github-alt" aria-hidden="true"></i></a>
         </div>
       </div>
@@ -96,7 +96,7 @@ router.beforeEach((to, from, next) => {
 
     if (!store.state.session.currentUser ) {
       next({
-        path: '/login',
+        path: '/signup',
         query: { redirect: to.fullPath }
       })
     } else {
