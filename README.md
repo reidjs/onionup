@@ -1,5 +1,7 @@
 # OnionUp
 
+## LIVE LINK: https://onionup.herokuapp.com
+
 ## Uptime Checking Service for Tor Hidden Services
 
 ### Background
@@ -10,15 +12,15 @@ Onion services are websites that are accessible through the Tor anonymity networ
 
 OnionUp users can:
 - Add clearnet or onion sites to their account
-- Track the ping response latency or page load time of any given site 
+- Track the ping response latency or page load time of any given site
 - Alias cryptic onion site names with readable nicknames
 - View graphical representations and statistical analyses to forecast site reliability
 
 ### Technology
 
-#### Frontend 
+#### Frontend
 
-OnionUp's frontend was developed using Vue with VueX to create a Single Page Application (SPA) that provides a seamless, responsive, and beautiful UX. 
+OnionUp's frontend was developed using Vue with VueX to create a Single Page Application (SPA) that provides a seamless, responsive, and beautiful UX.
 
 | Add Sites | Ping Sites |
 | ---------- | --------- |
@@ -54,7 +56,7 @@ To ensure data consistency, we utilized flux architecture by integrating Vue wit
 OnionUp's backend leverages Ruby on Rails concurrency using Rails ActiveJobs to ensure multiple sites can be pinged as a background task.
 
 
-To ping Tor sites, we used `socksify/http` to route traffic through a SOCKS5 proxy. The following ruby code allowed us to retrieve both the HTTP Response and the load time of any onion or clearnet site. 
+To ping Tor sites, we used `socksify/http` to route traffic through a SOCKS5 proxy. The following ruby code allowed us to retrieve both the HTTP Response and the load time of any onion or clearnet site.
 
 ```
 uri = URI.parse(self.url)
@@ -75,13 +77,13 @@ uri = URI.parse(self.url)
             loadTime = (b-a)*1000
           rescue
             return {responseTime:responseTime, loadTime:loadTime, status: status, loaded:loaded}
-          end 
+          end
         end
         return {responseTime:responseTime, loadTime:loadTime, status: status, loaded:status}
       rescue
         puts "Host unreachable error"
       end
-    
+
 ```
 | multi-threaded-pinging | single-threaded-pinging |
 | --------------- | --------------- |
@@ -105,7 +107,7 @@ To make sure that a user can ping all of his sites in a reasonable time we used 
           finished_pings.push(ping)
       end
     end
-    
+
     #wait for threads to finish then save pings
     threads.each{|thr| thr.join}    
     while (!finished_pings.empty?)
@@ -113,7 +115,7 @@ To make sure that a user can ping all of his sites in a reasonable time we used 
     end
 ```
 
-we also set up automatic updating and cleaning of the database using rake tasks and heroku's scheduler. We set the logic up in rails ActiveJobs to allow us to be flexible in our choice of scheduler. The following code is a rake task that takes in a parameter of oldest ping to keep, selects all ping created before that, and deletes them. 
+we also set up automatic updating and cleaning of the database using rake tasks and heroku's scheduler. We set the logic up in rails ActiveJobs to allow us to be flexible in our choice of scheduler. The following code is a rake task that takes in a parameter of oldest ping to keep, selects all ping created before that, and deletes them.
 
 ```  
   def perform(oldestPermitted)
