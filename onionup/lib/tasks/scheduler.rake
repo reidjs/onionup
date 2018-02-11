@@ -26,13 +26,16 @@ namespace :clean do
 
     desc "delete all pings older than 1 day"
     task :day => :environment do
-        puts "this"
         RemoveOldPingsJob.new.perform(1)
+    end
+
+    desc "delete all pings older than 7 day"
+    task :week => :environment do
+        RemoveOldPingsJob.new.perform(7)
     end
 
     desc "delete all pings older than 30 days"
     task :month => :environment do
-        puts "this"
         RemoveOldPingsJob.new.perform(30)
     end
 end
