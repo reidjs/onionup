@@ -1,7 +1,8 @@
 <template>
   <div class="auth-form">
+    <div class="main-logo"></div>
     <div class="auth-inner-wrapper">
-      <h1> Welcome back, login to get started</h1>
+      <h1> Hello, login to get started</h1>
       <ul id="error-list">
          <li class="error-msg">
           {{errors}}

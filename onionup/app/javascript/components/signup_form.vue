@@ -1,5 +1,6 @@
 <template>
   <div class="auth-form">
+    <div class="main-logo"></div>
     <div class="auth-inner-wrapper">
       <h1> Sign up to start checking the status of your favorite Onion sites.</h1>
       <ul id="error-list">
